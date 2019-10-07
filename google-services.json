@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "419030896972",
+    "firebase_url": "https://council-c200f.firebaseio.com",
+    "project_id": "council-c200f",
+    "storage_bucket": "council-c200f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:419030896972:android:0f56b665454136744dbfe9",
+        "android_client_info": {
+          "package_name": "com.lambdacouncil.council"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "419030896972-itmpl6bc7gkfabpot63qmh77396h782r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9wzjXRgYfazB5W75RMxiwHLM3mGraksY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "419030896972-itmpl6bc7gkfabpot63qmh77396h782r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
