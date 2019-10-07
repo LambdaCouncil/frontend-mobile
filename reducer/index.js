@@ -2,7 +2,7 @@ import { ACTION } from '../actions'
 
 const initialState = {
     more: true,
-    action: ''
+    actions: ''
 }
 
 export default (state = initialState, action) => {
@@ -11,7 +11,7 @@ export default (state = initialState, action) => {
             console.log(action.payload)
             return {
                 ...state,
-                action: action.payload
+                actions: action.payload
             }
         default:
             return { ...state }
