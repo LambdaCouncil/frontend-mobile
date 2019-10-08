@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import firebase from "../firebase"
 import { Button, View, StyleSheet, Text, TextInput } from 'react-native'
 
@@ -9,6 +9,10 @@ function Register(props) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [passwordConfirm, setPasswordConfirm] = useState('')
+
+    useEffect(_ => {
+        setTimeout(_ => props.history.push("/home"), 1500)
+    }, [])
 
     const handleChangeUser = (e) => {
         setUserName(e)
