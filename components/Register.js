@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import firebase from "../firebase"
 import { Button, KeyboardAvoidingView, StyleSheet, Text, TextInput, View } from 'react-native'
 import { Link } from 'react-router-native'
+
+import { useHistory } from "react-router-native"
 
 import Icon from './Icon';
 
@@ -11,11 +13,24 @@ function Register(props) {
     const [password, setPassword] = useState('')
     const [passwordConfirm, setPasswordConfirm] = useState('')
 
-    const handleChangeUser = event => setUserName(event)
+    let history = useHistory();
 
-    const handleChangeEmail = event => setEmail(event)
+    // useEffect(_ => {
+    //     setTimeout(_ => history.push("/home"), 1500)
+    // }, [])
 
-    const handleChangePassword = event => setPassword(event)
+    const handleChangeUser = (e) => {
+        setUserName(e)
+        console.log('userName', userName)
+    }
+    const handleChangeEmail = (e) => {
+        setEmail(e)
+        console.log('Email', email)
+    }
+    const handleChangePassword = (e) => {
+        setPassword(e)
+        console.log('password', password)
+    }
 
     const handleChangePasswordConfirm = event => setPasswordConfirm(event)
 
@@ -92,7 +107,7 @@ function Register(props) {
             <Text>Already wearing da undapants?</Text>
 
             <View>
-                <Link to='/login' color='blue'>
+                <Link to='/' color='blue'>
                     <Text>Log in</Text>
                 </Link>
             </View>

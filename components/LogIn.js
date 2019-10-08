@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, KeyboardAvoidingView, StyleSheet, Text, TextInput } from 'react-native'
+import { Button, KeyboardAvoidingView, StyleSheet, Text, TextInput, View } from 'react-native'
 import { Link } from 'react-router-native'
 
 import firebase from "../firebase"
@@ -81,7 +81,13 @@ function Login(props) {
 
             <Button color="green" title='Submit' onPress={handleSubmit} />
 
-            <Text>Need da undapants? <Link to="/register">Register</Link></Text>
+            <Text>Need da undapants?</Text>
+
+            <View>
+                <Link to='/register' color='blue'>
+                    <Text>Register</Text>
+                </Link>
+            </View>
 
         </KeyboardAvoidingView>
 
