@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import firebase from "../firebase"
 import { Button, View, StyleSheet, Text, TextInput } from 'react-native'
-import {Icon} from 'react-native-elements';
+
+import Icon from './Icon';
 
 function Register(props) {
     const [userName, setUserName] = useState('')
@@ -41,6 +42,11 @@ function Register(props) {
 
     return (
         <View style={styles.inputContainer}>
+            <Icon 
+                name="beer"
+                color="green"
+                size={25}
+            />
             <Text style={styles.headerText}>Register for LDSlack</Text>
             <TextInput
                 name="username"
