@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import firebase from "../firebase"
 import { Button, KeyboardAvoidingView, View, StyleSheet, Text, TextInput } from 'react-native'
+
+import { useHistory } from "react-router-native"
 
 import Icon from './Icon';
 
@@ -9,6 +11,12 @@ function Register(props) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [passwordConfirm, setPasswordConfirm] = useState('')
+
+    let history = useHistory();
+
+    useEffect(_ => {
+        setTimeout(_ => history.push("/home"), 1500)
+    }, [])
 
     const handleChangeUser = (e) => {
         setUserName(e)
