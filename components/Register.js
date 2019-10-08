@@ -42,7 +42,7 @@ function Register(props) {
 
     return (
         <View style={styles.inputContainer}>
-            <Icon 
+            <Icon
                 name="beer"
                 color="green"
                 size={25}
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
         width: '50%',
         borderColor: 'black',
         borderWidth: 1,
-        marginBottom: 10, 
+        marginBottom: 10,
         padding: 10
     },
     inputContainer: {
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     headerText: {
-        padding: 10
+        padding: 10,
     }
 })
 
