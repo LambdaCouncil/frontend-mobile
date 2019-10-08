@@ -4,12 +4,12 @@ import { applyMiddleware, createStore } from 'redux'
 import thunk from 'redux-thunk'
 
 import reducer from './reducer'
-import Home from './components/Home'
+import Register from './components/Register'
 
 const store = createStore(reducer, applyMiddleware(thunk))
 
 export default _ => (
   <Provider store={store}>
-    <Home />
+    <Register />
   </Provider>
 )
