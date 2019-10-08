@@ -17,10 +17,10 @@ export default _ => (
   <Provider store={store}>
     <NativeRouter>
       <Switch>
-        <Route exact path = "/" render = {props => <Home {...props} /> } />
-        <Route exact path = "/register" render = {props => <Home {...props} /> } />
+        <Route exact path="/" render={props => <Home {...props} />} />
+        <Route exact path="/register" render={props => <Home {...props} />} />
 
-        <ProtectedRoute component = {ProtectedRoutes} />
+        <ProtectedRoute component={ProtectedRoutes} />
       </Switch>
     </NativeRouter>
   </Provider>
@@ -29,13 +29,13 @@ export default _ => (
 const isAuthed = _ => true;
 
 const ProtectedRoute = ({ component: Component, ...rest }) => (
-  <Route {...rest} render={(props) => 
-          isAuthed()
-          ? <Component {...props}/>
-          : <Redirect to={{
-              pathname: '/',
-              state: { from: props.location }
-          }} />
+  <Route {...rest} render={(props) =>
+    isAuthed()
+      ? <Component {...props} />
+      : <Redirect to={{
+        pathname: '/',
+        state: { from: props.location }
+      }} />
   }
   />
 )
