@@ -4,7 +4,7 @@ import { applyMiddleware, createStore } from 'redux'
 import thunk from 'redux-thunk'
 
 import reducer from './reducer'
-import Home from './components/Home'
+import Home from './components/Register'
 import LogIn from './components/LogIn'
 
 const store = createStore(reducer, applyMiddleware(thunk))
