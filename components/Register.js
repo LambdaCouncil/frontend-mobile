@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import firebase from "../firebase"
-import { Button, KeyboardAvoidingView, StyleSheet, Text, TextInput } from 'react-native'
+import { Button, KeyboardAvoidingView, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Link } from 'react-router-native'
 
 import Icon from './Icon';
 
@@ -10,28 +11,16 @@ function Register(props) {
     const [password, setPassword] = useState('')
     const [passwordConfirm, setPasswordConfirm] = useState('')
 
-    const handleChangeUser = event => {
-        setUserName(event)
-        console.log('userName', userName)
-    }
+    const handleChangeUser = event => setUserName(event)
 
-    const handleChangeEmail = event => {
-        setEmail(event)
-        console.log('Email', email)
-    }
+    const handleChangeEmail = event => setEmail(event)
 
-    const handleChangePassword = event => {
-        setPassword(event)
-        console.log('password', password)
-    }
+    const handleChangePassword = event => setPassword(event)
 
-    const handleChangePasswordConfirm = event => {
-        setPasswordConfirm(event)
-        console.log('passwordConfirm', passwordConfirm)
-    }
+    const handleChangePasswordConfirm = event => setPasswordConfirm(event)
 
     const handleSubmit = event => {
-        e.preventDefault()
+        event.preventDefault()
         firebase
             .auth()
             .createUserWithEmailAndPassword(email, password)
@@ -44,13 +33,20 @@ function Register(props) {
     }
 
     return (
-        <KeyboardAvoidingView style={styles.inputContainer} behavior='padding'>
+
+        <KeyboardAvoidingView
+            style={styles.inputContainer}
+            behavior='padding'
+        >
+
             <Icon
                 name="beer"
                 color="green"
                 size={25}
             />
+
             <Text style={styles.headerText}>Register for LDSlack</Text>
+
             <TextInput
                 name="username"
                 placeholder="Username"
@@ -59,6 +55,7 @@ function Register(props) {
                 value={userName}
                 type="text"
             />
+
             <TextInput
                 name="email"
                 placeholder="Email"
@@ -67,6 +64,7 @@ function Register(props) {
                 value={email}
                 type="text"
             />
+
             <TextInput
                 name="password"
                 placeholder="Password"
@@ -75,6 +73,7 @@ function Register(props) {
                 value={password}
                 type="password"
             />
+
             <TextInput
                 name="passwordConfirm"
                 placeholder="Confirm Password"
@@ -83,9 +82,23 @@ function Register(props) {
                 value={passwordConfirm}
                 type="password"
             />
-            <Button color="green" title='Submit' onPress={handleSubmit} />
-            <Text>Already wearing the undapants?</Text>
+
+            <Button
+                color="green"
+                title='Submit'
+                onPress={handleSubmit}
+            />
+
+            <Text>Already wearing da undapants?</Text>
+
+            <View>
+                <Link to='/login' color='blue'>
+                    <Text>Log in</Text>
+                </Link>
+            </View>
+
         </KeyboardAvoidingView>
+
     )
 }
 
