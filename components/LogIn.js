@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, View, StyleSheet, Text, TextInput } from 'react-native'
+import { Button, KeyboardAvoidingView, StyleSheet, Text, TextInput } from 'react-native'
 
 import firebase from "../firebase"
 
@@ -55,7 +55,7 @@ function Login(props) {
 
 
     return (
-        <View style={styles.inputContainer}>
+        <KeyboardAvoidingView style={styles.inputContainer} behavior='padding'>
             <Icon
                 name="beer"
                 color="green"
@@ -80,7 +80,7 @@ function Login(props) {
 
             <Text>Need the undapants? <Text to="/register">Register</Text></Text>
 
-        </View>
+        </KeyboardAvoidingView>
     )
 }
 const styles = StyleSheet.create({

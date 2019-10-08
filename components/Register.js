@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import firebase from "../firebase"
-import { Button, View, StyleSheet, Text, TextInput } from 'react-native'
+import { Button, KeyboardAvoidingView, StyleSheet, Text, TextInput } from 'react-native'
 
 import Icon from './Icon';
 
@@ -10,24 +10,27 @@ function Register(props) {
     const [password, setPassword] = useState('')
     const [passwordConfirm, setPasswordConfirm] = useState('')
 
-    const handleChangeUser = (e) => {
-        setUserName(e)
+    const handleChangeUser = event => {
+        setUserName(event)
         console.log('userName', userName)
     }
-    const handleChangeEmail = (e) => {
-        setEmail(e)
+
+    const handleChangeEmail = event => {
+        setEmail(event)
         console.log('Email', email)
     }
-    const handleChangePassword = (e) => {
-        setPassword(e)
+
+    const handleChangePassword = event => {
+        setPassword(event)
         console.log('password', password)
     }
-    const handleChangePasswordConfirm = (e) => {
-        setPasswordConfirm(e)
+
+    const handleChangePasswordConfirm = event => {
+        setPasswordConfirm(event)
         console.log('passwordConfirm', passwordConfirm)
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = event => {
         e.preventDefault()
         firebase
             .auth()
@@ -41,7 +44,7 @@ function Register(props) {
     }
 
     return (
-        <View style={styles.inputContainer}>
+        <KeyboardAvoidingView style={styles.inputContainer} behavior='padding'>
             <Icon
                 name="beer"
                 color="green"
@@ -82,7 +85,7 @@ function Register(props) {
             />
             <Button color="green" title='Submit' onPress={handleSubmit} />
             <Text>Already wearing the undapants?</Text>
-        </View>
+        </KeyboardAvoidingView>
     )
 }
 
