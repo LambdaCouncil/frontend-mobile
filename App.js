@@ -5,11 +5,13 @@ import thunk from 'redux-thunk'
 
 import reducer from './reducer'
 import Home from './components/Home'
+import LogIn from './components/LogIn'
 
 const store = createStore(reducer, applyMiddleware(thunk))
 
 export default _ => (
   <Provider store={store}>
-    <Home />
+    {/* <Home /> */}
+    <LogIn />
   </Provider>
 )
