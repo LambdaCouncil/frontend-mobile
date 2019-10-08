@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import firebase from "../firebase"
-import { Button, View, StyleSheet, Text, TextInput } from 'react-native'
+import { Button, KeyboardAvoidingView, View, StyleSheet, Text, TextInput } from 'react-native'
 
 import Icon from './Icon';
 
@@ -41,11 +41,11 @@ function Register(props) {
     }
 
     return (
-        <View style={styles.inputContainer}>
+        <KeyboardAvoidingView style={styles.inputContainer} behavior="padding">
             <Icon 
                 name="beer"
                 color="green"
-                size={25}
+                size={50}
             />
             <Text style={styles.headerText}>Register for LDSlack</Text>
             <TextInput
@@ -82,7 +82,7 @@ function Register(props) {
             />
             <Button color="green" title='Submit' onPress={handleSubmit} />
             <Text>Already wearing the undapants?</Text>
-        </View>
+        </KeyboardAvoidingView>
     )
 }
 
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
         padding: 10
     },
     inputContainer: {
-        flex: 1,
+        flex: 3,
         justifyContent: 'center',
         alignItems: 'center',
     },
