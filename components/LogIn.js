@@ -7,6 +7,7 @@ import firebase from "../firebase"
 import Icon from './Icon'
 
 function Login(props) {
+
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [errors, setErrors] = useState([])
@@ -45,7 +46,7 @@ function Login(props) {
         error.message.toLocaleLowerCase().includes(inputName))
         ? "error" : ""
 
-    const displayErrors = (errors) => errors.map((error, i) => <p key={i}>{error.message}</p>)
+    const displayErrors = errors => errors.map((error, i) => <p key={i}>{error.message}</p>)
 
     return (
 
@@ -94,6 +95,7 @@ function Login(props) {
 
     )
 }
+
 const styles = StyleSheet.create({
     input: {
         width: '50%',
