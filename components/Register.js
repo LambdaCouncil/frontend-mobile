@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import firebase from "../firebase"
-import { Button, KeyboardAvoidingView, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Button, KeyboardAvoidingView, StyleSheet, Text, View } from 'react-native'
+import { Input } from 'react-native-elements'
 import { Link } from 'react-router-native'
 
 import Icon from './Icon'
@@ -14,36 +15,33 @@ function Register(props) {
 
     const userRef = firebase.database().ref('users')
 
-    const handleChangeUser = event => setUserName(event)
+    const handleChangeUser = text => setUserName(text)
 
-    const handleChangeEmail = event => setEmail(event)
+    const handleChangeEmail = text => setEmail(text)
 
-    const handleChangePassword = event => setPassword(event)
+    const handleChangePassword = text => setPassword(text)
 
-    const handleChangePasswordConfirm = event => setPasswordConfirm(event)
+    const handleChangePasswordConfirm = text => setPasswordConfirm(text)
 
-    const handleSubmit = event => {
-        event.preventDefault()
-        firebase
-            .auth()
-            .createUserWithEmailAndPassword(email, password)
-            .then(createdUser => {
-                console.log('createdUser', createdUser)
-                createdUser.user.updateProfile({ displayName: userName })
-                    .then(_ => {
-                        userRef.child(createdUser.user.uid).set({
-                            name: createdUser.displayName
-                        })
-                            .then(_ => {
-                                setUserName('')
-                                setEmail('')
-                                setPassword('')
-                                setPasswordConfirm('')
-                            })
+    const handleSubmit = _ => firebase
+        .auth()
+        .createUserWithEmailAndPassword(email, password)
+        .then(createdUser => {
+            console.log('createdUser', createdUser)
+            createdUser.user.updateProfile({ displayName: userName })
+                .then(_ => {
+                    userRef.child(createdUser.user.uid).set({
+                        name: createdUser.displayName
                     })
-            })
-            .catch(err => console.log(err))
-    }
+                        .then(_ => {
+                            setUserName('')
+                            setEmail('')
+                            setPassword('')
+                            setPasswordConfirm('')
+                        })
+                })
+        })
+        .catch(err => console.log(err))
 
     return (
 
@@ -60,7 +58,7 @@ function Register(props) {
 
             <Text style={styles.headerText}>Register for LDSlack</Text>
 
-            <TextInput
+            <Input
                 name="username"
                 placeholder="Username"
                 style={styles.input}
@@ -69,7 +67,7 @@ function Register(props) {
                 type="text"
             />
 
-            <TextInput
+            <Input
                 name="email"
                 placeholder="Email"
                 style={styles.input}
@@ -78,7 +76,7 @@ function Register(props) {
                 type="text"
             />
 
-            <TextInput
+            <Input
                 name="password"
                 placeholder="Password"
                 style={styles.input}
@@ -87,7 +85,7 @@ function Register(props) {
                 type="password"
             />
 
-            <TextInput
+            <Input
                 name="passwordConfirm"
                 placeholder="Confirm Password"
                 style={styles.input}
