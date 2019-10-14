@@ -1,17 +1,15 @@
 import React from "react"
-
 import { Switch, Route } from "react-router-native"
 import { View, Text } from "react-native"
 
-export default props => {
-    return (
-        <Switch>
-            <Route exact path="/home" component={() => <Text>Hello</Text>} />
+import Home from './components/Home'
 
-            <Route component={Page404} />
-        </Switch>
-    )
-}
+export default _ => (
+    <Switch>
+        <Route exact path="/home" component={Home} />
+        <Route component={Page404} />
+    </Switch>
+)
 
 const Page404 = () => {
     return (
