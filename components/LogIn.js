@@ -12,12 +12,14 @@ function Login(props) {
     const [errors, setErrors] = useState([])
     const [loading, setLoading] = useState(false)
 
-    const handleChangeEmail = (e) => setEmail(e.target.value)
+    const handleChangeEmail = event => {
+        console.log(event)
+        setEmail(event.nativeEvent.text)
+    }
 
-    const handleChangePassword = (e) => setPassword(e.target.value)
+    const handleChangePassword = event => setPassword(event.nativeEvent.text)
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
+    const handleSubmit = _ => {
         if (isFormValid(email, password)) {
             setErrors([])
             setLoading(true)
@@ -45,7 +47,6 @@ function Login(props) {
 
     const displayErrors = (errors) => errors.map((error, i) => <p key={i}>{error.message}</p>)
 
-
     return (
 
         <KeyboardAvoidingView
@@ -67,7 +68,7 @@ function Login(props) {
                 placeholder={"Email"}
                 onChange={handleChangeEmail}
                 value={email}
-                type="text"
+                type='email'
             />
 
             <TextInput
@@ -81,11 +82,11 @@ function Login(props) {
 
             <Button color="green" title='Submit' onPress={handleSubmit} />
 
-            <Text>Need da undapants?</Text>
 
             <View>
-                <Link to='/register' color='blue'>
-                    <Text>Register</Text>
+                <Text>Don't have an account?</Text>
+                <Link to='/register' style={styles.link}>
+                    <Text>Register Here</Text>
                 </Link>
             </View>
 
@@ -103,11 +104,14 @@ const styles = StyleSheet.create({
     },
     inputContainer: {
         flex: 1,
-        justifyContent: 'center',
         alignItems: 'center',
+        marginTop: '50%'
     },
     headerText: {
         padding: 10
+    },
+    link: {
+        flex: 1
     }
 })
 

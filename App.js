@@ -1,42 +1,87 @@
-import React from 'react'
-import { Provider } from 'react-redux'
+import React, { useEffect } from 'react'
+import { Provider, connect } from 'react-redux'
+import { Route, Switch, withRouter, Redirect } from "react-router-native"
+import { ActivityIndicator, View } from 'react-native'
 import { applyMiddleware, createStore } from 'redux'
+import { NativeRouter } from 'react-router-native'
 import thunk from 'redux-thunk'
 
-import { NativeRouter, Route, Switch } from "react-router-native"
-
 import reducer from './reducer'
-import { View, Text } from 'react-native'
-
+import firebase from './firebase'
 import Register from './components/Register'
 import Login from './components/LogIn'
 import ProtectedRoutes from "./ProtectedRoutes"
+import { setUser, clearUser } from './actions'
+
+const App = connect(
+  state => ({ ...state }),
+  { setUser, clearUser })(withRouter(props => {
+
+    useEffect(_ => {
+      firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+          props.setUser(user)
+          props.history.push('/home')
+        } else {
+          props.history.push('/')
+          props.clearUser()
+        }
+      })
+    }, [])
+
+    return (props.isLoading ? (
+      <View style={styles.spinnerContainer}>
+        <ActivityIndicator size="large" color="lime" />
+      </View>
+    ) : (
+        <Switch>
+
+          <Route
+            exact path="/"
+            render={props => <Login {...props} />}
+          />
+
+          <Route
+            path="/register"
+            render={props => <Register {...props} />}
+          />
+
+          <ProtectedRoute
+            component={props => <ProtectedRoutes />}
+            currentUser={props.currentUser}
+          />
+
+        </Switch>
+      )
+    )
+  }))
 
 const store = createStore(reducer, applyMiddleware(thunk))
 
-export default _ => (
+const Base = _ => (
   <Provider store={store}>
     <NativeRouter>
-      <Switch>
-        <Route exact path="/" render={props => <Login {...props} />} />
-        <Route exact path="/register" render={props => <Register {...props} />} />
-
-        <ProtectedRoute component={ProtectedRoutes} />
-      </Switch>
+      <App />
     </NativeRouter>
   </Provider>
 )
 
-const isAuthed = _ => true;
-
-const ProtectedRoute = ({ component: Component, ...rest }) => (
-  <Route {...rest} render={(props) =>
-    isAuthed()
-      ? <Component {...props} />
-      : <Redirect to={{
-        pathname: '/',
-        state: { from: props.location }
-      }} />
+const ProtectedRoute = ({ component: Component, currentUser }) => (
+  <Route render={props => currentUser ?
+    <Component {...props} currentUser={currentUser} />
+    : <Redirect to={{
+      pathname: '/',
+      state: { from: props.location }
+    }} />
   }
   />
 )
+
+const styles = {
+  spinnerContainer: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+}
+
+export default Base

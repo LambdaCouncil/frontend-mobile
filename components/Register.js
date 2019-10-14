@@ -5,32 +5,22 @@ import { Link } from 'react-router-native'
 
 import { useHistory } from "react-router-native"
 
-import Icon from './Icon';
+import Icon from './Icon'
 
 function Register(props) {
+
     const [userName, setUserName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [passwordConfirm, setPasswordConfirm] = useState('')
 
-    let history = useHistory();
+    const userRef = firebase.database().ref('users')
 
-    // useEffect(_ => {
-    //     setTimeout(_ => history.push("/home"), 1500)
-    // }, [])
+    const handleChangeUser = event => setUserName(event)
 
-    const handleChangeUser = (e) => {
-        setUserName(e)
-        console.log('userName', userName)
-    }
-    const handleChangeEmail = (e) => {
-        setEmail(e)
-        console.log('Email', email)
-    }
-    const handleChangePassword = (e) => {
-        setPassword(e)
-        console.log('password', password)
-    }
+    const handleChangeEmail = event => setEmail(event)
+
+    const handleChangePassword = event => setPassword(event)
 
     const handleChangePasswordConfirm = event => setPasswordConfirm(event)
 
@@ -41,10 +31,20 @@ function Register(props) {
             .createUserWithEmailAndPassword(email, password)
             .then(createdUser => {
                 console.log('createdUser', createdUser)
+                createdUser.user.updateProfile({ displayName: userName })
+                    .then(_ => {
+                        userRef.child(createdUser.user.uid).set({
+                            name: createdUser.displayName
+                        })
+                            .then(_ => {
+                                setUserName('')
+                                setEmail('')
+                                setPassword('')
+                                setPasswordConfirm('')
+                            })
+                    })
             })
-            .catch(err => {
-                console.log(err)
-            })
+            .catch(err => console.log(err))
     }
 
     return (
