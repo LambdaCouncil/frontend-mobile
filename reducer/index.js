@@ -1,19 +1,28 @@
-import { ACTION } from '../actions'
+import { CLEAR_USER, SET_USER, SET_CURRENT_CHANNEL } from '../actions'
 
-const initialState = {
-    more: true,
-    actions: ''
+const initialUserState = {
+    currentUser: undefined,
+    isLoading: true
 }
 
-export default (state = initialState, action) => {
+export default (state = initialUserState, action) => {
     switch (action.type) {
-        case ACTION:
-            console.log(action.payload)
+        case SET_USER:
+            return {
+                currentUser: action.payload,
+                isLoading: false
+            }
+        case CLEAR_USER:
             return {
                 ...state,
-                actions: action.payload
+                isLoading: false
+            }
+        case SET_CURRENT_CHANNEL:
+            return {
+                ...state,
+                currentChannel: action.payload
             }
         default:
-            return { ...state }
+            return state
     }
 }

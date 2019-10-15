@@ -4,13 +4,13 @@ import "firebase/database"
 import "firebase/storage"
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCDdrlJNrMYv8SylQq8D8E9c0dSMAiCcj8",
-    authDomain: "react-slack-clone-66350.firebaseapp.com",
-    databaseURL: "https://react-slack-clone-66350.firebaseio.com",
-    projectId: "react-slack-clone-66350",
-    storageBucket: "react-slack-clone-66350.appspot.com",
-    messagingSenderId: "200600593909",
-    appId: "1:200600593909:web:076e9a48530a059b942cbc",
+    apiKey: "AIzaSyCPVmMRkhRB5ebmcl8L_60kmcWI-_KI1Ow",
+    authDomain: "council-c200f.firebaseapp.com",
+    databaseURL: "https://council-c200f.firebaseio.com",
+    projectId: "council-c200f",
+    storageBucket: "council-c200f.appspot.com",
+    messagingSenderId: "419030896972",
+    appId: "1:419030896972:android:0f56b665454136744dbfe9",
     measurementId: "G-XTQP3M861X"
 }
 
