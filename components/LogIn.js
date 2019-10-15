@@ -7,43 +7,6 @@ import firebase from "../firebase"
 import Icon from './Icon'
 
 function Login(props) {
-<<<<<<< HEAD
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [errors, setErrors] = useState([]);
-    const [loading, setLoading] = useState(false);
-
-    const handleChangeEmail = (e) => {
-        setEmail(value);
-        // console.log('Email', email)
-    };
-    const handleChangePassword = (e) => {
-        setPassword(value);
-        // console.log('password', password)
-    };
-
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (isFormValid(email, password)) {
-            setErrors([]);
-            setLoading(true);
-            firebase
-                .auth()
-                .signInWithEmailAndPassword(email, password)
-                .then(signedInUser => {
-                    console.log(signedInUser);
-                    setEmail('');
-                    setPassword('');
-                })
-                .catch(err => {
-                    console.log(err);
-                    setErrors((errors => errors.concat(err)));
-                    setLoading(false);
-                })
-=======
->>>>>>> 65d602a610e56f673044285b33d7abcbe2448bc8
-
     const [email, setEmail] = useState(' ')
     const [password, setPassword] = useState(' ')
     const [focus, setFocus] = useState([false, false])
