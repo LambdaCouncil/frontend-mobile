@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import firebase from '../firebase'
 
 const Home = props => {
-    console.log('homeprops', props)
+    console.log('homeprops', props.currentUser)
     return (
         <View style={homeStyle}>
             <Text>{`Hello, ${props.currentUser.displayName}`}</Text>
