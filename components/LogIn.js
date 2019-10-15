@@ -12,11 +12,11 @@ function Login(props) {
     const [loading, setLoading] = useState(false);
 
     const handleChangeEmail = (e) => {
-        setEmail(e.target.value);
+        setEmail(value);
         // console.log('Email', email)
     };
     const handleChangePassword = (e) => {
-        setPassword(e.target.value);
+        setPassword(value);
         // console.log('password', password)
     };
 
