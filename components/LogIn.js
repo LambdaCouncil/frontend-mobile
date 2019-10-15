@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { Button, KeyboardAvoidingView, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Button, KeyboardAvoidingView, StyleSheet, Text, View } from 'react-native'
+import { Input } from 'react-native-elements'
 import { Link } from 'react-router-native'
 
 import firebase from "../firebase"
@@ -7,17 +8,15 @@ import firebase from "../firebase"
 import Icon from './Icon'
 
 function Login(props) {
+
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [errors, setErrors] = useState([])
     const [loading, setLoading] = useState(false)
 
-    const handleChangeEmail = event => {
-        console.log(event)
-        setEmail(event.nativeEvent.text)
-    }
+    const handleChangeEmail = text => setEmail(text)
 
-    const handleChangePassword = event => setPassword(event.nativeEvent.text)
+    const handleChangePassword = text => setPassword(text)
 
     const handleSubmit = _ => {
         if (isFormValid(email, password)) {
@@ -39,13 +38,13 @@ function Login(props) {
         }
     }
 
-    const isFormValid = () => email && password
+    const isFormValid = _ => email && password
 
     const handleInputError = (errors, inputName) => errors.some(error =>
         error.message.toLocaleLowerCase().includes(inputName))
         ? "error" : ""
 
-    const displayErrors = (errors) => errors.map((error, i) => <p key={i}>{error.message}</p>)
+    const displayErrors = errors => errors.map((error, i) => <p key={i}>{error.message}</p>)
 
     return (
 
@@ -62,26 +61,25 @@ function Login(props) {
 
             <Text style={styles.headerText}>Register for LDSlack</Text>
 
-            <TextInput
+            <Input
                 name="email"
                 style={styles.input}
                 placeholder={"Email"}
-                onChange={handleChangeEmail}
+                onChangeText={handleChangeEmail}
                 value={email}
                 type='email'
             />
 
-            <TextInput
+            <Input
                 name="password"
                 style={styles.input}
                 placeholder={"Password"}
-                onChange={handleChangePassword}
+                onChangeText={handleChangePassword}
                 value={password}
                 type="password"
             />
 
             <Button color="green" title='Submit' onPress={handleSubmit} />
-
 
             <View>
                 <Text>Don't have an account?</Text>
@@ -94,6 +92,7 @@ function Login(props) {
 
     )
 }
+
 const styles = StyleSheet.create({
     input: {
         width: '50%',
