@@ -10,6 +10,7 @@ import reducer from './reducer'
 import firebase from './firebase'
 import Register from './components/Register'
 import Login from './components/LogIn'
+import Root from './Root'
 import ProtectedRoutes from "./ProtectedRoutes"
 import { setUser, clearUser } from './actions'
 
@@ -37,7 +38,12 @@ const App = connect(
         <Switch>
 
           <Route
-            exact path="/"
+            exact path='/'
+            render={props => <Root />}
+          />
+
+          <Route
+            exact path="/login"
             render={props => <Login {...props} />}
           />
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import firebase from "../firebase"
-import { Button, KeyboardAvoidingView, StyleSheet, View } from 'react-native'
+import { KeyboardAvoidingView, StyleSheet } from 'react-native'
 import { Input, Text } from 'react-native-elements'
 import { Link } from 'react-router-native'
 
@@ -48,7 +48,15 @@ function Register(props) {
             behavior='padding'
         >
 
-            <Text h2>Sign Up</Text>
+            <Link to='/' style={styles.link}>
+                <Icon
+                    name='arrow-back'
+                    color='green'
+                    style={styles.backButton}
+                />
+            </Link>
+
+            <Text h2 h2Style={styles.headerText}>Sign Up</Text>
 
             <Text h4>Create Councils account.</Text>
 
@@ -77,14 +85,6 @@ function Register(props) {
 
             <Text h3 h3Style={{ color: 'green' }} onPress={handleSubmit}>Sign Up</Text>
 
-            <Text>Already wearing da undapants?</Text>
-
-            <View>
-                <Link to='/' color='blue'>
-                    <Text>Log in</Text>
-                </Link>
-            </View>
-
         </KeyboardAvoidingView>
 
     )
@@ -99,12 +99,23 @@ const styles = StyleSheet.create({
         padding: 10
     },
     inputContainer: {
+        height: '100%',
         flex: 1,
-        justifyContent: 'center',
         alignItems: 'center',
     },
     headerText: {
-        padding: 10,
+        marginTop: '50%',
+        padding: 10
+    },
+    link: {
+        width: '100%',
+        height: 50
+    },
+    backButton: {
+        position: 'absolute',
+        top: 25,
+        left: 5,
+        fontSize: 50
     }
 })
 

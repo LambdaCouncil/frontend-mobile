@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, KeyboardAvoidingView, StyleSheet, View } from 'react-native'
+import { KeyboardAvoidingView, StyleSheet } from 'react-native'
 import { Input, Text } from 'react-native-elements'
 import { Link } from 'react-router-native'
 
@@ -53,7 +53,15 @@ function Login(props) {
             behavior='padding'
         >
 
-            <Text h2>Log In</Text>
+            <Link to='/' style={styles.link}>
+                <Icon
+                    name='arrow-back'
+                    color='green'
+                    style={styles.backButton}
+                />
+            </Link>
+
+            <Text h2 h2Style={styles.headerText}>Log In</Text>
 
             <Text h4>Log into your Councils account.</Text>
 
@@ -82,13 +90,6 @@ function Login(props) {
 
             <Text h4 h4Style={{ color: 'green' }} onPress={handleSubmit}>Log In</Text>
 
-            <View>
-                <Text>Don't have an account?</Text>
-                <Link to='/register' style={styles.link}>
-                    <Text>Register Here</Text>
-                </Link>
-            </View>
-
         </KeyboardAvoidingView>
 
     )
@@ -103,15 +104,23 @@ const styles = StyleSheet.create({
         padding: 10
     },
     inputContainer: {
+        height: '100%',
         flex: 1,
         alignItems: 'center',
-        marginTop: '50%'
     },
     headerText: {
+        marginTop: '50%',
         padding: 10
     },
     link: {
-        flex: 1
+        width: '100%',
+        height: 50
+    },
+    backButton: {
+        position: 'absolute',
+        top: 25,
+        left: 5,
+        fontSize: 50
     }
 })
 
