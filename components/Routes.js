@@ -13,15 +13,17 @@ import { setUser, clearUser } from '../actions'
 const Routes = props => {
 
     useEffect(_ => {
-        firebase.auth().onAuthStateChanged(user => {
-            if (user) {
-                props.setUser(user)
-                props.history.push('/home')
-            } else {
-                props.history.push('/')
-                props.clearUser()
-            }
-        })
+        firebase
+            .auth()
+            .onAuthStateChanged(user => {
+                if (user) {
+                    props.setUser(user)
+                    props.history.push('/home')
+                } else {
+                    props.history.push('/')
+                    props.clearUser()
+                }
+            })
     }, [])
 
     return (props.isLoading ? (
