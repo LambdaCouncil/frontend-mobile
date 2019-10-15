@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native'
 import { Text } from 'react-native-elements'
 import { Link } from 'react-router-native'
 
-export default props => {
+export default _ => {
     return (
         <View style={styles.containerAll}>
 
@@ -28,10 +28,10 @@ export default props => {
 }
 
 const styles = StyleSheet.create({
-
     containerAll: {
         height: '100%',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        paddingTop: 25
     },
     headerContainer: {
         width: '95%',
@@ -70,5 +70,4 @@ const styles = StyleSheet.create({
     link: {
         width: '45%'
     },
-
 })

@@ -4,47 +4,38 @@ import { Input, Text } from 'react-native-elements'
 import { Link } from 'react-router-native'
 
 import firebase from "../firebase"
-
 import Icon from './Icon'
 
 function Login(props) {
 
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [errors, setErrors] = useState([])
-    const [loading, setLoading] = useState(false)
+    const [email, setEmail] = useState(' ')
+    const [password, setPassword] = useState(' ')
+    const [focus, setFocus] = useState([false, false])
 
-    const handleChangeEmail = text => setEmail(text)
+    const handleChangeEmail = text => setEmail(text),
 
-    const handleChangePassword = text => setPassword(text)
+        handleChangePassword = text => setPassword(text),
 
-    const handleSubmit = _ => {
-        if (isFormValid(email, password)) {
-            setErrors([])
-            setLoading(true)
-            firebase
-                .auth()
-                .signInWithEmailAndPassword(email, password)
-                .then(signedInUser => {
-                    console.log(signedInUser)
-                    setEmail('')
-                    setPassword('')
-                })
-                .catch(err => {
-                    console.log(err)
-                    setErrors((errors => errors.concat(err)))
-                    setLoading(false)
-                })
+        handleSubmit = _ => {
+            if (isFormValid()) {
+                firebase
+                    .auth()
+                    .signInWithEmailAndPassword(email, password)
+                    .then(signedInUser => {
+                        console.log(signedInUser)
+                        setEmail(' ')
+                        setPassword(' ')
+                    })
+                    .catch(err => console.error(err))
+            }
+        },
+
+        isFormValid = _ => email.length > 1 && password.length > 1,
+
+        isFieldValid = field => {
+            if (field) return email.length ? '' : 'Email is required to sign in.'
+            else return password.length ? '' : 'Password is required to sign in.'
         }
-    }
-
-    const isFormValid = _ => email && password
-
-    const handleInputError = (errors, inputName) => errors.some(error =>
-        error.message.toLocaleLowerCase().includes(inputName))
-        ? "error" : ""
-
-    const displayErrors = errors => errors.map((error, i) => <p key={i}>{error.message}</p>)
 
     return (
 
@@ -68,24 +59,34 @@ function Login(props) {
             <Input
                 name="email"
                 style={styles.input}
-                placeholder='Email'
+                label='Email'
+                labelStyle={{
+                    translateY: focus[0] ? 0 : 35,
+                    color: focus[0] ? 'black' : 'gray',
+                }}
                 onChangeText={handleChangeEmail}
-                value={email}
-                type='email'
-                inputContainerStyle={{ marginVertical: 15 }}
+                containerStyle={{ marginVertical: 15 }}
                 inputStyle={{ marginVertical: 10 }}
+                onFocus={() => setFocus([true, false])}
+                onBlur={() => setFocus([false, false])}
+                errorMessage={isFieldValid(true)}
             />
 
             <Input
                 name="password"
                 style={styles.input}
-                placeholder="Password"
+                label="Password"
+                labelStyle={{
+                    translateY: focus[1] ? 0 : 35,
+                    color: focus[1] ? 'black' : 'gray',
+                }}
                 onChangeText={handleChangePassword}
-                value={password}
-                type="password"
                 secureTextEntry={true}
-                inputContainerStyle={{ marginVertical: 15 }}
+                containerStyle={{ marginVertical: 15 }}
                 inputStyle={{ marginVertical: 10 }}
+                onFocus={() => setFocus([false, true])}
+                onBlur={() => setFocus([false, false])}
+                errorMessage={isFieldValid()}
             />
 
             <Text h4 h4Style={{ color: 'green' }} onPress={handleSubmit}>Log In</Text>

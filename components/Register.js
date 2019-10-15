@@ -8,38 +8,50 @@ import Icon from './Icon'
 
 function Register(props) {
 
-    const [userName, setUserName] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [ldsOrg, setLdsOrg] = useState('')
+    const [userName, setUserName] = useState(' ')
+    const [email, setEmail] = useState(' ')
+    const [password, setPassword] = useState(' ')
+    const [ldsOrg, setLdsOrg] = useState(' ')
+    const [focus, setFocus] = useState([false, false, false])
 
-    const userRef = firebase.database().ref('users')
+    const userRef = firebase.database().ref('users'),
 
-    const handleChangeEmail = text => setEmail(text)
+        handleChangeEmail = text => setEmail(text),
 
-    const handleChangePassword = text => setPassword(text)
+        handleChangePassword = text => setPassword(text),
 
-    const handleChangeLdsOrg = text => setLdsOrg(text)
+        handleChangeLdsOrg = text => setLdsOrg(text),
 
-    const handleSubmit = _ => firebase
-        .auth()
-        .createUserWithEmailAndPassword(email, password)
-        .then(createdUser => {
-            console.log('createdUser', createdUser)
-            createdUser.user.updateProfile({ displayName: userName })
-                .then(_ => {
-                    userRef.child(createdUser.user.uid).set({
-                        name: createdUser.displayName
-                    })
-                        .then(_ => {
-                            setUserName('')
-                            setEmail('')
-                            setPassword('')
-                            setLdsOrg('')
+        handleSubmit = _ => firebase
+            .auth()
+            .createUserWithEmailAndPassword(email, password)
+            .then(createdUser => {
+                console.log('createdUser', createdUser)
+                createdUser.user.updateProfile({ displayName: userName })
+                    .then(_ => {
+                        userRef.child(createdUser.user.uid).set({
+                            name: createdUser.displayName
                         })
-                })
-        })
-        .catch(err => console.log(err))
+                            .then(_ => {
+                                setUserName(' ')
+                                setEmail(' ')
+                                setPassword(' ')
+                                setLdsOrg(' ')
+                            })
+                    })
+            })
+            .catch(err => console.error(err)),
+
+        isFieldValid = type => {
+            switch (type) {
+                case 'email':
+                    return email.length > 1 ? '' : 'Email is required.'
+                case 'password':
+                    return password.length > 1 ? '' : 'Password is required.'
+                default:
+                    return ldsOrg.length > 1 ? '' : 'LDS Username is required.'
+            }
+        }
 
     return (
 
@@ -61,32 +73,50 @@ function Register(props) {
             <Text h4>Create Councils account.</Text>
 
             <Input
-                placeholder="Email"
+                label="Email"
+                labelStyle={{
+                    translateY: focus[0] ? 0 : 35,
+                    color: focus[0] ? 'black' : 'gray',
+                }}
                 style={styles.input}
                 onChangeText={handleChangeEmail}
-                value={email}
-                inputContainerStyle={{ marginVertical: 15 }}
+                containerStyle={{ marginVertical: 15 }}
                 inputStyle={{ marginVertical: 10 }}
+                onFocus={() => setFocus([true, false, false])}
+                onBlur={() => setFocus([false, false, false])}
+                errorMessage={isFieldValid('email')}
             />
 
             <Input
-                placeholder="Password"
+                label="Password"
+                labelStyle={{
+                    translateY: focus[1] ? 0 : 35,
+                    color: focus[1] ? 'black' : 'gray',
+                }}
                 style={styles.input}
                 onChangeText={handleChangePassword}
-                value={password}
-                type="password"
                 secureTextEntry={true}
-                inputContainerStyle={{ marginVertical: 15 }}
+                containerStyle={{ marginVertical: 15 }}
                 inputStyle={{ marginVertical: 10 }}
+                onFocus={() => setFocus([false, true, false])}
+                onBlur={() => setFocus([false, false, false])}
+                errorMessage={isFieldValid('password')}
             />
 
             <Input
-                placeholder="LDS.org Username"
+                label="LDS.org Username"
+                labelStyle={{
+                    translateY: focus[2] ? 0 : 35,
+                    color: focus[2] ? 'black' : 'gray',
+                }}
                 style={styles.input}
                 onChangeText={handleChangeLdsOrg}
                 value={ldsOrg}
-                inputContainerStyle={{ marginVertical: 15 }}
+                containerStyle={{ marginVertical: 15 }}
                 inputStyle={{ marginVertical: 10 }}
+                onFocus={() => setFocus([false, false, true])}
+                onBlur={() => setFocus([false, false, false])}
+                errorMessage={isFieldValid()}
             />
 
             <Text h3 h3Style={{ color: 'green' }} onPress={handleSubmit}>Sign Up</Text>
@@ -122,7 +152,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         marginBottom: 10,
         padding: 10
-    },
+    }
 })
 
 export default Register
