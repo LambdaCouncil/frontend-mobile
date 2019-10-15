@@ -49,9 +49,7 @@ function Register(props) {
                             })
                     })
                     .catch(err => console.error(err))
-            } else {
-                alert("Passwords don't match.")
-            }
+            } else alert("Passwords don't match.")
 
         },
 
@@ -144,6 +142,7 @@ function Register(props) {
                     color: focus[3] ? 'black' : 'gray',
                 }}
                 style={styles.input}
+                secureTextEntry={true}
                 onChangeText={handleChangePasswordConfirm}
                 containerStyle={{ marginVertical: 15 }}
                 inputStyle={{ marginVertical: 10 }}

@@ -77,7 +77,7 @@ function Login(props) {
                 style={styles.input}
                 label="Password"
                 labelStyle={{
-                    transform: [{ translateY: focus[0] ? 0 : 35 }],
+                    transform: [{ translateY: focus[1] ? 0 : 35 }],
                     color: focus[1] ? 'black' : 'gray',
                 }}
                 onChangeText={handleChangePassword}
