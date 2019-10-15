@@ -2,7 +2,7 @@ import React from "react"
 import { Switch, Route } from "react-router-native"
 import { View, Text } from "react-native"
 
-import Home from './components/Home'
+import Home from './Home'
 
 export default _ => (
     <Switch>
