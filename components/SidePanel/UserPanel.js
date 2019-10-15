@@ -2,9 +2,10 @@
 import React, {useState, useEffect} from 'react';
 import firebase from '../../firebase';
 import {Grid, Header, Icon, Dropdown, Image} from "semantic-ui-react";
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
+import {View} from 'react-native';
 
-const UserPanel = (props) => {
+function UserPanel (props) {
 
   const [user, setUser] = useState(props.currentUser);
 
@@ -36,26 +37,22 @@ const UserPanel = (props) => {
   };
 
   return (
-    <Grid style={{background: '4c3c4c'}}>
-      <Grid.Column>
-        <Grid.Row style={{padding: '1.2em', margin: 0}}>
-          {/*App Header*/}
-          <Header inverted floated="left" as="h2">
+  
+          <View>
+          <Header>
             <Icon name="code"/>
-            <Header.Content>LDSlack</Header.Content>
+            <Text>LDSlack</Text>
           </Header>
           {/*User Dropdown*/}
-          <Header style={{padding: '0.25em'}} as='h4' inverted>
-            <Dropdown trigger={
+          <Header>
+            {/* <Dropdown trigger={
               <span>
                               <Image src={user.photoURL} spaced='right' avatar/>
                 {user.displayName}
                           </span>
-            } options={dropdownOptions()}/>
+            } options={dropdownOptions()}/> */}
           </Header>
-        </Grid.Row>
-      </Grid.Column>
-    </Grid>
+          </View>
   )
 };
 

@@ -1,12 +1,12 @@
 import React from "react"
 import { Switch, Route } from "react-router-native"
 import { View, Text } from "react-native"
-
-import Home from './Home'
+import UserPanel from "./SidePanel/UserPanel";
+// import Home from './Home'
 
 export default _ => (
     <Switch>
-        <Route exact path="/home" component={Home} />
+        <Route exact path="/home" component={UserPanel} />
         <Route component={Page404} />
     </Switch>
 )
