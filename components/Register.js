@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import firebase from "../firebase"
-import { Button, KeyboardAvoidingView, StyleSheet, Text, View } from 'react-native'
-import { Input } from 'react-native-elements'
+import { Button, KeyboardAvoidingView, StyleSheet, View } from 'react-native'
+import { Input, Text } from 'react-native-elements'
 import { Link } from 'react-router-native'
 
 import Icon from './Icon'
@@ -11,17 +11,15 @@ function Register(props) {
     const [userName, setUserName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [passwordConfirm, setPasswordConfirm] = useState('')
+    const [ldsOrg, setLdsOrg] = useState('')
 
     const userRef = firebase.database().ref('users')
-
-    const handleChangeUser = text => setUserName(text)
 
     const handleChangeEmail = text => setEmail(text)
 
     const handleChangePassword = text => setPassword(text)
 
-    const handleChangePasswordConfirm = text => setPasswordConfirm(text)
+    const handleChangeLdsOrg = text => setLdsOrg(text)
 
     const handleSubmit = _ => firebase
         .auth()
@@ -37,7 +35,7 @@ function Register(props) {
                             setUserName('')
                             setEmail('')
                             setPassword('')
-                            setPasswordConfirm('')
+                            setLdsOrg('')
                         })
                 })
         })
@@ -50,55 +48,34 @@ function Register(props) {
             behavior='padding'
         >
 
-            <Icon
-                name="beer"
-                color="green"
-                size={25}
-            />
+            <Text h2>Sign Up</Text>
 
-            <Text style={styles.headerText}>Register for LDSlack</Text>
+            <Text h4>Create Councils account.</Text>
 
             <Input
-                name="username"
-                placeholder="Username"
-                style={styles.input}
-                onChangeText={handleChangeUser}
-                value={userName}
-                type="text"
-            />
-
-            <Input
-                name="email"
                 placeholder="Email"
                 style={styles.input}
                 onChangeText={handleChangeEmail}
                 value={email}
-                type="text"
             />
 
             <Input
-                name="password"
                 placeholder="Password"
                 style={styles.input}
                 onChangeText={handleChangePassword}
                 value={password}
                 type="password"
+                secureTextEntry={true}
             />
 
             <Input
-                name="passwordConfirm"
-                placeholder="Confirm Password"
+                placeholder="LDS.org Username"
                 style={styles.input}
-                onChangeText={handleChangePasswordConfirm}
-                value={passwordConfirm}
-                type="password"
+                onChangeText={handleChangeLdsOrg}
+                value={ldsOrg}
             />
 
-            <Button
-                color="green"
-                title='Submit'
-                onPress={handleSubmit}
-            />
+            <Text h3 h3Style={{ color: 'green' }} onPress={handleSubmit}>Sign Up</Text>
 
             <Text>Already wearing da undapants?</Text>
 

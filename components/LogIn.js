@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Button, KeyboardAvoidingView, StyleSheet, Text, View } from 'react-native'
-import { Input } from 'react-native-elements'
+import { Button, KeyboardAvoidingView, StyleSheet, View } from 'react-native'
+import { Input, Text } from 'react-native-elements'
 import { Link } from 'react-router-native'
 
 import firebase from "../firebase"
@@ -53,33 +53,34 @@ function Login(props) {
             behavior='padding'
         >
 
-            <Icon
-                name="beer"
-                color="green"
-                size={25}
-            />
+            <Text h2>Log In</Text>
 
-            <Text style={styles.headerText}>Register for LDSlack</Text>
+            <Text h4>Log into your Councils account.</Text>
 
             <Input
                 name="email"
                 style={styles.input}
-                placeholder={"Email"}
+                placeholder='Email'
                 onChangeText={handleChangeEmail}
                 value={email}
                 type='email'
+                inputContainerStyle={{ marginVertical: 15 }}
+                inputStyle={{ marginVertical: 10 }}
             />
 
             <Input
                 name="password"
                 style={styles.input}
-                placeholder={"Password"}
+                placeholder="Password"
                 onChangeText={handleChangePassword}
                 value={password}
                 type="password"
+                secureTextEntry={true}
+                inputContainerStyle={{ marginVertical: 15 }}
+                inputStyle={{ marginVertical: 10 }}
             />
 
-            <Button color="green" title='Submit' onPress={handleSubmit} />
+            <Text h4 h4Style={{ color: 'green' }} onPress={handleSubmit}>Log In</Text>
 
             <View>
                 <Text>Don't have an account?</Text>
