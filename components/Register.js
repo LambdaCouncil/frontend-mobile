@@ -65,6 +65,8 @@ function Register(props) {
                 style={styles.input}
                 onChangeText={handleChangeEmail}
                 value={email}
+                inputContainerStyle={{ marginVertical: 15 }}
+                inputStyle={{ marginVertical: 10 }}
             />
 
             <Input
@@ -74,6 +76,8 @@ function Register(props) {
                 value={password}
                 type="password"
                 secureTextEntry={true}
+                inputContainerStyle={{ marginVertical: 15 }}
+                inputStyle={{ marginVertical: 10 }}
             />
 
             <Input
@@ -81,6 +85,8 @@ function Register(props) {
                 style={styles.input}
                 onChangeText={handleChangeLdsOrg}
                 value={ldsOrg}
+                inputContainerStyle={{ marginVertical: 15 }}
+                inputStyle={{ marginVertical: 10 }}
             />
 
             <Text h3 h3Style={{ color: 'green' }} onPress={handleSubmit}>Sign Up</Text>
@@ -91,6 +97,25 @@ function Register(props) {
 }
 
 const styles = StyleSheet.create({
+    inputContainer: {
+        height: '100%',
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    link: {
+        position: 'absolute',
+        top: 25,
+        left: 5,
+        width: '100%',
+        height: 50
+    },
+    backButton: {
+        fontSize: 50
+    },
+    headerText: {
+        padding: 10
+    },
     input: {
         width: '50%',
         borderColor: 'black',
@@ -98,25 +123,6 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         padding: 10
     },
-    inputContainer: {
-        height: '100%',
-        flex: 1,
-        alignItems: 'center',
-    },
-    headerText: {
-        marginTop: '50%',
-        padding: 10
-    },
-    link: {
-        width: '100%',
-        height: 50
-    },
-    backButton: {
-        position: 'absolute',
-        top: 25,
-        left: 5,
-        fontSize: 50
-    }
 })
 
 export default Register
