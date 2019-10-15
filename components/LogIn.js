@@ -60,14 +60,14 @@ function Login(props) {
                 style={styles.input}
                 label='Email'
                 labelStyle={{
-                    translateY: focus[0] ? 0 : 35,
+                    transform: [{ translateY: focus[0] ? 0 : 35 }],
                     color: focus[0] ? 'black' : 'gray',
                 }}
                 onChangeText={handleChangeEmail}
                 containerStyle={{ marginVertical: 15 }}
                 inputStyle={{ marginVertical: 10 }}
-                onFocus={() => setFocus([true, false])}
-                onBlur={() => setFocus([false, false])}
+                onFocus={() => setFocus([true, password.length > 1])}
+                onBlur={() => setFocus([email.length > 1, password.length > 1])}
                 errorMessage={isFieldValid(true)}
             />
 
@@ -76,15 +76,15 @@ function Login(props) {
                 style={styles.input}
                 label="Password"
                 labelStyle={{
-                    translateY: focus[1] ? 0 : 35,
+                    transform: [{ translateY: focus[0] ? 0 : 35 }],
                     color: focus[1] ? 'black' : 'gray',
                 }}
                 onChangeText={handleChangePassword}
                 secureTextEntry={true}
                 containerStyle={{ marginVertical: 15 }}
                 inputStyle={{ marginVertical: 10 }}
-                onFocus={() => setFocus([false, true])}
-                onBlur={() => setFocus([false, false])}
+                onFocus={() => setFocus([email.length > 1, true])}
+                onBlur={() => setFocus([email.length > 1, password.length > 1])}
                 errorMessage={isFieldValid()}
             />
 

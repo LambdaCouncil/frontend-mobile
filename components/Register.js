@@ -3,53 +3,68 @@ import firebase from "../firebase"
 import { KeyboardAvoidingView, StyleSheet } from 'react-native'
 import { Input, Text } from 'react-native-elements'
 import { Link } from 'react-router-native'
+import { connect } from 'react-redux'
 
 import Icon from './Icon'
+import { signUpDisplayName } from '../actions'
 
 function Register(props) {
 
     const [userName, setUserName] = useState(' ')
     const [email, setEmail] = useState(' ')
     const [password, setPassword] = useState(' ')
-    const [ldsOrg, setLdsOrg] = useState(' ')
-    const [focus, setFocus] = useState([false, false, false])
+    const [passwordConfirm, setPasswordConfirm] = useState(' ')
+    const [focus, setFocus] = useState([false, false, false, false])
 
     const userRef = firebase.database().ref('users'),
+
+        handleChangeUserName = text => setUserName(text),
 
         handleChangeEmail = text => setEmail(text),
 
         handleChangePassword = text => setPassword(text),
 
-        handleChangeLdsOrg = text => setLdsOrg(text),
+        handleChangePasswordConfirm = text => setPasswordConfirm(text),
 
-        handleSubmit = _ => firebase
-            .auth()
-            .createUserWithEmailAndPassword(email, password)
-            .then(createdUser => {
-                console.log('createdUser', createdUser)
-                createdUser.user.updateProfile({ displayName: userName })
-                    .then(_ => {
-                        userRef.child(createdUser.user.uid).set({
-                            name: createdUser.displayName
-                        })
+        handleSubmit = _ => {
+            if (password === passwordConfirm) {
+                props.signUpDisplayName(userName)
+
+                firebase
+                    .auth()
+                    .createUserWithEmailAndPassword(email, password)
+                    .then(createdUser => {
+                        createdUser.user
+                            .updateProfile({ displayName: userName })
                             .then(_ => {
-                                setUserName(' ')
-                                setEmail(' ')
-                                setPassword(' ')
-                                setLdsOrg(' ')
+                                userRef
+                                    .child(createdUser.user.uid)
+                                    .set({ name: createdUser.user.displayName })
+                                    .then(_ => {
+                                        setUserName(' ')
+                                        setEmail(' ')
+                                        setPassword(' ')
+                                        setPasswordConfirm(' ')
+                                    })
                             })
                     })
-            })
-            .catch(err => console.error(err)),
+                    .catch(err => console.error(err))
+            } else {
+                alert("Passwords don't match.")
+            }
+
+        },
 
         isFieldValid = type => {
             switch (type) {
+                case 'username':
+                    return userName.length ? '' : 'Username is required.'
                 case 'email':
-                    return email.length > 1 ? '' : 'Email is required.'
+                    return email.length ? '' : 'Email is required.'
                 case 'password':
-                    return password.length > 1 ? '' : 'Password is required.'
+                    return password.length ? '' : 'Password is required.'
                 default:
-                    return ldsOrg.length > 1 ? '' : 'LDS Username is required.'
+                    return passwordConfirm.length ? '' : 'Password Confirmation is required.'
             }
         }
 
@@ -73,49 +88,67 @@ function Register(props) {
             <Text h4>Create Councils account.</Text>
 
             <Input
+                name='username'
+                label="Username"
+                labelStyle={{
+                    transform: [{ translateY: focus[0] ? 0 : 35 }],
+                    color: focus[0] ? 'black' : 'gray',
+                }}
+                style={styles.input}
+                onChangeText={handleChangeUserName}
+                containerStyle={{ marginVertical: 15 }}
+                inputStyle={{ marginVertical: 10 }}
+                onFocus={() => setFocus([true, email.length > 1, password.length > 1, passwordConfirm.length > 1])}
+                onBlur={() => setFocus([userName.length > 1, email.length > 1, password.length > 1, passwordConfirm.length > 1])}
+                errorMessage={isFieldValid('username')}
+            />
+
+            <Input
+                name='email'
                 label="Email"
                 labelStyle={{
-                    translateY: focus[0] ? 0 : 35,
-                    color: focus[0] ? 'black' : 'gray',
+                    transform: [{ translateY: focus[1] ? 0 : 35 }],
+                    color: focus[1] ? 'black' : 'gray',
                 }}
                 style={styles.input}
                 onChangeText={handleChangeEmail}
                 containerStyle={{ marginVertical: 15 }}
                 inputStyle={{ marginVertical: 10 }}
-                onFocus={() => setFocus([true, false, false])}
-                onBlur={() => setFocus([false, false, false])}
+                onFocus={() => setFocus([userName.length > 1, true, password.length > 1, passwordConfirm.length > 1])}
+                onBlur={() => setFocus([userName.length > 1, email.length > 1, password.length > 1, passwordConfirm.length > 1])}
                 errorMessage={isFieldValid('email')}
             />
 
             <Input
+                name='password'
                 label="Password"
                 labelStyle={{
-                    translateY: focus[1] ? 0 : 35,
-                    color: focus[1] ? 'black' : 'gray',
+                    transform: [{ translateY: focus[2] ? 0 : 35 }],
+                    color: focus[2] ? 'black' : 'gray',
                 }}
                 style={styles.input}
                 onChangeText={handleChangePassword}
                 secureTextEntry={true}
                 containerStyle={{ marginVertical: 15 }}
                 inputStyle={{ marginVertical: 10 }}
-                onFocus={() => setFocus([false, true, false])}
-                onBlur={() => setFocus([false, false, false])}
+                onFocus={() => setFocus([userName.length > 1, email.length > 1, true, passwordConfirm > 1])}
+                onBlur={() => setFocus([userName.length > 1, email.length > 1, password.length > 1, passwordConfirm.length > 1])}
                 errorMessage={isFieldValid('password')}
             />
 
             <Input
-                label="LDS.org Username"
+                name='passwordConfirm'
+                label="Confirm Password"
                 labelStyle={{
-                    translateY: focus[2] ? 0 : 35,
-                    color: focus[2] ? 'black' : 'gray',
+                    transform: [{ translateY: focus[3] ? 0 : 35 }],
+                    color: focus[3] ? 'black' : 'gray',
                 }}
                 style={styles.input}
-                onChangeText={handleChangeLdsOrg}
-                value={ldsOrg}
+                onChangeText={handleChangePasswordConfirm}
                 containerStyle={{ marginVertical: 15 }}
                 inputStyle={{ marginVertical: 10 }}
-                onFocus={() => setFocus([false, false, true])}
-                onBlur={() => setFocus([false, false, false])}
+                onFocus={() => setFocus([userName.length > 1, email.length > 1, password.length > 1, true])}
+                onBlur={() => setFocus([userName.length > 1, email.length > 1, password.length > 1, passwordConfirm.length > 1])}
                 errorMessage={isFieldValid()}
             />
 
@@ -155,4 +188,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Register
+export default connect(state => ({ ...state }), { signUpDisplayName })(Register)
