@@ -3,8 +3,10 @@ import firebase from "../firebase"
 import { KeyboardAvoidingView, StyleSheet } from 'react-native'
 import { Input, Text } from 'react-native-elements'
 import { Link } from 'react-router-native'
+import { connect } from 'react-redux'
 
 import Icon from './Icon'
+import { signUpDisplayName } from '../actions'
 
 function Register(props) {
 
@@ -26,6 +28,8 @@ function Register(props) {
 
         handleSubmit = _ => {
             if (password === passwordConfirm) {
+                props.signUpDisplayName(userName)
+
                 firebase
                     .auth()
                     .createUserWithEmailAndPassword(email, password)
@@ -184,4 +188,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Register
+export default connect(state => ({ ...state }), { signUpDisplayName })(Register)
