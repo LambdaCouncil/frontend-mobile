@@ -1,6 +1,7 @@
 import React from "react"
 import moment from "moment"
-import { Comment, Image } from "react-native-elements"
+import { Text, Content, Container, Thumbnail } from 'native-base'
+import { Text } from 'react-native'
 
 const isOwnMessage = (message, user) => {
     return message.user.id === user.uid ? 'message__self' : '';
@@ -13,14 +14,14 @@ const Message = ({ message, user, key }) => {
 
     return (
 
-        <Comment>
-            <Comment.Avatar src={user.avatar} />
-            <Comment.Content className={isOwnMessage(message, user)}>
-                <Comment.Author as='a'>{message.user.name}</Comment.Author>
+        <Container>
+            <Thumbnail src={user.avatar} />
+            <Content className={isOwnMessage(message, user)}>
+                <Text as='a'>{message.user.name}</Text>
                 {/*<Comment.MetaData>{timeFromNow(message.timestamp)}</Comment.MetaData>*/}
-                <Comment.Text>{message.content}</Comment.Text>
-            </Comment.Content>
-        </Comment>
+                <Text>{message.content}</Text>
+            </Content>
+        </Container>
     );
 };
 

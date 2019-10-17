@@ -53,37 +53,42 @@ const MessageForm = ({ messagesRef, currentChannel, currentUser }) => {
 
 
     return (
-        <View>
-            <Input
-                name='message'
-                onChange={handleChange}
-                value={message}
-                style={{ marginBottom: '0.7em' }}
-                label={<Button icon={'add'} />}
-                labelPosition='left'
-            // className={
-            //             errors.some(error => error.includes("message"))
-            //                 ? 'error'
-            //                 : ''
-            //         }
-            //      placeholder='Write your message'
-            />
-            <Button
-                onPress={sendMessage}
-                disabled={loading}
-                color='orange'
-                content='Add Reply'
-                labelPosition='left'
-                icon='edit'
-            />
-            <Button
-                color='teal'
-                content='Upload Media'
-                labelPosition='right'
-                icon='cloud upload'
-            />
-
-        </View>
+        <Container>
+            <Content>
+                <Form>
+                    <Item>
+                        <Input
+                            name='message'
+                            onChange={handleChange}
+                            value={message}
+                            style={{ marginBottom: '0.7em' }}
+                            label={<Button icon={'add'} />}
+                            labelPosition='left'
+                        // className={
+                        //             errors.some(error => error.includes("message"))
+                        //                 ? 'error'
+                        //                 : ''
+                        //         }
+                        //      placeholder='Write your message'
+                        />
+                    </Item>
+                    <Button
+                        onPress={sendMessage}
+                        disabled={loading}
+                        color='orange'
+                        content='Add Reply'
+                        labelPosition='left'
+                        icon='edit'
+                    />
+                    <Button
+                        color='teal'
+                        content='Upload Media'
+                        labelPosition='right'
+                        icon='cloud upload'
+                    />
+                </Form>
+            </Content>
+        </Container>
     );
 };
 
