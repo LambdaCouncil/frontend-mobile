@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import firebase from "../firebase"
 import { KeyboardAvoidingView, StyleSheet } from 'react-native'
-import { Input, Text } from 'react-native-elements'
+import { Input, Text, Label, Item, H1, H3 } from 'native-base'
 import { Link } from 'react-router-native'
 import { connect } from 'react-redux'
 
@@ -14,7 +14,6 @@ function Register(props) {
     const [email, setEmail] = useState(' ')
     const [password, setPassword] = useState(' ')
     const [passwordConfirm, setPasswordConfirm] = useState(' ')
-    const [focus, setFocus] = useState([false, false, false, false])
 
     const userRef = firebase.database().ref('users'),
 
@@ -27,7 +26,9 @@ function Register(props) {
         handleChangePasswordConfirm = text => setPasswordConfirm(text),
 
         handleSubmit = _ => {
+
             if (password === passwordConfirm) {
+
                 props.signUpDisplayName(userName)
 
                 firebase
@@ -49,21 +50,9 @@ function Register(props) {
                             })
                     })
                     .catch(err => console.error(err))
+
             } else alert("Passwords don't match.")
 
-        },
-
-        isFieldValid = type => {
-            switch (type) {
-                case 'username':
-                    return userName.length ? '' : 'Username is required.'
-                case 'email':
-                    return email.length ? '' : 'Email is required.'
-                case 'password':
-                    return password.length ? '' : 'Password is required.'
-                default:
-                    return passwordConfirm.length ? '' : 'Password Confirmation is required.'
-            }
         }
 
     return (
@@ -81,77 +70,38 @@ function Register(props) {
                 />
             </Link>
 
-            <Text h2 h2Style={styles.headerText}>Sign Up</Text>
+            <H1>Sign Up</H1>
 
-            <Text h4>Create Councils account.</Text>
+            <Text>Create Councils account.</Text>
 
-            <Input
-                name='username'
-                label="Username"
-                labelStyle={{
-                    transform: [{ translateY: focus[0] ? 0 : 35 }],
-                    color: focus[0] ? 'black' : 'gray',
-                }}
-                style={styles.input}
-                onChangeText={handleChangeUserName}
-                containerStyle={{ marginVertical: 15 }}
-                inputStyle={{ marginVertical: 10 }}
-                onFocus={() => setFocus([true, email.length > 1, password.length > 1, passwordConfirm.length > 1])}
-                onBlur={() => setFocus([userName.length > 1, email.length > 1, password.length > 1, passwordConfirm.length > 1])}
-                errorMessage={isFieldValid('username')}
-            />
 
-            <Input
-                name='email'
-                label="Email"
-                labelStyle={{
-                    transform: [{ translateY: focus[1] ? 0 : 35 }],
-                    color: focus[1] ? 'black' : 'gray',
-                }}
-                style={styles.input}
-                onChangeText={handleChangeEmail}
-                containerStyle={{ marginVertical: 15 }}
-                inputStyle={{ marginVertical: 10 }}
-                onFocus={() => setFocus([userName.length > 1, true, password.length > 1, passwordConfirm.length > 1])}
-                onBlur={() => setFocus([userName.length > 1, email.length > 1, password.length > 1, passwordConfirm.length > 1])}
-                errorMessage={isFieldValid('email')}
-            />
+            <Item floatingLabel style={styles.inputItem}>
+                <Label>Username</Label>
+                <Input onChangeText={handleChangeUserName} />
+            </Item>
 
-            <Input
-                name='password'
-                label="Password"
-                labelStyle={{
-                    transform: [{ translateY: focus[2] ? 0 : 35 }],
-                    color: focus[2] ? 'black' : 'gray',
-                }}
-                style={styles.input}
-                onChangeText={handleChangePassword}
-                secureTextEntry={true}
-                containerStyle={{ marginVertical: 15 }}
-                inputStyle={{ marginVertical: 10 }}
-                onFocus={() => setFocus([userName.length > 1, email.length > 1, true, passwordConfirm > 1])}
-                onBlur={() => setFocus([userName.length > 1, email.length > 1, password.length > 1, passwordConfirm.length > 1])}
-                errorMessage={isFieldValid('password')}
-            />
+            <Item floatingLabel style={styles.inputItem}>
+                <Label>Email</Label>
+                <Input onChangeText={handleChangeEmail} />
+            </Item>
 
-            <Input
-                name='passwordConfirm'
-                label="Confirm Password"
-                labelStyle={{
-                    transform: [{ translateY: focus[3] ? 0 : 35 }],
-                    color: focus[3] ? 'black' : 'gray',
-                }}
-                style={styles.input}
-                secureTextEntry={true}
-                onChangeText={handleChangePasswordConfirm}
-                containerStyle={{ marginVertical: 15 }}
-                inputStyle={{ marginVertical: 10 }}
-                onFocus={() => setFocus([userName.length > 1, email.length > 1, password.length > 1, true])}
-                onBlur={() => setFocus([userName.length > 1, email.length > 1, password.length > 1, passwordConfirm.length > 1])}
-                errorMessage={isFieldValid()}
-            />
+            <Item floatingLabel style={styles.inputItem}>
+                <Label>Password</Label>
+                <Input
+                    onChangeText={handleChangePassword}
+                    secureTextEntry={true}
+                />
+            </Item>
 
-            <Text h3 h3Style={{ color: 'green' }} onPress={handleSubmit}>Sign Up</Text>
+            <Item floatingLabel style={styles.inputItem}>
+                <Label>Confirm Password</Label>
+                <Input
+                    secureTextEntry={true}
+                    onChangeText={handleChangePasswordConfirm}
+                />
+            </Item>
+
+            <H3 onPress={handleSubmit}>Sign Up</H3>
 
         </KeyboardAvoidingView>
 
@@ -175,15 +125,8 @@ const styles = StyleSheet.create({
     backButton: {
         fontSize: 50
     },
-    headerText: {
-        padding: 10
-    },
-    input: {
-        width: '50%',
-        borderColor: 'black',
-        borderWidth: 1,
-        marginBottom: 10,
-        padding: 10
+    inputItem: {
+        marginVertical: 10
     }
 })
 
