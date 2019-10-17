@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { SideMenu, List, ListItem, Icon, Overlay, Header, Input, Button } from 'react-native-elements';
+import { List, ListItem, Icon, Overlay, Header, Input, Button } from 'react-native-elements';
 import { View, Text } from 'react-native';
 import firebase from "../../firebase";
 import { connect } from "react-redux";
@@ -171,7 +171,7 @@ const Channels = ({ currentUser, setCurrentChannel }) => {
 
   return (
     <View>
-      <SideMenu className="menu">
+      <Overlay >
         <ListItem>
           <span>
             <Icon name="exchange" /> CHANNELS
@@ -184,7 +184,7 @@ const Channels = ({ currentUser, setCurrentChannel }) => {
           />
         </ListItem>
         <List>{displayChannels(channels)}</List>
-      </SideMenu>
+      </Overlay>
 
       <Overlay
         isVisible={toggleOverlay}
@@ -226,7 +226,8 @@ const Channels = ({ currentUser, setCurrentChannel }) => {
 };
 
 const mapStateToProps = state => ({
-  currentUser: state.user.currentUser
+  // currentUser: state.user.currentUser
+  ...state
 });
 
 export default connect(

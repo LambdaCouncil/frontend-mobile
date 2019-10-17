@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import firebase from "../../firebase";
 import { View, Text, Picker } from "react-native";
-import { Header, Grid, Row, Col, Icon } from 'react-native-elements';
+import { Header, Icon, Image } from 'react-native-elements';
+import { Grid, Row, Col } from 'react-native-easy-grid';
 import { connect } from "react-redux";
 
 const UserPanel = props => {
@@ -41,7 +42,8 @@ const UserPanel = props => {
   return (
     <Grid style={{ background: "4c3c4c" }}>
       <Col>
-        <Row style={{ padding: "1.2em", margin: 0 }}>
+        {/* <Row style={{ padding: "1.2em", margin: 0 }}> */}
+        <Row>
           {/*App Header*/}
           <Header>
             <Icon name="code" />
@@ -69,7 +71,8 @@ const UserPanel = props => {
 };
 
 const mapStateToProps = state => ({
-  currentUser: state.user.currentUser
+  // currentUser: state.user.currentUser
+  ...state
 });
 
-export default connect(mapStateToProps)(UserPanel);
+export default connect(mapStateToProps, {} )(UserPanel);

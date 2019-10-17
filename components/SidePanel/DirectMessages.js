@@ -1,7 +1,6 @@
 import React from "react";
 import firebase from "../../firebase";
 import {
-  SideMenu,
   List,
   ListItem,
   Icon,
@@ -105,7 +104,7 @@ class DirectMessages extends React.Component {
     const { users, activeChannel } = this.state;
 
     return (
-      <SideMenu className="menu">
+      <Overlay >
         <ListItem>
           <span>
             <Icon name="mail" /> DIRECT MESSAGES
@@ -129,7 +128,7 @@ class DirectMessages extends React.Component {
         ))}
         </List>
         
-      </SideMenu>
+      </Overlay>
     );
   }
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { SideMenu } from 'react-native-elements';
+import { Overlay } from 'react-native-elements';
 import UserPanel from "./UserPanel";
 import Channels from "./Channels";
 import DirectMessages from "./DirectMessages";
@@ -11,8 +11,7 @@ const SidePanel = props => {
   console.log('currentUser in SidePanel', currentUser)
 
   return (
-    <SideMenu
-      className="sidePanel"
+    <Overlay
       // size="large"
       // inverted
       // fixed="left"
@@ -22,12 +21,13 @@ const SidePanel = props => {
       <UserPanel />
       <Channels currentUser={currentUser} />
       <DirectMessages currentUser={currentUser} />
-    </SideMenu>
+    </Overlay>
   );
 };
 
 const mapStateToProps = state => ({
-  currentUser: state.user.currentUser
+  // currentUser: state.user.currentUser
+  ...state
 });
 
-export default connect(mapStateToProps)(SidePanel);
+export default connect(mapStateToProps, { setCurrentChannel })(SidePanel);
