@@ -37,10 +37,6 @@ const styles = StyleSheet.create({
         width: '95%',
         alignItems: 'center',
     },
-    header: {
-        fontSize: 50,
-        paddingTop: 40
-    },
     description: {
         textAlign: 'center'
     },
