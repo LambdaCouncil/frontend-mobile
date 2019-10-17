@@ -238,7 +238,7 @@ export default {
 
   // Line Height
   buttonLineHeight: 19,
-  lineHeightH1: 32,
+  lineHeightH1: 50,
   lineHeightH2: 27,
   lineHeightH3: 22,
   lineHeight: platform === PLATFORM.IOS ? 20 : 24,
