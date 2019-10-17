@@ -289,7 +289,7 @@ export default {
   tabFontSize: 15,
 
   // Text
-  textColor: '#000',
+  textColor: councils.text.nearBlack,
   inverseTextColor: '#f8f8f8',
   noteFontSize: 14,
   get defaultTextColor() {
