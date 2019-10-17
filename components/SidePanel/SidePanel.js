@@ -19,11 +19,11 @@ const SidePanel = props => {
       // fixed="left"
       // vertical
       // style={{ background: "#4c3c4c", fontsize: "1.2rem" }}
-      >
-        <UserPanel />
+      > */}
+        {/* <UserPanel /> */}
         <Channels currentUser={currentUser} />
-        <DirectMessages currentUser={currentUser} />
-      </Overlay> */}
+        {/* <DirectMessages currentUser={currentUser} /> */}
+      {/* </Overlay> */}
     </View>
   );
 };

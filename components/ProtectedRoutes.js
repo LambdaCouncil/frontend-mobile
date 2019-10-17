@@ -8,7 +8,7 @@ import UserPanel from "./SidePanel/UserPanel"
 
 export default _ => (
     <Switch>
-        <Route exact path="/home" component={UserPanel} />
+        <Route exact path="/home" component={SidePanel} />
         <Route component={Page404} />
     </Switch>
 )

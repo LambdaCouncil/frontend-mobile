@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-// import { List, ListItem, Icon, Overlay, Header, Input, Button } from 'react-native-elements';
-import { View, Text } from 'react-native';
+import { List, ListItem, Icon, Overlay, Header, Input, Button, Form, Item } from 'native-base';
+import { View, Text, StyleSheet } from 'react-native';
 import firebase from "../../firebase";
 import { connect } from "react-redux";
 import { setCurrentChannel } from "../../actions";
@@ -146,7 +146,7 @@ const Channels = ({ currentUser, setCurrentChannel }) => {
             containerStyle={{ opacity: 1 }}
             disabled={channel.id === activeChannel}
           >
-            # {channel.name}
+            <Text># {channel.name}</Text>
           </ListItem>
         );
       })
@@ -171,56 +171,65 @@ const Channels = ({ currentUser, setCurrentChannel }) => {
 
   return (
     <View>
-      {/* <Overlay >
-        <ListItem>
-          <span>
-            <Icon name="exchange" /> CHANNELS
-          </span>{" "}
-          ({channels.length})
-          <Icon
-            name="add"
-            onPress={toggleOverlay}
-            iconStyle={{ cursor: "pointer" }}
-          />
-        </ListItem>
-        <List>{displayChannels(channels)}</List>
-      </Overlay>
+      {/* <Overlay > */}
+      <ListItem>
+        {/* <span> */}
+        <Icon ios="ios-folder-open" android="md-rose" />
+        {/* </span>{" "} */}
+        <Text>({channels.length})</Text>
+        <Icon
+          name="add"
+          onPress={toggleOverlay}
+          iconStyle={{ cursor: "pointer" }}
+        />
+      </ListItem>
+      {/* </Overlay> */}
 
-      <Overlay
+      {/* <Overlay
         isVisible={toggleOverlay}
         height="auto"
         width="auto"
         onBackdropPress={() => toggleOverlay()}
-      >
-        <Header>Add a Channel</Header>
-        <Text>
-          <View>
-            <Input
-              label="Name of Channel"
-              name="channelName"
-              onChangeText={handleChannelName}
-              placeholder="Name of Channel"
-            />
-            <Input
-              label="About the Channel"
-              name="channelDetails"
-              onChangeText={handleChannelDetails}
-              placeholder="About of Channel"
-            />
-          </View>
-        </Text>
+      > */}
+      <Header style={styles.header}>
+        <Button title="X" onPress={() => {}} />
+        <Text>New Council Discussion</Text>
+      </Header>
+      <Form>
+        <Item>
+          <Input
+            label="Discussion Topic"
+            name="channelName"
+            onChangeText={handleChannelName}
+            placeholder="Discussion Topic"
+          />
+        </Item>
 
-        <View>
-          <Button
-            title="Add"
-            onPress={handleSubmit}
-            icon={<Icon name="checkmark" color="green" />}
+        <Item>
+          <Input
+            label="Council Name"
+            name="channelDetails"
+            onChangeText={handleChannelDetails}
+            placeholder="Council Name"
           />
-          <Button title="Cancel" onPress={toggleOverlay}
-            icon = {<Icon name="remove" color="red" />}
-          />
-        </View>
-      </Overlay> */}
+        </Item>
+      </Form>
+      
+      <List>{displayChannels(channels)}</List>
+
+      <View>
+        <Button
+          title="Create"
+          onPress={handleSubmit}
+          icon={<Icon name="checkmark" color="green" />}
+        />
+        <Button
+          title="Cancel"
+          onPress={toggleOverlay}
+          icon={<Icon name="remove" color="red" />}
+        />
+      </View>
+      {/* </Overlay> */}
     </View>
   );
 };
@@ -229,6 +238,12 @@ const mapStateToProps = state => ({
   // currentUser: state.user.currentUser
   ...state
 });
+
+const styles = StyleSheet.create({
+  header: {
+    backgroundColor: '#FAFAFA'
+  }
+})
 
 export default connect(
   mapStateToProps,

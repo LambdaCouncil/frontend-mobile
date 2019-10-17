@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import firebase from "../../firebase";
-import { View, Text, Picker } from "react-native";
-import {Grid, Col, Row} from 'native-base'
+import { View, Text, Picker, StyleSheet, Image, Modal } from "react-native";
+import {Grid, Col, Row, Header, Icon} from 'native-base'
 // import { Header, Icon, Image } from 'react-native-elements';
 // import { Grid, Row, Col } from 'react-native-easy-grid';
 import { connect } from "react-redux";
@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 const UserPanel = props => {
   const [user, setUser] = useState(props.currentUser);
 
+  // console.log('user in UserPanel', user.providerData);
   useEffect(() => {
     setUser(props.currentUser);
   }, []);
@@ -41,17 +42,25 @@ const UserPanel = props => {
   };
 
   return (
-    <Grid style={{ background: "4c3c4c" }}>
+    <View style={styles.container}>
       <Col>
-        {/* <Row style={{ padding: "1.2em", margin: 0 }}> */}
         <Row>
-          {/*App Header*/}
-          <Header>
-            <Icon name="code" />
-            <Text>LDSlack</Text>
+          <Header style={styles.header}>
+            <Image
+              style={styles.image}
+              source={{uri: 'https://avatars3.githubusercontent.com/u/46138601?s=400&v=4'}}
+              // source={{
+              //   uri:
+              //     user.photoURL
+              // }}
+            />
+            <View style={styles.userInfo}>
+              <Text>{user.displayName}</Text>
+              <Text>{user.email}</Text>
+            </View>
           </Header>
           {/*User Dropdown*/}
-          <Header style={{ padding: "0.25em" }} h4 inverted>
+          {/* <Header >
             <Picker
               trigger={
                 <span>
@@ -64,10 +73,10 @@ const UserPanel = props => {
               <Picker.Item label="Change Avatar" />
               <Picker.Item label="Sign Out" />
             </Picker>
-          </Header>
+          </Header> */}
         </Row>
       </Col>
-    </Grid>
+    </View>
   );
 };
 
@@ -75,5 +84,26 @@ const mapStateToProps = state => ({
   // currentUser: state.user.currentUser
   ...state
 });
+
+const styles = StyleSheet.create({
+  container: {
+    color: '#3CB18A',
+    paddingVertical: 20
+  },
+  header: {
+    marginTop: 20,
+    color: '#3CB18A',
+    backgroundColor: 'white',
+    alignItems: 'center'
+  },
+  image: {
+    height: 40,
+    width: 40,
+    borderRadius: 50,
+  },
+  userInfo: {
+    padding: 10
+  }
+})
 
 export default connect(mapStateToProps, {} )(UserPanel);
