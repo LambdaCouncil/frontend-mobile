@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { List, ListItem, Icon, Overlay, Header, Input, Button } from 'react-native-elements';
+// import { List, ListItem, Icon, Overlay, Header, Input, Button } from 'react-native-elements';
 import { View, Text } from 'react-native';
 import firebase from "../../firebase";
 import { connect } from "react-redux";
@@ -171,7 +171,7 @@ const Channels = ({ currentUser, setCurrentChannel }) => {
 
   return (
     <View>
-      <Overlay >
+      {/* <Overlay >
         <ListItem>
           <span>
             <Icon name="exchange" /> CHANNELS
@@ -220,7 +220,7 @@ const Channels = ({ currentUser, setCurrentChannel }) => {
             icon = {<Icon name="remove" color="red" />}
           />
         </View>
-      </Overlay>
+      </Overlay> */}
     </View>
   );
 };

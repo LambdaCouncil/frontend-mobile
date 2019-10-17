@@ -4,10 +4,11 @@ import { View, Text } from "react-native"
 
 import Home from './Home'
 import SidePanel from "./SidePanel/SidePanel"
+import UserPanel from "./SidePanel/UserPanel"
 
 export default _ => (
     <Switch>
-        <Route exact path="/home" component={SidePanel} />
+        <Route exact path="/home" component={UserPanel} />
         <Route component={Page404} />
     </Switch>
 )

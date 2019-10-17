@@ -1,14 +1,14 @@
 import React from "react";
 import firebase from "../../firebase";
-import {
-  List,
-  ListItem,
-  Icon,
-  Overlay,
-  Header,
-  Input,
-  Button
-} from "react-native-elements";
+// import {
+//   List,
+//   ListItem,
+//   Icon,
+//   Overlay,
+//   Header,
+//   Input,
+//   Button
+// } from "react-native-elements";
 import { View, Text } from "react-native";
 import { connect } from "react-redux";
 import { setCurrentChannel, setPrivateChannel } from "../../actions";
@@ -104,31 +104,32 @@ class DirectMessages extends React.Component {
     const { users, activeChannel } = this.state;
 
     return (
-      <Overlay >
-        <ListItem>
-          <span>
-            <Icon name="mail" /> DIRECT MESSAGES
-          </span>{" "}
-          ({users.length})
-        </ListItem>
-        <List>
-          {users.map(user => (
-            <ListItem
-              key={user.uid}
-              disabled={user.uid === activeChannel}
-              onPress={() => this.changeChannel(user)}
-              containerStyle={{ opacity: 0.7, fontStyle: "italic" }}
-            >
-              <Icon
-                name="circle"
-                color={this.isUserOnline(user) ? "green" : "red"}
-              />
-              @ {user.name}
-            </ListItem>
-        ))}
-        </List>
-        
-      </Overlay>
+      <View>
+        {/* <Overlay>
+          <ListItem>
+            <span>
+              <Icon name="mail" /> DIRECT MESSAGES
+            </span>{" "}
+            ({users.length})
+          </ListItem>
+          <List>
+            {users.map(user => (
+              <ListItem
+                key={user.uid}
+                disabled={user.uid === activeChannel}
+                onPress={() => this.changeChannel(user)}
+                containerStyle={{ opacity: 0.7, fontStyle: "italic" }}
+              >
+                <Icon
+                  name="circle"
+                  color={this.isUserOnline(user) ? "green" : "red"}
+                />
+                @ {user.name}
+              </ListItem>
+            ))}
+          </List>
+        </Overlay> */}
+      </View>
     );
   }
 }

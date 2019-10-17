@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import firebase from "../../firebase";
 import { View, Text, Picker } from "react-native";
-import { Header, Icon, Image } from 'react-native-elements';
-import { Grid, Row, Col } from 'react-native-easy-grid';
+import {Grid, Col, Row} from 'native-base'
+// import { Header, Icon, Image } from 'react-native-elements';
+// import { Grid, Row, Col } from 'react-native-easy-grid';
 import { connect } from "react-redux";
 
 const UserPanel = props => {
