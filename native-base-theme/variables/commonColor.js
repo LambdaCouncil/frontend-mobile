@@ -1,7 +1,7 @@
 // @flow
 
-import color from 'color';
-import { Platform, Dimensions, PixelRatio } from 'react-native';
+import color from 'color'
+import { Platform, Dimensions, PixelRatio } from 'react-native'
 
 const councils = {
   text: {
@@ -171,7 +171,7 @@ export default {
 
   // Font
   DefaultFontSize: 16,
-  fontFamily: platform === PLATFORM.IOS ? 'System' : 'Roboto',
+  fontFamily: platform === PLATFORM.IOS ? 'System' : 'Gotham',
   fontSizeBase: 15,
   get fontSizeH1() {
     return this.fontSizeBase * 3.3;
