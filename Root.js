@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
-import { Text } from 'react-native-elements'
+import { Text, H1, H2 } from 'native-base'
 import { Link } from 'react-router-native'
 
 export default _ => {
@@ -8,8 +8,8 @@ export default _ => {
         <View style={styles.containerAll}>
 
             <View style={styles.headerContainer}>
-                <Text h1>Councils</Text>
-                <Text h4 h4Style={styles.description}>Area, Stake and Ward leadership communication.</Text>
+                <H1 style={styles.header}>Councils</H1>
+                <H2 style={styles.description}>Area, Stake and Ward leadership communication.</H2>
             </View>
 
             <View style={styles.buttonContainer}>
@@ -36,6 +36,10 @@ const styles = StyleSheet.create({
     headerContainer: {
         width: '95%',
         alignItems: 'center',
+    },
+    header: {
+        fontSize: 50,
+        paddingTop: 40
     },
     description: {
         textAlign: 'center'
