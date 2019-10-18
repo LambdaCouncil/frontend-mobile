@@ -4,13 +4,13 @@ import { View, Text, StyleSheet } from 'react-native';
 import firebase from "../../firebase";
 import { connect } from "react-redux";
 import { setCurrentChannel } from "../../actions";
+import AddChannel from "./AddChannel";
 
 const Channels = ({ currentUser, setCurrentChannel }) => {
   const [channels, setChannels] = useState([]);
   const [channel, setChannel] = useState(null);
   const [modal, setModal] = useState(false);
-  const [channelName, setChannelName] = useState("");
-  const [channelDetails, setChannelDetails] = useState("");
+
   const channelsRef = firebase.database().ref("channels");
   const messagesRef = firebase.database().ref("messages");
   const user = currentUser;
@@ -90,14 +90,6 @@ const Channels = ({ currentUser, setCurrentChannel }) => {
     setModal(!modal);
   };
 
-  const handleChannelName = e => {
-    setChannelName(e.target.value);
-  };
-
-  const handleChannelDetails = e => {
-    setChannelDetails(e.target.value);
-  };
-
   const addChannel = () => {
     const key = channelsRef.push().key;
     const newChannel = {
@@ -172,17 +164,17 @@ const Channels = ({ currentUser, setCurrentChannel }) => {
   return (
     <View>
       {/* <Overlay > */}
-      <ListItem>
+      {/* <ListItem> */}
         {/* <span> */}
-        <Icon ios="ios-folder-open" android="md-rose" />
+        {/* <Icon ios="ios-folder-open" android="md-rose" /> */}
         {/* </span>{" "} */}
-        <Text>({channels.length})</Text>
-        <Icon
+        {/* <Text>({channels.length})</Text> */}
+        {/* <Icon
           name="add"
           onPress={toggleOverlay}
           iconStyle={{ cursor: "pointer" }}
-        />
-      </ListItem>
+        /> */}
+      {/* </ListItem> */}
       {/* </Overlay> */}
 
       {/* <Overlay
@@ -191,33 +183,11 @@ const Channels = ({ currentUser, setCurrentChannel }) => {
         width="auto"
         onBackdropPress={() => toggleOverlay()}
       > */}
-      <Header style={styles.header}>
-        <Button title="X" onPress={() => {}} />
-        <Text>New Council Discussion</Text>
-      </Header>
-      <Form>
-        <Item>
-          <Input
-            label="Discussion Topic"
-            name="channelName"
-            onChangeText={handleChannelName}
-            placeholder="Discussion Topic"
-          />
-        </Item>
-
-        <Item>
-          <Input
-            label="Council Name"
-            name="channelDetails"
-            onChangeText={handleChannelDetails}
-            placeholder="Council Name"
-          />
-        </Item>
-      </Form>
+      <AddChannel />
       
-      <List>{displayChannels(channels)}</List>
+      {/* <List>{displayChannels(channels)}</List> */}
 
-      <View>
+      {/* <View>
         <Button
           title="Create"
           onPress={handleSubmit}
@@ -228,7 +198,7 @@ const Channels = ({ currentUser, setCurrentChannel }) => {
           onPress={toggleOverlay}
           icon={<Icon name="remove" color="red" />}
         />
-      </View>
+      </View> */}
       {/* </Overlay> */}
     </View>
   );

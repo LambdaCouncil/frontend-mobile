@@ -1,36 +1,48 @@
-import React from "react";
-// import { Overlay } from 'react-native-elements';
-import { View, Text } from "react-native";
-import UserPanel from "./UserPanel";
-import Channels from "./Channels";
-import DirectMessages from "./DirectMessages";
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import { Button } from 'native-base';
 import { connect } from "react-redux";
-import { setCurrentChannel } from "../../actions";
+
+import UserPanel from './UserPanel';
+
 
 const SidePanel = props => {
-  const { currentUser } = props;
-  console.log('currentUser in SidePanel', currentUser)
-
   return (
-    <View>
-      {/* <Overlay
-      // size="large"
-      // inverted
-      // fixed="left"
-      // vertical
-      // style={{ background: "#4c3c4c", fontsize: "1.2rem" }}
-      > */}
-        {/* <UserPanel /> */}
-        <Channels currentUser={currentUser} />
-        {/* <DirectMessages currentUser={currentUser} /> */}
-      {/* </Overlay> */}
+    <View style={styles.container}>
+      <UserPanel />
+      <View>
+        <Button light>
+          <Text>Agendas</Text>
+        </Button>
+        <Button light>
+          <Text>Discussions</Text>
+        </Button>
+        <Button light>
+          <Text>Assignments</Text>
+        </Button>
+        <Button light>
+          <Text>Files</Text>
+        </Button>
+        <Button light>
+          <Text>Promptings</Text>
+        </Button>
+        <Button light>
+          <Text>Notifications</Text>
+        </Button>
+      </View>
     </View>
   );
 };
 
 const mapStateToProps = state => ({
-  // currentUser: state.user.currentUser
   ...state
 });
 
-export default connect(mapStateToProps, { setCurrentChannel })(SidePanel);
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "#FFFFFF",
+    paddingTop: 25
+  }
+});
+
+export default connect(mapStateToProps, {})(SidePanel);
