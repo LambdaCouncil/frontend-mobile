@@ -15,6 +15,7 @@ import ChangePassword from "./settings/ChangePassword";
 import Settings from "./settings/Settings";
 import PushNotifications from "./settings/PushNotifications";
 import SubmitFeedback from "./settings/SubmitFeedback";
+import About from "./settings/About";
 
 const Routes = props => {
 
@@ -82,6 +83,11 @@ const Routes = props => {
         <Route
           path='/feedback'
           render={props => <SubmitFeedback {...props} />}
+        />
+
+        <Route
+          path='/about'
+          render={props => <About {...props} />}
         />
 
         <ProtectedRoute
