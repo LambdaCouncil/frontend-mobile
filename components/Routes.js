@@ -10,8 +10,10 @@ import Root from '../Root'
 import ProtectedRoutes from "./ProtectedRoutes"
 import { setUser, clearUser } from '../actions'
 import CompleteProfile from "./CompleteProfile";
-import EditProfile from "./EditProfile";
-import ChangePassword from "./ChangePassword";
+import EditProfile from "./settings/EditProfile";
+import ChangePassword from "./settings/ChangePassword";
+import Settings from "./settings/Settings";
+import PushNotifications from "./settings/PushNotifications";
 
 const Routes = props => {
 
@@ -62,8 +64,18 @@ const Routes = props => {
               />
 
               <Route
-                path='/changepassword'
-                render={props => <ChangePassword {...props} />}
+              path='/changepassword'
+              render={props => <ChangePassword {...props} />}
+            />
+
+              <Route
+                path='/settings'
+                render={props => <Settings {...props} />}
+              />
+
+              <Route
+                path='/notifications'
+                render={props => <PushNotifications {...props} />}
               />
 
                 <ProtectedRoute

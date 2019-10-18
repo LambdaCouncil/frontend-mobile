@@ -1,12 +1,12 @@
 import React, {useState} from 'react'
-import firebase from "../firebase"
+import firebase from "../../firebase"
 import {KeyboardAvoidingView, StyleSheet} from 'react-native'
 import {Input, Text, Label, Item, H1, H3 } from 'native-base'
 import {Link} from 'react-router-native'
 import {connect} from 'react-redux'
 
-import Icon from './Icon'
-import {signUpDisplayName} from '../actions'
+import Icon from '../Icon'
+import {signUpDisplayName} from '../../actions'
 
 function ChangePassword(props) {
 

@@ -1,12 +1,12 @@
 import React, {useState} from 'react'
-import firebase from "../firebase"
+import firebase from "../../firebase"
 import {KeyboardAvoidingView, StyleSheet} from 'react-native'
 import {Input, Text, Label, Item, H1, H3} from 'native-base'
 import {Link} from 'react-router-native'
 import {connect} from 'react-redux'
 
-import Icon from './Icon'
-import {signUpDisplayName} from '../actions'
+import Icon from '../Icon'
+import {signUpDisplayName} from '../../actions'
 
 function EditProfile(props) {
 
@@ -91,7 +91,7 @@ function EditProfile(props) {
         <H3>Change Password</H3>
       </Link>
       <H3 onPress={deleteAccount}>Delete Account</H3>
-      <Link to='/home'>
+      <Link to='/settings'>
         <H3>Cancel</H3>
       </Link>
 

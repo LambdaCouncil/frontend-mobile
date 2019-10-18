@@ -12,8 +12,8 @@ const Home = props => {
         <View style={homeStyle}>
             <Text>{`Hello, ${props.currentUser.displayName}`}</Text>
             <Button onPress={() => firebase.auth().signOut()} title='Log out' />
-            <Link to='/editprofile'>
-                <H3>Edit Profile</H3>
+            <Link to='/settings'>
+                <H3>Settings</H3>
             </Link>
         </View>
     )
