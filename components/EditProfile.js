@@ -91,6 +91,9 @@ function EditProfile(props) {
         <H3>Change Password</H3>
       </Link>
       <H3 onPress={deleteAccount}>Delete Account</H3>
+      <Link to='/home'>
+        <H3>Cancel</H3>
+      </Link>
 
     </KeyboardAvoidingView>
 

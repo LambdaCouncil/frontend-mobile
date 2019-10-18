@@ -64,6 +64,10 @@ function ChangePassword(props) {
         <H3>Save</H3>
       </Link>
 
+      <Link to='/home'>
+        <H3>Cancel</H3>
+      </Link>
+
 
 
 
