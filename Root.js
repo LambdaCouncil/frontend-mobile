@@ -1,24 +1,23 @@
 import React from 'react'
-import { View, StyleSheet } from 'react-native'
-import { Text, H1, H2 } from 'native-base'
+import { Text, H1, H2, View } from 'native-base'
 import { Link } from 'react-router-native'
 
 export default _ => {
     return (
-        <View style={styles.containerAll}>
+        <View containerAllRoot>
 
-            <View style={styles.headerContainer}>
+            <View headerContainerRoot>
                 <H1>Councils</H1>
                 <H2>Area, Stake and Ward leadership communication.</H2>
             </View>
 
-            <View style={styles.buttonContainer}>
+            <View buttonContainerRoot>
 
-                <Link to='/login' style={styles.link}>
+                <Link to='/login' style={{ width: '45%' }}>
                     <Text loginButton>Log In</Text>
                 </Link>
 
-                <Link to='/register' style={styles.link}>
+                <Link to='/register' style={{ width: '45%' }}>
                     <Text registerButton>Sign Up</Text>
                 </Link>
 
@@ -26,27 +25,3 @@ export default _ => {
         </View>
     )
 }
-
-const styles = StyleSheet.create({
-    containerAll: {
-        height: '100%',
-        justifyContent: 'space-between',
-        paddingTop: 25
-    },
-    headerContainer: {
-        width: '95%',
-        alignItems: 'center',
-    },
-    buttonContainer: {
-        width: '100%',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        backgroundColor: 'whitesmoke',
-        borderTopWidth: 2,
-        borderTopColor: 'lightgray',
-        paddingVertical: 15
-    },
-    link: {
-        width: '45%'
-    },
-})
