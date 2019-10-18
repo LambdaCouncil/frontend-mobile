@@ -171,7 +171,7 @@ export default {
 
   // Font
   DefaultFontSize: 16,
-  fontFamily: platform === PLATFORM.IOS ? 'System' : 'Gotham',
+  fontFamily: 'System',
   fontSizeBase: 15,
   get fontSizeH1() {
     return this.fontSizeBase * 3.3;
