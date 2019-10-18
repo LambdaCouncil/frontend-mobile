@@ -1,12 +1,12 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import firebase from "../../firebase"
-import {KeyboardAvoidingView, StyleSheet} from 'react-native'
-import {Input, Text, Label, Item, H1, H3 } from 'native-base'
-import {Link} from 'react-router-native'
-import {connect} from 'react-redux'
+import { KeyboardAvoidingView, StyleSheet } from 'react-native'
+import { Input, Text, Label, Item, H1, H3 } from 'native-base'
+import { Link } from 'react-router-native'
+import { connect } from 'react-redux'
 
 import Icon from '../Icon'
-import {signUpDisplayName} from '../../actions'
+import { signUpDisplayName } from '../../actions'
 
 function ChangePassword(props) {
 
@@ -22,8 +22,7 @@ function ChangePassword(props) {
 
   const handlePasswordConfirm = text => setConfirmNewPassword(text);
 
-  const changePassword = () => {
-    console.log('Password Changed')};
+  const changePassword = _ => console.log('Password Changed')
 
   return (
 
@@ -44,20 +43,26 @@ function ChangePassword(props) {
 
       <Item floatingLabel style={styles.inputItem}>
         <Label>Old Password</Label>
-        <Input onChangeText={handleOldPassword}
-               secureTextEntry={true}/>
+        <Input
+          onChangeText={handleOldPassword}
+          secureTextEntry={true}
+        />
       </Item>
 
       <Item floatingLabel style={styles.inputItem}>
         <Label>New Password</Label>
-        <Input onChangeText={handleNewPassword}
-               secureTextEntry={true}/>
+        <Input
+          onChangeText={handleNewPassword}
+          secureTextEntry={true}
+        />
       </Item>
 
       <Item floatingLabel style={styles.inputItem}>
         <Label>Confirm New Password</Label>
-        <Input onChangeText={handlePasswordConfirm}
-               secureTextEntry={true}/>
+        <Input
+          onChangeText={handlePasswordConfirm}
+          secureTextEntry={true}
+        />
       </Item>
 
       <Link to='/editprofile'>

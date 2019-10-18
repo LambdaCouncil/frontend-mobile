@@ -8,18 +8,18 @@ export default _ => {
         <View style={styles.containerAll}>
 
             <View style={styles.headerContainer}>
-                <H1 style={styles.header}>Councils</H1>
-                <H2 style={styles.description}>Area, Stake and Ward leadership communication.</H2>
+                <H1>Councils</H1>
+                <H2>Area, Stake and Ward leadership communication.</H2>
             </View>
 
             <View style={styles.buttonContainer}>
 
                 <Link to='/login' style={styles.link}>
-                    <Text style={styles.loginButton}>Log In</Text>
+                    <Text loginButton>Log In</Text>
                 </Link>
 
                 <Link to='/register' style={styles.link}>
-                    <Text style={styles.registerButton}>Sign Up</Text>
+                    <Text registerButton>Sign Up</Text>
                 </Link>
 
             </View>
@@ -37,9 +37,6 @@ const styles = StyleSheet.create({
         width: '95%',
         alignItems: 'center',
     },
-    description: {
-        textAlign: 'center'
-    },
     buttonContainer: {
         width: '100%',
         flexDirection: 'row',
@@ -48,24 +45,6 @@ const styles = StyleSheet.create({
         borderTopWidth: 2,
         borderTopColor: 'lightgray',
         paddingVertical: 15
-    },
-    loginButton: {
-        backgroundColor: 'whitesmoke',
-        color: 'green',
-        textAlign: 'center',
-        padding: 10,
-        paddingBottom: 15,
-        fontSize: 35
-    },
-    registerButton: {
-        borderRadius: 7.5,
-        backgroundColor: 'green',
-        padding: 10,
-        paddingBottom: 15,
-        textAlign: 'center',
-        textAlignVertical: 'center',
-        color: 'whitesmoke',
-        fontSize: 35
     },
     link: {
         width: '45%'
