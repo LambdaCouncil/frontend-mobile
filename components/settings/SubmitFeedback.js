@@ -1,14 +1,20 @@
 import React, {useState} from 'react'
-
-import {KeyboardAvoidingView, StyleSheet} from 'react-native'
-import {Input, Text, Label, Item, H1, H3 } from 'native-base'
+import firebase from "../../firebase"
+import {KeyboardAvoidingView, StyleSheet, TextInput, View} from 'react-native'
+import {Input, Text, Label, Item, H1, H3} from 'native-base'
 import {Link} from 'react-router-native'
 import {connect} from 'react-redux'
 
 import Icon from '../Icon'
 import {signUpDisplayName} from '../../actions'
 
-function Settings(props) {
+function SubmitFeedback(props) {
+
+  const [feedback, setFeedback] = useState('');
+
+  const handleSubmit = () => {
+    console.log(feedback)
+  };
 
   return (
 
@@ -25,25 +31,20 @@ function Settings(props) {
         />
       </Link>
 
-      <H1>Settings</H1>
+      <H1>Submit Feedback</H1>
 
-      <Link to='/editprofile'>
-        <H3>Edit Profile</H3>
-      </Link>
-      <Link to='/notifications'>
-        <H3>Push Notifications</H3>
-      </Link>
-      <Link to='/feedback'>
-        <H3>Submit Feedback</H3>
-      </Link>
-      <Link to='/rate'>
-        <H3>Rate Councils</H3>
-      </Link>
-      <Link to='/about'>
-        <H3>About</H3>
-      </Link>
+      <H3>What Can We Improve?</H3>
+      <View>
+        <TextInput
+          // style={styles.textInput}
+          editable
+          maxLength={500}
+        />
+      </View>
 
-
+      <Link to='/settings'>
+        <H3>Submit</H3>
+      </Link>
     </KeyboardAvoidingView>
 
   )
@@ -69,8 +70,11 @@ const styles = StyleSheet.create({
   },
   inputItem: {
     marginVertical: 10
+  },
+  textInput: {
+    textAlign: 'left'
   }
 });
 
 
-export default Settings;
+export default SubmitFeedback;
