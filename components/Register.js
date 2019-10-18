@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import firebase from "../firebase"
 import { KeyboardAvoidingView, StyleSheet } from 'react-native'
 import { Input, Text, Label, Item, H1, H3 } from 'native-base'
-import { Link } from 'react-router-native'
+import { Link, withRouter } from 'react-router-native'
 import { connect } from 'react-redux'
 
 import Icon from './Icon'
@@ -46,10 +46,14 @@ function Register(props) {
                                         setEmail(' ')
                                         setPassword(' ')
                                         setPasswordConfirm(' ')
+                                        props.history.push('/completeprofile')
                                     })
                             })
                     })
-                    .catch(err => console.error(err))
+                    .catch(err => {
+                        props.history.push('/register')
+                        console.error(err)
+                    })
 
             } else alert("Passwords don't match.")
 
@@ -102,9 +106,6 @@ function Register(props) {
             </Item>
 
             <H3 onPress={handleSubmit}>Sign Up</H3>
-            <Link to='/completeprofile'>
-                <H3>Next</H3>
-            </Link>
 
         </KeyboardAvoidingView>
 
@@ -133,4 +134,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default connect(state => ({ ...state }), { signUpDisplayName })(Register)
+export default connect(state => ({ ...state }), { signUpDisplayName })(withRouter(Register))

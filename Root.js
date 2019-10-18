@@ -8,7 +8,7 @@ export default _ => {
         <View style={styles.containerAll}>
 
             <View style={styles.headerContainer}>
-                <H1 whatever style={styles.header}>Councils</H1>
+                <H1 style={styles.header}>Councils</H1>
                 <H2 style={styles.description}>Area, Stake and Ward leadership communication.</H2>
             </View>
 
