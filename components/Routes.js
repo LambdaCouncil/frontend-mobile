@@ -9,6 +9,9 @@ import Login from './LogIn'
 import Root from '../Root'
 import ProtectedRoutes from "./ProtectedRoutes"
 import { setUser, clearUser } from '../actions'
+import CompleteProfile from "./CompleteProfile";
+import EditProfile from "./EditProfile";
+import ChangePassword from "./ChangePassword";
 
 const Routes = props => {
 
@@ -47,6 +50,21 @@ const Routes = props => {
                     path="/register"
                     render={props => <Register {...props} />}
                 />
+
+                <Route
+                  path='/completeprofile'
+                  render={props => <CompleteProfile {...props} />}
+                />
+
+              <Route
+                path='/editprofile'
+                render={props => <EditProfile {...props} />}
+              />
+
+              <Route
+                path='/changepassword'
+                render={props => <ChangePassword {...props} />}
+              />
 
                 <ProtectedRoute
                     component={props => <ProtectedRoutes />}
