@@ -102,6 +102,9 @@ function Register(props) {
             </Item>
 
             <H3 onPress={handleSubmit}>Sign Up</H3>
+            <Link to='/completeprofile'>
+                <H3>Next</H3>
+            </Link>
 
         </KeyboardAvoidingView>
 
