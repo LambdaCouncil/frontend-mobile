@@ -1,9 +1,13 @@
-import React, {useState, useEffect} from 'react';
-import MessagesHeader from "./MessagesHeader";
-import MessageForm from "./MessageForm";
+// Dependencies
+import React, { useState, useEffect } from 'react'
+import { Container, Content, Header, List, ListItem} from 'native-base'
+
+// Components
+import MessagesHeader from "./MessagesHeader"
+import MessageForm from "./MessageForm"
 import firebase from '../../firebase'
-import Message from "./Message";
-import {Container} from 'native-base'
+import Message from "./Message"
+
 
 const Messages = ({currentChannel, currentUser}) => {
 
@@ -17,6 +21,7 @@ const Messages = ({currentChannel, currentUser}) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchLoading, setSearchLoading] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
+  
   // The Barndon Constant
   // 2019 Colorized
   const [barndon, setBarndon] = useState(false);
@@ -84,23 +89,45 @@ const Messages = ({currentChannel, currentUser}) => {
 
   return (
     <Container>
-      <MessagesHeader
-        channelName={displayChannelName(channel)}
-        numOfUsers={numUniqueUsers}
-        handleSearchChange={handleSearchChange}
-      />
-      <Segment>
-        <Comment.Group className='messages'>
+
+      <Header>
+        <MessagesHeader
+          channelName={displayChannelName(channel)}
+          numOfUsers={numUniqueUsers}
+          handleSearchChange={handleSearchChange}
+        />
+      </Header>
+
+      <Content>
+
+        /* 
+          List is similar in appearance to the Discussions section in the Style Guide. 
+          Alternatively, we could use Card for each message.
+          see: (Zeplin: 06 Discussions - 1)
+        */
+
+        <List className='messages'>
           {/*{displayMessages(messages)}*/}
           {messages.map(message => (
-            <Message message={message}
-                     user={message.user}
-                     key={message.timeStamp}/>
+            <ListItem>
+              <Message message={message}
+                      user={message.user}
+                      key={message.timeStamp}/>
+            </ListItem>
           ))}
-        </Comment.Group>
-      </Segment>
-      <MessageForm
-        messagesRef={messagesRef} currentChannel={currentChannel} currentUser={currentUser}/>
+        </List>
+    
+        /* 
+          MessageForm doesn't exist in the app, instead there is a + button 
+          on the right side of the header which opens an ActionSheet
+          see: (Zeplin: 06 Discussions - 1, 06 Discussions - 2) 
+        */
+
+        <MessageForm
+          messagesRef={messagesRef} currentChannel={currentChannel} currentUser={currentUser}
+        />
+      </Content>
+
     </Container>
   )
 };
