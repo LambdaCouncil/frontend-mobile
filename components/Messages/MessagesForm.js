@@ -56,8 +56,8 @@ const MessageForm = ({ messagesRef, currentChannel, currentUser }) => {
 
 
     return (
-        <View>
 
+        <Footer>
             <Form>
                 <Item>
                     <Input
@@ -81,8 +81,8 @@ const MessageForm = ({ messagesRef, currentChannel, currentUser }) => {
                     <Text>Upload Media</Text>
                 </Button>
             </Form>
+        </Footer>
 
-        </View>
     );
 };
 

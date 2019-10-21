@@ -1,6 +1,7 @@
 // Dependencies
 import React, { useState, useEffect } from 'react'
-import { View, Content, Header, List, ListItem } from 'native-base'
+import { StyleSheet } from 'react-native'
+import { View, Content, Footer, Header, List, ListItem, Container, Text, Col } from 'native-base'
 
 // Components
 import MessagesHeader from "./MessageHeader"
@@ -88,16 +89,17 @@ const Messages = ({ currentChannel, currentUser }) => {
   const displayChannelName = channel => channel ? `#${channel.name}` : ''
 
   return (
-    <View>
-      <View>
-        <Header>
-          <MessagesHeader
-            channelName={displayChannelName(channel)}
-            numOfUsers={numUniqueUsers}
-            handleSearchChange={handleSearchChange}
-          />
-        </Header>
-      </View>
+    <Container padder contentContainerStyle={style.screen}>
+
+      <Header>
+        <Text>Header</Text>
+        {/* <MessagesHeader
+          channelName={displayChannelName(channel)}
+          numOfUsers={numUniqueUsers}
+          handleSearchChange={handleSearchChange}
+        /> */}
+      </Header>
+
 
 
       {/* 
@@ -126,15 +128,26 @@ const Messages = ({ currentChannel, currentUser }) => {
           on the right side of the header which opens an ActionSheet
           see: (Zeplin: 06 Discussions - 1, 06 Discussions - 2) 
         */}
-      <View>
+
+      <Footer style={style.footer}>
+        <Text>Footer</Text>
         <MessageForm
           messagesRef={messagesRef} currentChannel={currentChannel} currentUser={currentUser}
         />
-      </View>
+      </Footer>
 
-
-    </View>
+    </Container>
   )
 }
+
+const style = StyleSheet.create({
+  screen: {
+    flex: 1,
+    height: '100%',
+  },
+  footer: {
+    flexDirection: 'row'
+  }
+})
 
 export default Messages
