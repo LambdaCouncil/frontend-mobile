@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Input, View, Item } from "native-base";
+import { Form, Input, Button, Container, Content, Item } from 'native-base'
 import firebase from '../../firebase'
+
 
 const MessageForm = ({ messagesRef, currentChannel, currentUser }) => {
 
@@ -29,6 +30,7 @@ const MessageForm = ({ messagesRef, currentChannel, currentUser }) => {
         };
     };
 
+
     const sendMessage = () => {
         if (message) {
             setLoading(true);
@@ -53,37 +55,34 @@ const MessageForm = ({ messagesRef, currentChannel, currentUser }) => {
 
 
     return (
-        <View>
-            <Item>
-                <Input
-                    name='message'
-                    onChange={handleChange}
-                    value={message}
-                    label={<Button icon={'add'} />}
-                    labelPosition='left'
-                // className={
-                //             errors.some(error => error.includes("message"))
-                //                 ? 'error'
-                //                 : ''
-                //         }
-                //      placeholder='Write your message'
-                />
-            </Item>
-            <Button
-                onPress={sendMessage}
-                disabled={loading}
-                color='orange'
-                content='Add Reply'
-                labelPosition='left'
-                icon='edit'
-            />
-            <Button
-                color='teal'
-                content='Upload Media'
-                labelPosition='right'
-                icon='cloud upload'
-            />
-        </View>
+        <Container>
+            <Content>
+                <Form>
+                    <Item>
+                        <Input
+                            name='message'
+                            onChange={handleChange}
+                            value={message}
+                            style={{ marginBottom: '0.7em' }}
+                            label={<Button icon={'add'} />}
+                            labelPosition='left'
+                        // className={
+                        //             errors.some(error => error.includes("message"))
+                        //                 ? 'error'
+                        //                 : ''
+                        //         }
+                        //      placeholder='Write your message'
+                        />
+                    </Item>
+                    <Button>
+                        <Text>Add Reply</Text>
+                    </Button>
+                    <Button>
+                        <Text>Upload Media</Text>
+                    </Button>
+                </Form>
+            </Content>
+        </Container>
     );
 };
 

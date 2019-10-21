@@ -75,6 +75,16 @@ const Messages = ({ currentChannel, currentUser }) => {
     setNumUniqueUsers(numUniqueUsers)
   }
 
+  const displayMessages = messages => {
+    messages.length > 0 && messages.map(message => (
+      <Message
+        key={message.timeStamp}
+        message={message}
+        user={user}
+      />
+    ))
+  }
+
   const displayChannelName = channel => channel ? `#${channel.name}` : ''
 
   return (
@@ -97,6 +107,7 @@ const Messages = ({ currentChannel, currentUser }) => {
         */}
 
         <List className='messages'>
+          {displayMessages(messages)}
           {messages.map(message => (
             <ListItem>
               <Message message={message}
