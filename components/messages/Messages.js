@@ -99,6 +99,8 @@ const Messages = ({ currentChannel, currentUser }) => {
           handleSearchChange={handleSearchChange}
         /> */}
       </Header>
+
+      <Content>
      
 
 
@@ -124,6 +126,8 @@ const Messages = ({ currentChannel, currentUser }) => {
           on the right side of the header which opens an ActionSheet
           see: (Zeplin: 06 Discussions - 1, 06 Discussions - 2) 
         */}
+
+        </Content>
        
       <Footer style={style.footer}> 
         <Text>Footer</Text>     
