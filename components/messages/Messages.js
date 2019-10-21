@@ -1,6 +1,6 @@
 // Dependencies
 import React, { useState, useEffect } from 'react'
-import { Container, Content, Header, List, ListItem} from 'native-base'
+import { Container, Content, Header, List, ListItem } from 'native-base'
 
 // Components
 import MessagesHeader from "./MessagesHeader"
@@ -9,7 +9,7 @@ import firebase from '../../firebase'
 import Message from "./Message"
 
 
-const Messages = ({currentChannel, currentUser}) => {
+const Messages = ({ currentChannel, currentUser }) => {
 
   const messagesRef = firebase.database().ref('messages');
   const [channel, setChannel] = useState(currentChannel);
@@ -21,7 +21,7 @@ const Messages = ({currentChannel, currentUser}) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchLoading, setSearchLoading] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
-  
+
   // The Barndon Constant
   // 2019 Colorized
   const [barndon, setBarndon] = useState(false);
@@ -100,28 +100,28 @@ const Messages = ({currentChannel, currentUser}) => {
 
       <Content>
 
-        /* 
+        {/* 
           List is similar in appearance to the Discussions section in the Style Guide. 
           Alternatively, we could use Card for each message.
           see: (Zeplin: 06 Discussions - 1)
-        */
+        */}
 
         <List className='messages'>
           {/*{displayMessages(messages)}*/}
           {messages.map(message => (
             <ListItem>
               <Message message={message}
-                      user={message.user}
-                      key={message.timeStamp}/>
+                user={message.user}
+                key={message.timeStamp} />
             </ListItem>
           ))}
         </List>
-    
-        /* 
+
+        {/* 
           MessageForm doesn't exist in the app, instead there is a + button 
           on the right side of the header which opens an ActionSheet
           see: (Zeplin: 06 Discussions - 1, 06 Discussions - 2) 
-        */
+        */}
 
         <MessageForm
           messagesRef={messagesRef} currentChannel={currentChannel} currentUser={currentUser}
