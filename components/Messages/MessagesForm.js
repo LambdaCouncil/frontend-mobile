@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Input, Button, Container, Content, Item } from 'native-base'
+import { Form, Input, Button, Container, Content, Item, View } from 'native-base'
+import { Text } from 'react-native'
 import firebase from '../../firebase'
 
 
@@ -55,7 +56,7 @@ const MessageForm = ({ messagesRef, currentChannel, currentUser }) => {
 
 
     return (
-        <Container>
+        <View>
             <Content>
                 <Form>
                     <Item>
@@ -63,7 +64,6 @@ const MessageForm = ({ messagesRef, currentChannel, currentUser }) => {
                             name='message'
                             onChange={handleChange}
                             value={message}
-                            style={{ marginBottom: '0.7em' }}
                             label={<Button icon={'add'} />}
                             labelPosition='left'
                         // className={
@@ -82,7 +82,7 @@ const MessageForm = ({ messagesRef, currentChannel, currentUser }) => {
                     </Button>
                 </Form>
             </Content>
-        </Container>
+        </View>
     );
 };
 
