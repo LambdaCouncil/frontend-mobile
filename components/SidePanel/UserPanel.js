@@ -45,7 +45,7 @@ const UserPanel = props => {
     <View style={styles.container}>
       <Col>
         <Row>
-          <Header style={styles.header}>
+          <View style={styles.header}>
             <Image
               style={styles.image}
               source={{uri: 'https://avatars3.githubusercontent.com/u/46138601?s=400&v=4'}}
@@ -58,7 +58,7 @@ const UserPanel = props => {
               <Text>{user.displayName}</Text>
               <Text>{user.email}</Text>
             </View>
-          </Header>
+          </View>
           {/*User Dropdown*/}
           {/* <Header >
             <Picker
@@ -88,10 +88,10 @@ const mapStateToProps = state => ({
 const styles = StyleSheet.create({
   container: {
     color: '#3CB18A',
-    paddingVertical: 20
+    // paddingVertical: 'auto'
   },
   header: {
-    marginTop: 20,
+    // marginTop: 100,
     color: '#3CB18A',
     backgroundColor: 'white',
     alignItems: 'center'
