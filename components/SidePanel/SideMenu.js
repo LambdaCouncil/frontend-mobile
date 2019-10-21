@@ -1,33 +1,41 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Button } from 'native-base';
-import { StackNavigator } from 'react-navigation';
 import { Link, withRouter } from 'react-router-native';
-import { connect } from 'react-redux';
 
 const SideMenu = props => {
   console.log('props in SideMenu', props);
   return (
     <View sytle={styles.sideMenu}>
-      <Link 
-        to='/login'
-      >
-        <Text>Agendas</Text>
-      </Link>
       <Button light>
-        <Text>Discussions</Text>
+        <Link to="/login">
+          <Text>Agendas</Text>
+        </Link>
       </Button>
       <Button light>
-        <Text>Assignments</Text>
+        <Link to="/about">
+          <Text>Discussions</Text>
+        </Link>
       </Button>
       <Button light>
-        <Text>Files</Text>
+        <Link to="/login">
+          <Text>Assignments</Text>
+        </Link>
       </Button>
       <Button light>
-        <Text>Promptings</Text>
+        <Link to="/login">
+          <Text>Files</Text>
+        </Link>
       </Button>
       <Button light>
-        <Text>Notifications</Text>
+        <Link to="/login">
+          <Text>Promptings</Text>
+        </Link>
+      </Button>
+      <Button light>
+        <Link to="/login">
+          <Text>Notifications</Text>
+        </Link>
       </Button>
     </View>
   );
