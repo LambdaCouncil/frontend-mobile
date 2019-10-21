@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 import {View} from 'react-native';
 import {Text} from 'react-native';
 
-const UserPanel (props) => {
+function UserPanel(props) {
 
   const [user, setUser] = useState(props.currentUser);
 
