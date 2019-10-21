@@ -9,6 +9,9 @@ const Home = props => {
     return (
         <View style={homeStyle}>
             <Text>{`Hello, ${props.currentUser.displayName}`}</Text>
+            <Text style = {{ fontFamily: "gotham" }}>{`Hello, ${props.currentUser.displayName}`}</Text>
+            <Text style = {{ fontFamily: "bern" }}>{`Hello, ${props.currentUser.displayName}`}</Text>
+            <Text style = {{ fontFamily: "bern2" }}>{`Hello, ${props.currentUser.displayName}`}</Text>
             <Button onPress={() => firebase.auth().signOut()} title='Log out' />
         </View>
     )
