@@ -12,10 +12,7 @@ function PushNotifications(props) {
 
   const [checked, setChecked] = useState(false)
 
-  const toggleChecked = () => {
-    setChecked(!checked)
-    console.log('checked', checked)
-  }
+
 
   return (
 
@@ -36,7 +33,7 @@ function PushNotifications(props) {
         <Header />
         <Content>
           <ListItem>
-            <CheckBox checked={false} />
+            <CheckBox checked={false}/>
             <Body>
               <Text>All Activity</Text>
             </Body>
@@ -93,9 +90,6 @@ function PushNotifications(props) {
         />
       </Link>
     </View>
-    // </KeyboardAvoidingView>
-
-
   )
 }
 
