@@ -3,6 +3,7 @@ import { KeyboardAvoidingView, StyleSheet } from 'react-native'
 import { Input, Text, Label, Item, H1, H3 } from 'native-base'
 import { Link } from 'react-router-native'
 
+import variables from '../native-base-theme/variables/commonColor'
 import firebase from "../firebase"
 import Icon from './Icon'
 
@@ -40,7 +41,7 @@ function Login(props) {
             <Link to='/' style={styles.link}>
                 <Icon
                     name='arrow-back'
-                    color='green'
+                    color={variables.councils.text.greal}
                     style={styles.backButton}
                 />
             </Link>
@@ -62,7 +63,7 @@ function Login(props) {
                 />
             </Item>
 
-            <H3 onPress={handleSubmit}>Log In</H3>
+            <H3 onPress={handleSubmit} submit>Log In</H3>
 
         </KeyboardAvoidingView>
 

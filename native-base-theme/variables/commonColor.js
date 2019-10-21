@@ -1,11 +1,11 @@
 // @flow
 
-import color from 'color';
-import { Platform, Dimensions, PixelRatio } from 'react-native';
+import color from 'color'
+import { Platform, Dimensions, PixelRatio } from 'react-native'
 
 const councils = {
   text: {
-    greal: '#3CB18A',
+    greal: '#288365',
     seafoam: '#CEEBE2',
     nearBlack: '#35373A',
     slateGrey: '#A9AAAC',
@@ -13,7 +13,7 @@ const councils = {
     red: '#F13822'
   },
   ui: {
-    greal: '#3CB18A',
+    greal: '#288365',
     lightSlateGray: '#DCD9D8',
     opaqueSlateGray: '#E8E9EB',
     eggshell: '#F4F6FA',
@@ -171,7 +171,7 @@ export default {
 
   // Font
   DefaultFontSize: 16,
-  fontFamily: platform === PLATFORM.IOS ? 'System' : 'Roboto',
+  fontFamily: 'System',
   fontSizeBase: 15,
   get fontSizeH1() {
     return this.fontSizeBase * 3.3;
@@ -238,7 +238,7 @@ export default {
 
   // Line Height
   buttonLineHeight: 19,
-  lineHeightH1: 32,
+  lineHeightH1: 50,
   lineHeightH2: 27,
   lineHeightH3: 22,
   lineHeight: platform === PLATFORM.IOS ? 20 : 24,
@@ -289,7 +289,7 @@ export default {
   tabFontSize: 15,
 
   // Text
-  textColor: '#000',
+  textColor: councils.text.nearBlack,
   inverseTextColor: '#f8f8f8',
   noteFontSize: 14,
   get defaultTextColor() {
