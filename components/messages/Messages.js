@@ -89,15 +89,15 @@ const Messages = ({ currentChannel, currentUser }) => {
 
   return (
     <View>
-
-      <Header>
-        {/* <MessagesHeader
-          channelName={displayChannelName(channel)}
-          numOfUsers={numUniqueUsers}
-          handleSearchChange={handleSearchChange}
-        /> */}
-      </Header>
-
+      <View>
+        <Header>
+          <MessagesHeader
+            channelName={displayChannelName(channel)}
+            numOfUsers={numUniqueUsers}
+            handleSearchChange={handleSearchChange}
+          />
+        </Header>
+      </View>
 
 
       {/* 
@@ -106,7 +106,9 @@ const Messages = ({ currentChannel, currentUser }) => {
           see: (Zeplin: 06 Discussions - 1)
         */}
 
-      {/* <List className='messages'>
+      <View>
+
+        {/* <List className='messages'>
           {displayMessages(messages)}
           {messages.map(message => (
             <ListItem>
@@ -116,6 +118,8 @@ const Messages = ({ currentChannel, currentUser }) => {
             </ListItem>
           ))}
         </List> */}
+
+      </View>
 
       {/* 
           MessageForm doesn't exist in the app, instead there is a + button 
