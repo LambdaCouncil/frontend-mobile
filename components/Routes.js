@@ -17,6 +17,7 @@ import PushNotifications from "./settings/PushNotifications"
 import SubmitFeedback from "./settings/SubmitFeedback"
 import About from "./settings/About"
 import Messages from './messages/Messages'
+import RateCouncils from "./settings/RateCouncils";
 
 const Routes = props => {
 
@@ -94,6 +95,11 @@ const Routes = props => {
         <Route
           path='/messages'
           render={props => <Messages {...props} />}
+        />
+
+        <Route
+          path='/rate'
+          render={props => <RateCouncils {...props} />}
         />
 
         <ProtectedRoute

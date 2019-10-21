@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 
-import { KeyboardAvoidingView, StyleSheet, CheckBox } from 'react-native'
-import { Input, Text, Label, Item, H1, H3 } from 'native-base'
-import { Link, withRouter } from 'react-router-native'
-import { connect } from 'react-redux'
+import {KeyboardAvoidingView, StyleSheet} from 'react-native'
+import {Text, H1, ListItem, CheckBox, Body, Container, Header, Content, View} from 'native-base'
+import {Link, withRouter} from 'react-router-native'
+import {connect} from 'react-redux'
 
 import Icon from '../Icon'
-import { signUpDisplayName } from '../../actions'
+
 
 function PushNotifications(props) {
 
@@ -19,73 +19,82 @@ function PushNotifications(props) {
 
   return (
 
-    <KeyboardAvoidingView
-      style={styles.inputContainer}
-      behavior='padding'
-    >
 
-      <Link onPress={() => props.history.goBack()} style={styles.link}>
+    <View containerAllRoot>
+
+      {/*<Link onPress={() => props.history.goBack()} style={styles.link}>*/}
+      {/*  <Icon*/}
+      {/*    name='arrow-back'*/}
+      {/*    color='green'*/}
+      {/*    style={styles.backButton}*/}
+      {/*  />*/}
+      {/*</Link>*/}
+
+      <H1>Push Notifications</H1>
+
+      <Container>
+        <Header />
+        <Content>
+          <ListItem>
+            <CheckBox checked={false} />
+            <Body>
+              <Text>All Activity</Text>
+            </Body>
+          </ListItem>
+          <ListItem>
+            <CheckBox checked={false} />
+            <Body>
+              <Text>Agendas</Text>
+            </Body>
+          </ListItem>
+          <ListItem>
+            <CheckBox checked={false} color="green"/>
+            <Body>
+              <Text>Private Discussions</Text>
+            </Body>
+          </ListItem>
+          <ListItem>
+            <CheckBox checked={false} color="green"/>
+            <Body>
+              <Text>Group Discussions</Text>
+            </Body>
+          </ListItem>
+          <ListItem>
+            <CheckBox checked={false} color="green"/>
+            <Body>
+              <Text>Assignments</Text>
+            </Body>
+          </ListItem>
+          <ListItem>
+            <CheckBox checked={false} color="green"/>
+            <Body>
+              <Text>Files</Text>
+            </Body>
+          </ListItem>
+          <ListItem>
+            <CheckBox checked={false} color="green"/>
+            <Body>
+              <Text>Account</Text>
+            </Body>
+          </ListItem>
+          <ListItem>
+            <CheckBox checked={false} color="green"/>
+            <Body>
+              <Text>Donations</Text>
+            </Body>
+          </ListItem>
+        </Content>
+      </Container>
+      <Link onPress={() => props.history.goBack()}>
         <Icon
           name='arrow-back'
           color='green'
           style={styles.backButton}
         />
       </Link>
+    </View>
+    // </KeyboardAvoidingView>
 
-      <H1>Push Notifications</H1>
-
-      <CheckBox
-        center
-        title='All Activity'
-        checked={checked}
-        onIconPress={toggleChecked}
-      />
-      <CheckBox
-        center
-        title='Agendas'
-        checked={checked}
-        onIconPress={toggleChecked}
-      />
-      <CheckBox
-        center
-        title='Private Discussions'
-        checked={checked}
-        onIconPress={toggleChecked}
-      />
-      <CheckBox
-        center
-        title='Group Discussions'
-        checked={checked}
-        onIconPress={toggleChecked}
-      />
-      <CheckBox
-        center
-        title='Assignments'
-        checked={checked}
-        onIconPress={toggleChecked}
-      />
-      <CheckBox
-        center
-        title='Files'
-        checked={checked}
-        onIconPress={toggleChecked}
-      />
-      <CheckBox
-        center
-        title='Account'
-        checked={checked}
-        onIconPress={toggleChecked}
-      />
-      <CheckBox
-        center
-        title='Donations'
-        checked={checked}
-        onIconPress={toggleChecked}
-      />
-
-
-
-    </KeyboardAvoidingView>
 
   )
 }
@@ -108,8 +117,8 @@ const styles = StyleSheet.create({
   backButton: {
     fontSize: 50
   },
-  inputItem: {
-    marginVertical: 10
+  header: {
+    marginTop: 20
   }
 })
 
