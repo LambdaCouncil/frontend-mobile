@@ -22,13 +22,13 @@ function PushNotifications(props) {
 
     <View containerAllRoot>
 
-      <Link onPress={() => props.history.goBack()} style={styles.link}>
-        <Icon
-          name='arrow-back'
-          color='green'
-          style={styles.backButton}
-        />
-      </Link>
+      {/*<Link onPress={() => props.history.goBack()} style={styles.link}>*/}
+      {/*  <Icon*/}
+      {/*    name='arrow-back'*/}
+      {/*    color='green'*/}
+      {/*    style={styles.backButton}*/}
+      {/*  />*/}
+      {/*</Link>*/}
 
       <H1>Push Notifications</H1>
 
@@ -85,8 +85,16 @@ function PushNotifications(props) {
           </ListItem>
         </Content>
       </Container>
+      <Link onPress={() => props.history.goBack()}>
+        <Icon
+          name='arrow-back'
+          color='green'
+          style={styles.backButton}
+        />
+      </Link>
     </View>
     // </KeyboardAvoidingView>
+
 
   )
 }
@@ -109,8 +117,8 @@ const styles = StyleSheet.create({
   backButton: {
     fontSize: 50
   },
-  inputItem: {
-    marginVertical: 10
+  header: {
+    marginTop: 20
   }
 })
 

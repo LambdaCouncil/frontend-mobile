@@ -55,6 +55,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
+  link: {
+    position: 'absolute',
+    top: 25,
+    left: 5,
+    width: '100%',
+    height: 50
+  },
   backButton: {
     fontSize: 50
   },
