@@ -1,6 +1,5 @@
 import React from 'react';
-import { Header, Input, Icon } from "react-native-elements";
-import { Text } from 'react-native';
+import { Header, Input, Icon, Text, View } from "native-base";
 
 
 const MessagesHeader = ({ channelName, numOfUsers, handleSearchChange }) => {

@@ -1,5 +1,5 @@
-import React from 'react'
-import { YellowBox } from 'react-native'
+import React, { useEffect } from 'react'
+import * as Font from 'expo-font'
 import { Provider } from 'react-redux'
 import { applyMiddleware, createStore } from 'redux'
 import { NativeRouter } from 'react-router-native'
@@ -15,14 +15,18 @@ const store = createStore(reducer, applyMiddleware(thunk))
 
 const App = _ => {
 
-  YellowBox.ignoreWarnings(['Setting a timer'])
+  useEffect(_ => {
+    Font.loadAsync({
+      'gotham': require("./assets/fonts/Gotham-Medium.ttf"),
+      'bern': require("./assets/fonts/BerninaSans-Bold.otf"),
+      'bern2': require("./assets/fonts/BerninaSans-Regular.otf")
+    })
+  }, [])
 
   return (
     <Provider store={store}>
       <NativeRouter>
-        <StyleProvider style={getTheme(common)}>
-          <Routes />
-        </StyleProvider>
+        <Routes />
       </NativeRouter>
     </Provider>
   )

@@ -4,6 +4,7 @@ import color from 'color'
 import { Platform, Dimensions, PixelRatio } from 'react-native'
 
 const councils = {
+
   text: {
     greal: '#288365',
     seafoam: '#CEEBE2',
@@ -12,6 +13,7 @@ const councils = {
     white: '#fff',
     red: '#F13822'
   },
+
   ui: {
     greal: '#288365',
     lightSlateGray: '#DCD9D8',
@@ -21,6 +23,7 @@ const councils = {
     white: '#fff',
     red: '#F13822'
   }
+
 }
 
 export const PLATFORM = {

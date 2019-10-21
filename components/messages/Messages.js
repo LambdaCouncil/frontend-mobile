@@ -1,11 +1,11 @@
 // Dependencies
 import React, { useState, useEffect } from 'react'
-import { Container, Content, Header, List, ListItem } from 'native-base'
+import { View, Content, Header, List, ListItem } from 'native-base'
 
 // Components
-// import MessagesHeader from "./MessagesHeader"
-// import MessageForm from "./MessageForm"
-// import Message from "./Message"
+import MessagesHeader from "./MessageHeader"
+import MessageForm from "./MessagesForm"
+import Message from "./Message"
 import firebase from '../../firebase'
 
 
@@ -88,14 +88,14 @@ const Messages = ({ currentChannel, currentUser }) => {
   const displayChannelName = channel => channel ? `#${channel.name}` : ''
 
   return (
-    <Container>
+    <View>
 
       <Header>
-        {/* <MessagesHeader
+        <MessagesHeader
           channelName={displayChannelName(channel)}
           numOfUsers={numUniqueUsers}
           handleSearchChange={handleSearchChange}
-        /> */}
+        />
       </Header>
 
       <Content>
@@ -110,9 +110,9 @@ const Messages = ({ currentChannel, currentUser }) => {
           {/*{displayMessages(messages)}*/}
           {messages.map(message => (
             <ListItem>
-              {/* <Message message={message}
+              <Message message={message}
                 user={message.user}
-                key={message.timeStamp} /> */}
+                key={message.timeStamp} />
             </ListItem>
           ))}
         </List>
@@ -123,12 +123,12 @@ const Messages = ({ currentChannel, currentUser }) => {
           see: (Zeplin: 06 Discussions - 1, 06 Discussions - 2) 
         */}
 
-        {/* <MessageForm
+        <MessageForm
           messagesRef={messagesRef} currentChannel={currentChannel} currentUser={currentUser}
-        /> */}
+        />
       </Content>
 
-    </Container>
+    </View>
   )
 }
 
