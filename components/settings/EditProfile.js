@@ -1,12 +1,12 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import firebase from "../../firebase"
-import {KeyboardAvoidingView, StyleSheet} from 'react-native'
-import {Input, Text, Label, Item, H1, H3} from 'native-base'
-import {Link} from 'react-router-native'
-import {connect} from 'react-redux'
+import { KeyboardAvoidingView, StyleSheet } from 'react-native'
+import { Input, Text, Label, Item, H1, H3 } from 'native-base'
+import { Link, withRouter } from 'react-router-native'
+import { connect } from 'react-redux'
 
 import Icon from '../Icon'
-import {signUpDisplayName} from '../../actions'
+import { signUpDisplayName } from '../../actions'
 
 function EditProfile(props) {
 
@@ -16,27 +16,29 @@ function EditProfile(props) {
   const [email, setEmail] = useState(' ')
   const [phone, setPhone] = useState(' ')
 
-  const userRef = firebase.database().ref('users');
+  const userRef = firebase.database().ref('users')
 
-  const handleFirstName = text => setFirstName(text);
+  const handleFirstName = text => setFirstName(text)
 
-  const handleLastName = text => setLastName(text);
+  const handleLastName = text => setLastName(text)
 
-  const handleChangeCalling = text => setCalling(text);
+  const handleChangeCalling = text => setCalling(text)
 
-  const handleChangeEmail = text => setEmail(text);
+  const handleChangeEmail = text => setEmail(text)
 
-  const handleChangePhone = text => setPhone(text);
+  const handleChangePhone = text => setPhone(text)
 
   const handleSubmit = () => {
     console.log('Info updated')
-  };
+  }
 
   const changePassword = () => {
-    console.log('Password Changed')};
+    console.log('Password Changed')
+  }
 
   const deleteAccount = () => {
-    console.log('Account Deleted')};
+    console.log('Account Deleted')
+  }
 
   return (
 
@@ -45,7 +47,7 @@ function EditProfile(props) {
       behavior='padding'
     >
 
-      <Link to='/' style={styles.link}>
+      <Link onPress={() => props.history.goBack()} style={styles.link}>
         <Icon
           name='arrow-back'
           color='green'
@@ -60,17 +62,17 @@ function EditProfile(props) {
 
       <Item floatingLabel style={styles.inputItem}>
         <Label>First Name</Label>
-        <Input onChangeText={handleFirstName}/>
+        <Input onChangeText={handleFirstName} />
       </Item>
 
       <Item floatingLabel style={styles.inputItem}>
         <Label>Last Name</Label>
-        <Input onChangeText={handleLastName}/>
+        <Input onChangeText={handleLastName} />
       </Item>
 
       <Item floatingLabel style={styles.inputItem}>
         <Label>Calling</Label>
-        <Input onChangeText={handleChangeCalling}/>
+        <Input onChangeText={handleChangeCalling} />
       </Item>
 
       <Item floatingLabel style={styles.inputItem}>
@@ -121,7 +123,7 @@ const styles = StyleSheet.create({
   inputItem: {
     marginVertical: 10
   }
-});
+})
 
 
-export default EditProfile;
+export default withRouter(EditProfile)

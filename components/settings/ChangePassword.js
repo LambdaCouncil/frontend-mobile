@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import firebase from "../../firebase"
 import { KeyboardAvoidingView, StyleSheet } from 'react-native'
 import { Input, Text, Label, Item, H1, H3 } from 'native-base'
-import { Link } from 'react-router-native'
+import { Link, withRouter } from 'react-router-native'
 import { connect } from 'react-redux'
 
 import Icon from '../Icon'
@@ -14,13 +14,13 @@ function ChangePassword(props) {
   const [newPassword, setNewPassword] = useState(' ')
   const [confirmNewPassword, setConfirmNewPassword] = useState(' ')
 
-  const userRef = firebase.database().ref('users');
+  const userRef = firebase.database().ref('users')
 
-  const handleOldPassword = text => setOldPassword(text);
+  const handleOldPassword = text => setOldPassword(text)
 
-  const handleNewPassword = text => setNewPassword(text);
+  const handleNewPassword = text => setNewPassword(text)
 
-  const handlePasswordConfirm = text => setConfirmNewPassword(text);
+  const handlePasswordConfirm = text => setConfirmNewPassword(text)
 
   const changePassword = _ => console.log('Password Changed')
 
@@ -31,7 +31,7 @@ function ChangePassword(props) {
       behavior='padding'
     >
 
-      <Link to='/' style={styles.link}>
+      <Link onPress={props.history.goBack()} style={styles.link}>
         <Icon
           name='arrow-back'
           color='green'
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   inputItem: {
     marginVertical: 10
   }
-});
+})
 
 
-export default ChangePassword;
+export default withRouter(ChangePassword)
