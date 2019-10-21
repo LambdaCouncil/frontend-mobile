@@ -89,7 +89,7 @@ const Messages = ({ currentChannel, currentUser }) => {
   const displayChannelName = channel => channel ? `#${channel.name}` : ''
 
   return (
-    <Container padder contentContainerStyle={style.screen}>
+    <Container contentContainerStyle={style.screen}>
 
       <Header>
         <Text>Header</Text>
@@ -107,10 +107,10 @@ const Messages = ({ currentChannel, currentUser }) => {
           Alternatively, we could use Card for each message.
           see: (Zeplin: 06 Discussions - 1)
         */}
+      <Content>
+        <View>
 
-      <View>
-
-        {/* <List className='messages'>
+          {/* <List className='messages'>
           {displayMessages(messages)}
           {messages.map(message => (
             <ListItem>
@@ -121,21 +121,20 @@ const Messages = ({ currentChannel, currentUser }) => {
           ))}
         </List> */}
 
-      </View>
-
+        </View>
+      </Content>
       {/* 
           MessageForm doesn't exist in the app, instead there is a + button 
           on the right side of the header which opens an ActionSheet
           see: (Zeplin: 06 Discussions - 1, 06 Discussions - 2) 
         */}
 
-      <Footer style={style.footer}>
-        <Text>Footer</Text>
+
+      <View>
         <MessageForm
           messagesRef={messagesRef} currentChannel={currentChannel} currentUser={currentUser}
         />
-      </Footer>
-
+      </View>
     </Container>
   )
 }
