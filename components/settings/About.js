@@ -10,7 +10,6 @@ import { signUpDisplayName } from '../../actions'
 
 function About(props) {
 
-
   return (
 
     <KeyboardAvoidingView
@@ -40,13 +39,10 @@ function About(props) {
         <Text>Email: info@councils.io</Text>
         <Text>Web: councils.io</Text>
       </View>
-
-
     </KeyboardAvoidingView>
 
   )
 }
-
 
 const styles = StyleSheet.create({
   inputContainer: {
@@ -69,6 +65,5 @@ const styles = StyleSheet.create({
     marginVertical: 10
   }
 })
-
 
 export default withRouter(About)
