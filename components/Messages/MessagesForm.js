@@ -57,31 +57,31 @@ const MessageForm = ({ messagesRef, currentChannel, currentUser }) => {
 
     return (
         <View>
-            <Content>
-                <Form>
-                    <Item>
-                        <Input
-                            name='message'
-                            onChange={handleChange}
-                            value={message}
-                            label={<Button icon={'add'} />}
-                            labelPosition='left'
-                        // className={
-                        //             errors.some(error => error.includes("message"))
-                        //                 ? 'error'
-                        //                 : ''
-                        //         }
-                        //      placeholder='Write your message'
-                        />
-                    </Item>
-                    <Button>
-                        <Text>Add Reply</Text>
-                    </Button>
-                    <Button>
-                        <Text>Upload Media</Text>
-                    </Button>
-                </Form>
-            </Content>
+
+            <Form>
+                <Item>
+                    <Input
+                        name='message'
+                        onChange={handleChange}
+                        value={message}
+                        label={<Button icon={'add'} />}
+                        labelPosition='left'
+                    // className={
+                    //             errors.some(error => error.includes("message"))
+                    //                 ? 'error'
+                    //                 : ''
+                    //         }
+                    //      placeholder='Write your message'
+                    />
+                </Item>
+                <Button>
+                    <Text>Add Reply</Text>
+                </Button>
+                <Button>
+                    <Text>Upload Media</Text>
+                </Button>
+            </Form>
+
         </View>
     );
 };
