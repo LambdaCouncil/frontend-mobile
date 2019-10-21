@@ -1,11 +1,12 @@
 
 import React, {useState, useEffect} from 'react';
 import firebase from '../../firebase';
-import {Grid, Header, Icon, Dropdown, Image} from "semantic-ui-react";
+import { Header, Icon,  Image} from "react-native";
 import {connect} from 'react-redux';
 import {View} from 'react-native';
+import {Text} from 'react-native';
 
-function UserPanel (props) {
+const UserPanel (props) => {
 
   const [user, setUser] = useState(props.currentUser);
 
@@ -57,7 +58,8 @@ function UserPanel (props) {
 };
 
 const mapStateToProps = (state) => ({
-  currentUser: state.user.currentUser
+//   currentUser: state.user.currentUser
+...state
 });
 
 export default connect(mapStateToProps)(UserPanel);
