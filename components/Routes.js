@@ -1,21 +1,22 @@
-import React, {useEffect} from 'react'
-import {connect} from 'react-redux'
-import {Switch, withRouter, Route, Redirect} from 'react-router-native'
-import {ActivityIndicator, View} from 'react-native'
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux'
+import { Switch, withRouter, Route, Redirect } from 'react-router-native'
+import { ActivityIndicator, View } from 'react-native'
 
 import firebase from '../firebase'
 import Register from './Register'
 import Login from './LogIn'
 import Root from '../Root'
 import ProtectedRoutes from "./ProtectedRoutes"
-import {setUser, clearUser} from '../actions'
-import CompleteProfile from "./CompleteProfile";
-import EditProfile from "./settings/EditProfile";
-import ChangePassword from "./settings/ChangePassword";
-import Settings from "./settings/Settings";
-import PushNotifications from "./settings/PushNotifications";
-import SubmitFeedback from "./settings/SubmitFeedback";
-import About from "./settings/About";
+import { setUser, clearUser } from '../actions'
+import CompleteProfile from "./CompleteProfile"
+import EditProfile from "./settings/EditProfile"
+import ChangePassword from "./settings/ChangePassword"
+import Settings from "./settings/Settings"
+import PushNotifications from "./settings/PushNotifications"
+import SubmitFeedback from "./settings/SubmitFeedback"
+import About from "./settings/About"
+import Messages from './messages/Messages'
 
 const Routes = props => {
 
@@ -34,15 +35,15 @@ const Routes = props => {
   }, [])
 
   return (props.isLoading ? (
-      <View style={styles.spinnerContainer}>
-        <ActivityIndicator size="large" color="lime"/>
-      </View>
-    ) : (
+    <View style={styles.spinnerContainer}>
+      <ActivityIndicator size="large" color="lime" />
+    </View>
+  ) : (
       <Switch>
 
         <Route
           exact path='/'
-          render={props => <Root/>}
+          render={props => <Root />}
         />
 
         <Route
@@ -90,8 +91,13 @@ const Routes = props => {
           render={props => <About {...props} />}
         />
 
+        <Route
+          path='/messages'
+          render={props => <Messages {...props} />}
+        />
+
         <ProtectedRoute
-          component={props => <ProtectedRoutes/>}
+          component={props => <ProtectedRoutes />}
           currentUser={props.currentUser}
         />
 
@@ -100,13 +106,13 @@ const Routes = props => {
   )
 }
 
-const ProtectedRoute = ({component: Component, currentUser}) => (
+const ProtectedRoute = ({ component: Component, currentUser }) => (
   <Route render={props => currentUser ?
-    <Component {...props} currentUser={currentUser}/>
+    <Component {...props} currentUser={currentUser} />
     : <Redirect to={{
       pathname: '/',
-      state: {from: props.location}
-    }}/>
+      state: { from: props.location }
+    }} />
   }
   />
 )
@@ -118,4 +124,4 @@ const styles = {
   },
 }
 
-export default connect(state => ({...state}), {setUser, clearUser})(withRouter(Routes))
+export default connect(state => ({ ...state }), { setUser, clearUser })(withRouter(Routes))
