@@ -91,23 +91,23 @@ const Messages = ({ currentChannel, currentUser }) => {
     <View>
 
       <Header>
-        <MessagesHeader
+        {/* <MessagesHeader
           channelName={displayChannelName(channel)}
           numOfUsers={numUniqueUsers}
           handleSearchChange={handleSearchChange}
-        />
+        /> */}
       </Header>
 
-      <Content>
 
-        {/* 
+
+      {/* 
           List is similar in appearance to the Discussions section in the Style Guide. 
           Alternatively, we could use Card for each message.
           see: (Zeplin: 06 Discussions - 1)
         */}
 
-        <List className='messages'>
-          {/*{displayMessages(messages)}*/}
+      {/* <List className='messages'>
+          {displayMessages(messages)}
           {messages.map(message => (
             <ListItem>
               <Message message={message}
@@ -115,18 +115,19 @@ const Messages = ({ currentChannel, currentUser }) => {
                 key={message.timeStamp} />
             </ListItem>
           ))}
-        </List>
+        </List> */}
 
-        {/* 
+      {/* 
           MessageForm doesn't exist in the app, instead there is a + button 
           on the right side of the header which opens an ActionSheet
           see: (Zeplin: 06 Discussions - 1, 06 Discussions - 2) 
         */}
-
+      <View>
         <MessageForm
           messagesRef={messagesRef} currentChannel={currentChannel} currentUser={currentUser}
         />
-      </Content>
+      </View>
+
 
     </View>
   )
