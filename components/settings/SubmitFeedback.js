@@ -1,20 +1,20 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import firebase from "../../firebase"
-import {KeyboardAvoidingView, StyleSheet, TextInput, View} from 'react-native'
-import {Input, Text, Label, Item, H1, H3} from 'native-base'
-import {Link} from 'react-router-native'
-import {connect} from 'react-redux'
+import { KeyboardAvoidingView, StyleSheet, TextInput, View } from 'react-native'
+import { Input, Text, Label, Item, H1, H3 } from 'native-base'
+import { Link, withRouter } from 'react-router-native'
+import { connect } from 'react-redux'
 
 import Icon from '../Icon'
-import {signUpDisplayName} from '../../actions'
+import { signUpDisplayName } from '../../actions'
 
 function SubmitFeedback(props) {
 
-  const [feedback, setFeedback] = useState('');
+  const [feedback, setFeedback] = useState('')
 
   const handleSubmit = () => {
     console.log(feedback)
-  };
+  }
 
   return (
 
@@ -23,7 +23,7 @@ function SubmitFeedback(props) {
       behavior='padding'
     >
 
-      <Link to='/' style={styles.link}>
+      <Link onPress={() => props.history.goBack()} style={styles.link}>
         <Icon
           name='arrow-back'
           color='green'
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
   textInput: {
     textAlign: 'left'
   }
-});
+})
 
 
-export default SubmitFeedback;
+export default withRouter(SubmitFeedback)

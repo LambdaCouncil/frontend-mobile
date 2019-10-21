@@ -4,10 +4,10 @@ import { Provider } from 'react-redux'
 import { applyMiddleware, createStore } from 'redux'
 import { NativeRouter } from 'react-router-native'
 import { StyleProvider } from 'native-base'
-import getTheme from './native-base-theme/components'
-import common from './native-base-theme/variables/commonColor'
 import thunk from 'redux-thunk'
 
+import getTheme from './native-base-theme/components'
+import common from './native-base-theme/variables/commonColor'
 import reducer from './reducer'
 import Routes from './components/Routes'
 

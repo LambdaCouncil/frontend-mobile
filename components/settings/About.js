@@ -1,12 +1,12 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import firebase from "../../firebase"
-import {KeyboardAvoidingView, StyleSheet, View} from 'react-native'
-import {Input, Text, Label, Item, H1, H3} from 'native-base'
-import {Link} from 'react-router-native'
-import {connect} from 'react-redux'
+import { KeyboardAvoidingView, StyleSheet, View } from 'react-native'
+import { Input, Text, Label, Item, H1, H3 } from 'native-base'
+import { Link, withRouter } from 'react-router-native'
+import { connect } from 'react-redux'
 
 import Icon from '../Icon'
-import {signUpDisplayName} from '../../actions'
+import { signUpDisplayName } from '../../actions'
 
 function About(props) {
 
@@ -18,7 +18,7 @@ function About(props) {
       behavior='padding'
     >
 
-      <Link to='/' style={styles.link}>
+      <Link onPress={() => props.history.goBack()} style={styles.link}>
         <Icon
           name='arrow-back'
           color='green'
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   inputItem: {
     marginVertical: 10
   }
-});
+})
 
 
-export default About;
+export default withRouter(About)

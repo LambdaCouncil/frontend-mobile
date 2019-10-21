@@ -1,21 +1,21 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 
-import {KeyboardAvoidingView, StyleSheet, CheckBox} from 'react-native'
-import {Input, Text, Label, Item, H1, H3 } from 'native-base'
-import {Link} from 'react-router-native'
-import {connect} from 'react-redux'
+import { KeyboardAvoidingView, StyleSheet, CheckBox } from 'react-native'
+import { Input, Text, Label, Item, H1, H3 } from 'native-base'
+import { Link, withRouter } from 'react-router-native'
+import { connect } from 'react-redux'
 
 import Icon from '../Icon'
-import {signUpDisplayName} from '../../actions'
+import { signUpDisplayName } from '../../actions'
 
 function PushNotifications(props) {
 
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(false)
 
   const toggleChecked = () => {
-    setChecked(!checked);
+    setChecked(!checked)
     console.log('checked', checked)
-  };
+  }
 
   return (
 
@@ -24,7 +24,7 @@ function PushNotifications(props) {
       behavior='padding'
     >
 
-      <Link to='/' style={styles.link}>
+      <Link onPress={() => props.history.goBack()} style={styles.link}>
         <Icon
           name='arrow-back'
           color='green'
@@ -39,7 +39,7 @@ function PushNotifications(props) {
         title='All Activity'
         checked={checked}
         onIconPress={toggleChecked}
-        />
+      />
       <CheckBox
         center
         title='Agendas'
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
   inputItem: {
     marginVertical: 10
   }
-});
+})
 
 
-export default PushNotifications;
+export default withRouter(PushNotifications)

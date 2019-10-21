@@ -5,7 +5,7 @@ import { Platform, Dimensions, PixelRatio } from 'react-native'
 
 const councils = {
   text: {
-    greal: '#3CB18A',
+    greal: '#288365',
     seafoam: '#CEEBE2',
     nearBlack: '#35373A',
     slateGrey: '#A9AAAC',
@@ -13,7 +13,7 @@ const councils = {
     red: '#F13822'
   },
   ui: {
-    greal: '#3CB18A',
+    greal: '#288365',
     lightSlateGray: '#DCD9D8',
     opaqueSlateGray: '#E8E9EB',
     eggshell: '#F4F6FA',

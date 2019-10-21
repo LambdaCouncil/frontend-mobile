@@ -5,6 +5,7 @@ import { Input, Text, Label, Item, H1, H3 } from 'native-base'
 import { Link, withRouter } from 'react-router-native'
 import { connect } from 'react-redux'
 
+import variables from '../native-base-theme/variables/commonColor'
 import Icon from './Icon'
 import { signUpDisplayName } from '../actions'
 
@@ -69,7 +70,7 @@ function Register(props) {
             <Link to='/' style={styles.link}>
                 <Icon
                     name='arrow-back'
-                    color='green'
+                    color={variables.councils.text.greal}
                     style={styles.backButton}
                 />
             </Link>
@@ -105,7 +106,7 @@ function Register(props) {
                 />
             </Item>
 
-            <H3 onPress={handleSubmit}>Sign Up</H3>
+            <H3 onPress={handleSubmit} submit>Sign Up</H3>
 
         </KeyboardAvoidingView>
 
