@@ -71,10 +71,10 @@ const MessageForm = ({ messagesRef, currentChannel, currentUser }) => {
                     </Item>
                 </View>
                 <View style={style.screen}>
-                    <Button transparent style={style.button1}>
+                    <Button transparent style={style.button1} onPress={() => console.log('@')}>
                         <Text style={style.text}>@</Text>
                     </Button>
-                    <Button transparent style={style.button2}>
+                    <Button transparent style={style.button2} onPress={() => console.log('Message Sent')}>
                         <Text style={style.text}> Send Message</Text>
                     </Button>
                 </View>

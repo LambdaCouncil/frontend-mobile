@@ -8,6 +8,7 @@ import firebase from "../firebase"
 import Icon from './Icon'
 
 function Login(props) {
+
     const [email, setEmail] = useState(' ')
     const [password, setPassword] = useState(' ')
 

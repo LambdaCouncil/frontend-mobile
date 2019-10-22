@@ -3,7 +3,7 @@ import { Switch, Route } from "react-router-native"
 import { View, Text } from "react-native"
 
 import Home from './Home'
-import SidePanel from "./SidePanel/SidePanel"
+import SidePanel from "./SidePanel/SidePanel";
 import UserPanel from "./SidePanel/UserPanel"
 
 export default _ => (

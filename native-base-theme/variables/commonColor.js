@@ -4,18 +4,16 @@ import color from 'color'
 import { Platform, Dimensions, PixelRatio } from 'react-native'
 
 const councils = {
-
   text: {
-    greal: '#288365',
+    greal: '#3CB18A',
     seafoam: '#CEEBE2',
     nearBlack: '#35373A',
     slateGrey: '#A9AAAC',
     white: '#fff',
     red: '#F13822'
   },
-
   ui: {
-    greal: '#288365',
+    greal: '#3CB18A',
     lightSlateGray: '#DCD9D8',
     opaqueSlateGray: '#E8E9EB',
     eggshell: '#F4F6FA',
@@ -23,7 +21,6 @@ const councils = {
     white: '#fff',
     red: '#F13822'
   }
-
 }
 
 export const PLATFORM = {

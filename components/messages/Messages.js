@@ -1,5 +1,6 @@
 // Dependencies
 import React, { useState, useEffect } from 'react'
+
 import { View, Content, Footer, Header, List, ListItem, Container, Text, Col } from 'native-base'
 import { Link, withRouter } from 'react-router-native'
 import { StyleSheet } from 'react-native'
@@ -13,71 +14,72 @@ import firebase from '../../firebase'
 import Icon from '../Icon'
 
 
+
 const Messages = (props, { currentChannel, currentUser }) => {
 
-  const messagesRef = firebase.database().ref('messages')
-  const [channel, setChannel] = useState(currentChannel)
-  const [user, setUser] = useState(currentUser)
-  const [message, setMessage] = useState('')
-  const [messages, setMessages] = useState([])
-  const [messagesLoading, setMessagesLoading] = useState(true)
-  const [numUniqueUsers, setNumUniqueUsers] = useState('')
-  const [searchTerm, setSearchTerm] = useState('')
-  const [searchLoading, setSearchLoading] = useState(false)
-  const [searchResults, setSearchResults] = useState([])
+  const messagesRef = firebase.database().ref('messages');
+  const [channel, setChannel] = useState(currentChannel);
+  const [user, setUser] = useState(currentUser);
+  const [message, setMessage] = useState('');
+  const [messages, setMessages] = useState([]);
+  const [messagesLoading, setMessagesLoading] = useState(true);
+  const [numUniqueUsers, setNumUniqueUsers] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchLoading, setSearchLoading] = useState(false);
+  const [searchResults, setSearchResults] = useState([]);
 
   // The Barndon Constant
   // 2019 Colorized
-  const [barndon, setBarndon] = useState(false)
+  const [barndon, setBarndon] = useState(false);
 
   useEffect(() => {
     if (!barndon && (channel && user)) {
-      addMessageListener(channel.id)
+      addMessageListener(channel.id);
     }
-  }, [messages.length])
+  }, [messages.length]);
 
 
   const addMessageListener = channelId => {
-    let loadedMessages = []
+    let loadedMessages = [];
     messagesRef.child(channelId).on('child_added', async snap => {
-      await loadedMessages.push(snap.val())
+      await loadedMessages.push(snap.val());
       // messages.length > 0 &&
-      setMessages(loadedMessages)
-      // console.log('loadedMessages', loadedMessages)
-      // console.log('messages', messages)
-      setMessagesLoading(false)
-    })
-    countUsers(loadedMessages)
-  }
+      setMessages(loadedMessages);
+      // console.log('loadedMessages', loadedMessages);
+      // console.log('messages', messages);
+      setMessagesLoading(false);
+    });
+    countUsers(loadedMessages);
+  };
 
   const handleSearchChange = e => {
-    setSearchTerm(e.target.value)
+    setSearchTerm(e.target.value);
     setSearchLoading(true)
-  }
+  };
 
   const handleSearchMessages = () => {
-    const channelMessages = [...messages]
-    const regex = new RegExp(searchTerm, 'gi')
+    const channelMessages = [...messages];
+    const regex = new RegExp(searchTerm, 'gi');
     const searchResults = channelMessages.reduce((acc, message) => {
       if (message.content && message.content.match(regex)) {
-        acc.push(message)
+        acc.push(message);
       }
       return acc
-    }, [])
+    }, []);
     setSearchResults(searchResults)
-  }
+  };
 
   const countUsers = (messages) => {
     const uniqueUsers = messages.reduce((acc, message) => {
       if (!acc.includes(message.user.name)) {
-        acc.push(message.user.name)
+        acc.push(message.user.name);
       }
-      return acc
-    }, [])
-    const plural = uniqueUsers.length > 1 || uniqueUsers.length === 0
-    const numUniqueUsers = `${uniqueUsers.length} user${plural ? 's' : ''}`
-    setNumUniqueUsers(numUniqueUsers)
-  }
+      return acc;
+    }, []);
+    const plural = uniqueUsers.length > 1 || uniqueUsers.length === 0;
+    const numUniqueUsers = `${uniqueUsers.length} user${plural ? 's' : ''}`;
+    setNumUniqueUsers(numUniqueUsers);
+  };
 
   const displayMessages = messages => {
     messages.length > 0 && messages.map(message => (
@@ -87,11 +89,12 @@ const Messages = (props, { currentChannel, currentUser }) => {
         user={user}
       />
     ))
-  }
+  };
 
-  const displayChannelName = channel => channel ? `#${channel.name}` : ''
+  const displayChannelName = channel => channel ? `#${channel.name}` : '';
 
   return (
+
     <Container contentContainerStyle={style.screen}>
 
       <Link onPress={() => props.history.goBack()} style={styles.link}>
@@ -101,6 +104,7 @@ const Messages = (props, { currentChannel, currentUser }) => {
           style={styles.backButton}
         />
       </Link>
+
 
       <Header>
         <Text>Header</Text>
@@ -145,10 +149,14 @@ const Messages = (props, { currentChannel, currentUser }) => {
         <MessageForm
           messagesRef={messagesRef} currentChannel={currentChannel} currentUser={currentUser}
         />
+
       </View>
     </Container>
   )
-}
+};
+
+
+export default Messages;
 
 const styles = {
   link: {
@@ -174,3 +182,4 @@ const style = StyleSheet.create({
 })
 
 export default withRouter(Messages)
+

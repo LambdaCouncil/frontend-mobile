@@ -2,8 +2,7 @@ import { CLEAR_USER, SET_USER, SET_CURRENT_CHANNEL, SUDN } from '../actions'
 
 const initialUserState = {
     currentUser: undefined,
-    isLoading: true,
-    channels: []
+    isLoading: true
 }
 
 export default (state = initialUserState, action) => {

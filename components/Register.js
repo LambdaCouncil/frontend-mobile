@@ -47,7 +47,7 @@ function Register(props) {
                                         setEmail(' ')
                                         setPassword(' ')
                                         setPasswordConfirm(' ')
-                                        props.history.push('/completeprofile')
+                                        // props.history.push('/completeprofile')
                                     })
                             })
                     })
