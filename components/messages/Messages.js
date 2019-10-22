@@ -1,7 +1,8 @@
 // Dependencies
 import React, { useState, useEffect } from 'react'
-import { View, Content, Header, List, ListItem } from 'native-base'
+import { View, Content, Footer, Header, List, ListItem, Container, Text, Col } from 'native-base'
 import { Link, withRouter } from 'react-router-native'
+import { StyleSheet } from 'react-native'
 
 // Components
 import MessagesHeader from "./MessageHeader"
@@ -91,7 +92,7 @@ const Messages = (props, { currentChannel, currentUser }) => {
   const displayChannelName = channel => channel ? `#${channel.name}` : ''
 
   return (
-    <View>
+    <Container contentContainerStyle={style.screen}>
 
       <Link onPress={() => props.history.goBack()} style={styles.link}>
         <Icon
@@ -102,6 +103,7 @@ const Messages = (props, { currentChannel, currentUser }) => {
       </Link>
 
       <Header>
+        <Text>Header</Text>
         {/* <MessagesHeader
           channelName={displayChannelName(channel)}
           numOfUsers={numUniqueUsers}
@@ -116,8 +118,10 @@ const Messages = (props, { currentChannel, currentUser }) => {
           Alternatively, we could use Card for each message.
           see: (Zeplin: 06 Discussions - 1)
         */}
+      <Content>
+        <View>
 
-      {/* <List className='messages'>
+          {/* <List className='messages'>
           {displayMessages(messages)}
           {messages.map(message => (
             <ListItem>
@@ -128,19 +132,21 @@ const Messages = (props, { currentChannel, currentUser }) => {
           ))}
         </List> */}
 
+        </View>
+      </Content>
       {/* 
           MessageForm doesn't exist in the app, instead there is a + button 
           on the right side of the header which opens an ActionSheet
           see: (Zeplin: 06 Discussions - 1, 06 Discussions - 2) 
         */}
+
+
       <View>
         <MessageForm
           messagesRef={messagesRef} currentChannel={currentChannel} currentUser={currentUser}
         />
       </View>
-
-
-    </View>
+    </Container>
   )
 }
 
@@ -156,5 +162,15 @@ const styles = {
     fontSize: 50
   },
 }
+
+const style = StyleSheet.create({
+  screen: {
+    flex: 1,
+    height: '100%',
+  },
+  footer: {
+    flexDirection: 'row'
+  }
+})
 
 export default withRouter(Messages)
