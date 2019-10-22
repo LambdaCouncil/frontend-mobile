@@ -1,12 +1,10 @@
 // @flow
 
-import { PixelRatio, StatusBar } from 'react-native'
-
-import variables, { PLATFORM } from './../variables/commonColor'
+import variables, { platform, PLATFORM } from './../variables/commonColor'
 
 export default _ => {
 
-  const { platformStyle, platform } = variables
+  const { platformStyle } = variables
 
   const { ui, text } = variables.councils
 

@@ -15,9 +15,7 @@ import ChangePassword from "./settings/ChangePassword"
 import Settings from "./settings/Settings"
 import PushNotifications from "./settings/PushNotifications"
 import SubmitFeedback from "./settings/SubmitFeedback"
-import About from "./settings/About"
-import Messages from './messages/Messages'
-import RateCouncils from "./settings/RateCouncils";
+import Channels from './SidePanel/Channels'
 
 const Routes = props => {
 
@@ -35,7 +33,7 @@ const Routes = props => {
       })
   }, [])
 
-  return (props.isLoading ? (
+  return props.isLoading ? (
     <View style={styles.spinnerContainer}>
       <ActivityIndicator size="large" color="lime" />
     </View>
@@ -102,6 +100,11 @@ const Routes = props => {
           render={props => <RateCouncils {...props} />}
         />
 
+        <Route
+          path="/discussions"
+          render={props => <Channels {...props} />}
+        />
+
         <ProtectedRoute
           component={props => <ProtectedRoutes />}
           currentUser={props.currentUser}
@@ -109,7 +112,7 @@ const Routes = props => {
 
       </Switch>
     )
-  )
+
 }
 
 const ProtectedRoute = ({ component: Component, currentUser }) => (

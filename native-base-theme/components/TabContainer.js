@@ -2,13 +2,13 @@
 
 import { Platform } from 'react-native'
 
-import variables, { PLATFORM } from './../variables/commonColor'
+import variables, { platform, PLATFORM } from './../variables/commonColor'
 
 export default _ => {
 
-  const { ui, text } = variables.councils
+  const { platformStyle } = variables
 
-  const platformStyle = variables.platformStyle
+  const { ui, text } = variables.councils
 
   return {
     elevation: 3,

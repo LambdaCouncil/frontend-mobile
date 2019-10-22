@@ -1,10 +1,10 @@
 // @flow
 
-import variables, { PLATFORM } from './../variables/commonColor'
+import variables, { platform, PLATFORM } from './../variables/commonColor'
 
 export default _ => {
 
-  const { platform, platformStyle } = variables
+  const { platformStyle } = variables
 
   const { ui, text } = variables.councils
 

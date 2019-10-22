@@ -1,6 +1,6 @@
 // @flow
 
-import variable from './../variables/commonColor';
+import variable, { platform, PLATFORM } from './../variables/commonColor'
 
 export default _ => {
 
