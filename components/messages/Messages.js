@@ -1,17 +1,25 @@
 // Dependencies
 import React, { useState, useEffect } from 'react'
 import { StyleSheet } from 'react-native'
-import { View, Content, Footer, Header, List, ListItem, Container, Text, Col } from 'native-base'
+import {
+  View,
+  Content,
+  Footer,
+  Header,
+  List,
+  ListItem,
+  Container,
+  Text,
+  Col
+} from 'native-base'
 
 // Components
-import MessagesHeader from "./MessageHeader"
-import MessageForm from "./MessagesForm"
-import Message from "./Message"
+import MessagesHeader from './MessageHeader'
+import MessageForm from './MessagesForm'
+import Message from './Message'
 import firebase from '../../firebase'
 
-
 const Messages = ({ currentChannel, currentUser }) => {
-
   const messagesRef = firebase.database().ref('messages')
   const [channel, setChannel] = useState(currentChannel)
   const [user, setUser] = useState(currentUser)
@@ -32,7 +40,6 @@ const Messages = ({ currentChannel, currentUser }) => {
       addMessageListener(channel.id)
     }
   }, [messages.length])
-
 
   const addMessageListener = channelId => {
     let loadedMessages = []
@@ -64,7 +71,7 @@ const Messages = ({ currentChannel, currentUser }) => {
     setSearchResults(searchResults)
   }
 
-  const countUsers = (messages) => {
+  const countUsers = messages => {
     const uniqueUsers = messages.reduce((acc, message) => {
       if (!acc.includes(message.user.name)) {
         acc.push(message.user.name)
@@ -77,20 +84,16 @@ const Messages = ({ currentChannel, currentUser }) => {
   }
 
   const displayMessages = messages => {
-    messages.length > 0 && messages.map(message => (
-      <Message
-        key={message.timeStamp}
-        message={message}
-        user={user}
-      />
-    ))
+    messages.length > 0 &&
+      messages.map(message => (
+        <Message key={message.timeStamp} message={message} user={user} />
+      ))
   }
 
-  const displayChannelName = channel => channel ? `#${channel.name}` : ''
+  const displayChannelName = channel => (channel ? `#${channel.name}` : '')
 
   return (
     <Container contentContainerStyle={style.screen}>
-
       <Header>
         <Text>Header</Text>
         {/* <MessagesHeader
@@ -101,18 +104,13 @@ const Messages = ({ currentChannel, currentUser }) => {
       </Header>
 
       <Content>
-     
-
-
-      {/* 
+        {/* 
           List is similar in appearance to the Discussions section in the Style Guide. 
           Alternatively, we could use Card for each message.
           see: (Zeplin: 06 Discussions - 1)
         */}
-      <Content>
-        <View>
 
-          {/* <List className='messages'>
+        {/* <List className='messages'>
           {displayMessages(messages)}
           {messages.map(message => (
             <ListItem>
@@ -123,22 +121,21 @@ const Messages = ({ currentChannel, currentUser }) => {
           ))}
         </List> */}
 
-        </View>
-      </Content>
-      {/* 
+        {/* 
           MessageForm doesn't exist in the app, instead there is a + button 
           on the right side of the header which opens an ActionSheet
           see: (Zeplin: 06 Discussions - 1, 06 Discussions - 2) 
         */}
+      </Content>
 
-        </Content>
-       
-      <Footer style={style.footer}> 
-        <Text>Footer</Text>     
+      <Footer style={style.footer}>
+        <Text>Footer</Text>
         <MessageForm
-          messagesRef={messagesRef} currentChannel={currentChannel} currentUser={currentUser}
+          messagesRef={messagesRef}
+          currentChannel={currentChannel}
+          currentUser={currentUser}
         />
-      </View>
+      </Footer>
     </Container>
   )
 }
@@ -146,7 +143,7 @@ const Messages = ({ currentChannel, currentUser }) => {
 const style = StyleSheet.create({
   screen: {
     flex: 1,
-    height: '100%',
+    height: '100%'
   },
   footer: {
     flexDirection: 'row'
