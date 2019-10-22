@@ -15,14 +15,13 @@ import Routes from './components/Routes'
 const store = createStore(reducer, applyMiddleware(thunk))
 
 const App = _ => {
-
   YellowBox.ignoreWarnings(['Setting a timer'])
 
   useEffect(_ => {
     Font.loadAsync({
-      'gotham': require("./assets/Fonts/Gotham-Medium.ttf"),
-      'bern': require("./assets/Fonts/BerninaSans-Bold.otf"),
-      'bern2': require("./assets/Fonts/BerninaSans-Regular.otf")
+      gotham: require('./assets/fonts/Gotham-Medium.ttf'),
+      bern: require('./assets/fonts/BerninaSans-Bold.otf'),
+      bern2: require('./assets/fonts/BerninaSans-Regular.otf')
     })
   }, [])
 
