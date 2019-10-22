@@ -243,13 +243,14 @@ export default _ => {
       },
       'NativeBase.Body': {
         'NativeBase.Text': {
-          marginLeft: null
+          marginLeft: null,
+          color: text.greal
         },
         flex: 1,
         paddingVertical: variables.listItemPadding,
         borderBottomWidth: variables.borderWidth,
         borderColor: variables.listBorderColor,
-        marginLeft: variables.listItemPadding + 5
+        marginLeft: variables.listItemPadding + 5,
       },
       'NativeBase.Right': {
         'NativeBase.Text': {
