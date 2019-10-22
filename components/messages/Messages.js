@@ -1,15 +1,18 @@
 // Dependencies
 import React, { useState, useEffect } from 'react'
 import { View, Content, Header, List, ListItem } from 'native-base'
+import { Link, withRouter } from 'react-router-native'
 
 // Components
 import MessagesHeader from "./MessageHeader"
 import MessageForm from "./MessagesForm"
 import Message from "./Message"
+import variables from '../../native-base-theme/variables/commonColor'
 import firebase from '../../firebase'
+import Icon from '../Icon'
 
 
-const Messages = ({ currentChannel, currentUser }) => {
+const Messages = (props, { currentChannel, currentUser }) => {
 
   const messagesRef = firebase.database().ref('messages')
   const [channel, setChannel] = useState(currentChannel)
@@ -90,6 +93,14 @@ const Messages = ({ currentChannel, currentUser }) => {
   return (
     <View>
 
+      <Link onPress={() => props.history.goBack()} style={styles.link}>
+        <Icon
+          name='arrow-back'
+          color={variables.councils.text.greal}
+          style={styles.backButton}
+        />
+      </Link>
+
       <Header>
         {/* <MessagesHeader
           channelName={displayChannelName(channel)}
@@ -133,4 +144,17 @@ const Messages = ({ currentChannel, currentUser }) => {
   )
 }
 
-export default Messages
+const styles = {
+  link: {
+    position: 'absolute',
+    top: 25,
+    left: 5,
+    width: '100%',
+    height: 50
+  },
+  backButton: {
+    fontSize: 50
+  },
+}
+
+export default withRouter(Messages)

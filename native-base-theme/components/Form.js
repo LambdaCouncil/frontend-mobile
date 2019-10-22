@@ -1,7 +1,12 @@
 // @flow
 
-export default () => {
-  const theme = {
+import variables from '../variables/commonColor'
+
+export default _ => {
+
+  const { ui, text } = variables.councils
+
+  return {
     'NativeBase.Item': {
       '.fixedLabel': {
         'NativeBase.Label': {
@@ -80,7 +85,6 @@ export default () => {
       },
       marginLeft: 15
     }
-  };
+  }
 
-  return theme;
-};
+}

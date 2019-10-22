@@ -1,14 +1,14 @@
 // @flow
 
-import variable from './../variables/platform';
+import variable from './../variables/commonColor';
 
-export default (variables /* : * */ = variable) => {
+export default _ => {
 
-  const { ui, text } = variables.councils
+  const { ui, text } = variable.councils
 
-  const viewTheme = {
+  return {
     '.padder': {
-      padding: variables.contentPadding
+      padding: variable.contentPadding
     },
     '.buttonContainerRoot': {
       width: '100%',
@@ -28,7 +28,6 @@ export default (variables /* : * */ = variable) => {
       width: '95%',
       alignItems: 'center',
     },
-  };
+  }
 
-  return viewTheme;
-};
+}

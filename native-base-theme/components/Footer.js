@@ -1,13 +1,14 @@
 // @flow
 
-import variable from './../variables/platform';
-import { PLATFORM } from './../variables/commonColor';
+import variables, { PLATFORM } from '../variables/commonColor'
 
-export default (variables /* : * */ = variable) => {
-  const platformStyle = variables.platformStyle;
-  const platform = variables.platform;
+export default _ => {
 
-  const iconCommon = {
+  const { ui, text } = variables.councils
+
+  const { platform, platformStyle } = variables
+
+  return {
     'NativeBase.Icon': {
       color: variables.tabBarActiveTextColor
     }
@@ -114,6 +115,6 @@ export default (variables /* : * */ = variable) => {
     elevation: 3,
     left: 0,
     right: 0
-  };
-  return footerTheme;
-};
+  }
+
+}

@@ -1,20 +1,22 @@
 // @flow
 
-import variable from './../variables/platform';
-import { PLATFORM } from './../variables/commonColor';
+import variable, { PLATFORM } from './../variables/commonColor'
 
-export default (variables /* : * */ = variable) => {
-  const platform = variables.platform;
+export default _ => {
 
-  const toastTheme = {
+  const { ui, text } = variable.councils
+
+  const platform = variable.platform
+
+  return {
     '.danger': {
-      backgroundColor: variables.brandDanger
+      backgroundColor: variable.brandDanger
     },
     '.warning': {
-      backgroundColor: variables.brandWarning
+      backgroundColor: variable.brandWarning
     },
     '.success': {
-      backgroundColor: variables.brandSuccess
+      backgroundColor: variable.brandSuccess
     },
     backgroundColor: 'rgba(0,0,0,0.8)',
     borderRadius: platform === PLATFORM.IOS ? 5 : 0,
@@ -35,7 +37,6 @@ export default (variables /* : * */ = variable) => {
         fontSize: 14
       }
     }
-  };
+  }
 
-  return toastTheme;
-};
+}

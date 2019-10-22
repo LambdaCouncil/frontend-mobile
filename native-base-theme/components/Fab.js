@@ -1,7 +1,12 @@
 // @flow
 
-export default () => {
-  const fabTheme = {
+import variables from '../variables/commonColor'
+
+export default _ => {
+
+  const { ui, text } = variables.councils
+
+  return {
     'NativeBase.Button': {
       alignItems: 'center',
       padding: null,
@@ -19,7 +24,6 @@ export default () => {
         marginRight: 0
       }
     }
-  };
+  }
 
-  return fabTheme;
-};
+}

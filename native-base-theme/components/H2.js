@@ -1,17 +1,16 @@
 // @flow
 
-import variable from './../variables/platform';
+import variables from '../variables/commonColor'
 
-export default (variables /* : * */ = variable) => {
+export default _ => {
 
   const { ui, text } = variables.councils
 
-  const h2Theme = {
+  return {
     color: variables.textColor,
     fontSize: variables.fontSizeH2,
     lineHeight: variables.lineHeightH2,
     textAlign: 'center'
-  };
+  }
 
-  return h2Theme;
-};
+}

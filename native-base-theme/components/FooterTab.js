@@ -1,12 +1,14 @@
 // @flow
 
-import { Platform } from 'react-native';
+import { Platform } from 'react-native'
 
-import variable from './../variables/platform';
-import { PLATFORM } from './../variables/commonColor';
+import variables, { PLATFORM } from './../variables/commonColor'
 
-export default (variables /* : * */ = variable) => {
-  const platform = variables.platform;
+export default _ => {
+
+  const { platform } = variables
+
+  const { ui, text } = variables.councils
 
   const footerTabTheme = {
     'NativeBase.Button': {
@@ -73,7 +75,6 @@ export default (variables /* : * */ = variable) => {
     justifyContent: 'space-between',
     flex: 1,
     alignSelf: 'stretch'
-  };
+  }
 
-  return footerTabTheme;
-};
+}
