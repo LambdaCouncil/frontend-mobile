@@ -1,107 +1,36 @@
-import React, { useState } from 'react'
-import firebase from "../firebase"
-import { Button, View, StyleSheet, Text, TextInput } from 'react-native'
+import React from 'react'
+import { View, Text, Button } from 'react-native'
+import { connect } from 'react-redux'
 
-import Icon from './Icon';
+import firebase from '../firebase'
+import { H3 } from "native-base";
+import { Link } from "react-router-native";
 
-function Register(props) {
-    const [userName, setUserName] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [passwordConfirm, setPasswordConfirm] = useState('')
-
-    const handleChangeUser = (e) => {
-        setUserName(e)
-        console.log('userName', userName)
-    }
-    const handleChangeEmail = (e) => {
-        setEmail(e)
-        console.log('Email', email)
-    }
-    const handleChangePassword = (e) => {
-        setPassword(e)
-        console.log('password', password)
-    }
-    const handleChangePasswordConfirm = (e) => {
-        setPasswordConfirm(e)
-        console.log('passwordConfirm', passwordConfirm)
-    }
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        firebase
-            .auth()
-            .createUserWithEmailAndPassword(email, password)
-            .then(createdUser => {
-                console.log('createdUser', createdUser)
-            })
-            .catch(err => {
-                console.log(err)
-            })
-    }
-
+const Home = props => {
+    console.log('homeprops', props.currentUser)
     return (
-        <View style={styles.inputContainer}>
-            <Icon 
-                name="beer"
-                color="green"
-                size={25}
-            />
-            <Text style={styles.headerText}>Register for LDSlack</Text>
-            <TextInput
-                name="username"
-                placeholder="Username"
-                style={styles.input}
-                onChangeText={handleChangeUser}
-                value={userName}
-                type="text"
-            />
-            <TextInput
-                name="email"
-                placeholder="Email"
-                style={styles.input}
-                onChangeText={handleChangeEmail}
-                value={email}
-                type="text"
-            />
-            <TextInput
-                name="password"
-                placeholder="Password"
-                style={styles.input}
-                onChangeText={handleChangePassword}
-                value={password}
-                type="password"
-            />
-            <TextInput
-                name="passwordConfirm"
-                placeholder="Confirm Password"
-                style={styles.input}
-                onChangeText={handleChangePasswordConfirm}
-                value={passwordConfirm}
-                type="password"
-            />
-            <Button color="green" title='Submit' onPress={handleSubmit} />
-            <Text>Already wearing the undapants?</Text>
+        <View style={homeStyle}>
+            <Text>{`Hello, ${props.currentUser.displayName}`}</Text>
+            <Text style = {{ fontFamily: "gotham" }}>{`Hello, ${props.currentUser.displayName}`}</Text>
+            <Text style = {{ fontFamily: "bern" }}>{`Hello, ${props.currentUser.displayName}`}</Text>
+            <Text style = {{ fontFamily: "bern2" }}>{`Hello, ${props.currentUser.displayName}`}</Text>
+            <Button onPress={() => firebase.auth().signOut()} title='Log out' />
+            <Link to='/settings'>
+                <H3>Settings</H3>
+            </Link>
+            <Link to='/messages'>
+                <H3>Messages</H3>
+            </Link>
         </View>
     )
 }
 
-const styles = StyleSheet.create({
-    input: {
-        width: '50%',
-        borderColor: 'black',
-        borderWidth: 1,
-        marginBottom: 10, 
-        padding: 10
-    },
-    inputContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    headerText: {
-        padding: 10
-    }
-})
+const homeStyle = {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    height: "100%"
+}
 
-export default Register
+export default connect(state => ({ ...state }))(Home)

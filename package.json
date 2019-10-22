@@ -9,19 +9,27 @@
   },
   "dependencies": {
     "expo": "^35.0.0",
+    "expo-font": "~7.0.0",
     "firebase": "^7.1.0",
+    "mem": "^5.1.1",
+    "native-base": "^2.13.8",
     "react": "16.8.3",
     "react-dom": "16.8.3",
     "react-native": "https://github.com/expo/react-native/archive/sdk-35.0.0.tar.gz",
-    "react-native-elements": "^1.2.6",
     "react-native-vector-icons": "^6.6.0",
     "react-native-web": "^0.11.7",
     "react-redux": "^7.1.1",
+    "react-router-native": "^5.1.2",
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "babel-preset-expo": "^7.0.0"
   },
-  "private": true
+  "private": true,
+  "rnpm": {
+    "assets": [
+      "./assets/fonts/"
+    ]
+  }
 }
