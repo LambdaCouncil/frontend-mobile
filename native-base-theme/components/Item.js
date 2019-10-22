@@ -2,7 +2,7 @@
 
 import { Platform } from 'react-native'
 
-import variables, { PLATFORM } from './../variables/commonColor'
+import variables, { platform, PLATFORM } from './../variables/commonColor'
 
 export default _ => {
 

@@ -1,12 +1,10 @@
 // @flow
 
-import variable, { PLATFORM } from './../variables/commonColor'
+import variable, { platform, PLATFORM } from './../variables/commonColor'
 
 export default _ => {
 
   const { ui, text } = variable.councils
-
-  const platform = variable.platform
 
   return {
     '.danger': {

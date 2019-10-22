@@ -8,16 +8,19 @@ import Register from './Register'
 import Login from './LogIn'
 import Root from '../Root'
 import ProtectedRoutes from "./ProtectedRoutes"
-import {setUser, clearUser} from '../actions'
-import CompleteProfile from "./CompleteProfile";
-import EditProfile from "./settings/EditProfile";
-import ChangePassword from "./settings/ChangePassword";
-import Settings from "./settings/Settings";
-import PushNotifications from "./settings/PushNotifications";
-import SubmitFeedback from "./settings/SubmitFeedback";
-import About from "./settings/About";
+
+import { setUser, clearUser } from '../actions'
+import CompleteProfile from "./CompleteProfile"
+import EditProfile from "./settings/EditProfile"
+import ChangePassword from "./settings/ChangePassword"
+import Settings from "./settings/Settings"
+import PushNotifications from "./settings/PushNotifications"
+import SubmitFeedback from "./settings/SubmitFeedback"
+import Channels from './SidePanel/Channels'
 import RateCouncils from "./settings/RateCouncils";
-import Home from './Home'
+import About from "./settings/About";
+import Home from "./Home";
+
 
 const Routes = props => {
 
@@ -35,11 +38,13 @@ const Routes = props => {
       })
   }, [])
 
-  return (props.isLoading ? (
-      <View style={styles.spinnerContainer}>
-        <ActivityIndicator size="large" color="lime"/>
-      </View>
-    ) : (
+
+  return props.isLoading ? (
+    <View style={styles.spinnerContainer}>
+      <ActivityIndicator size="large" color="lime" />
+    </View>
+  ) : (
+
       <Switch>
 
         <Route
@@ -102,6 +107,11 @@ const Routes = props => {
           render={props => <RateCouncils {...props} />}
         />
 
+        <Route
+          path="/discussions"
+          render={props => <Channels {...props} />}
+        />
+
         <ProtectedRoute
           component={props => <ProtectedRoutes/>}
           currentUser={props.currentUser}
@@ -109,7 +119,7 @@ const Routes = props => {
 
       </Switch>
     )
-  )
+
 }
 
 const ProtectedRoute = ({component: Component, currentUser}) => (
