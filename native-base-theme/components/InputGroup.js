@@ -1,9 +1,12 @@
 // @flow
 
-import variable from './../variables/platform';
+import variables from '../variables/commonColor'
 
-export default (variables /* : * */ = variable) => {
-  const inputGroupTheme = {
+export default _ => {
+
+  const { ui, text } = variables.councils
+
+  return {
     'NativeBase.Icon': {
       fontSize: 24,
       color: variables.sTabBarActiveTextColor,
@@ -126,7 +129,6 @@ export default (variables /* : * */ = variable) => {
     backgroundColor: 'transparent',
     flexDirection: 'row',
     alignItems: 'center'
-  };
+  }
 
-  return inputGroupTheme;
-};
+}

@@ -1,9 +1,12 @@
 // @flow
 
-import variable from './../variables/platform';
+import variables from '../variables/commonColor'
 
-export default (variables /* : * */ = variable) => {
-  const cardTheme = {
+export default _ => {
+
+  const { ui, text } = variables.councils
+
+  return {
     '.transparent': {
       shadowColor: null,
       shadowOffset: null,
@@ -31,7 +34,6 @@ export default (variables /* : * */ = variable) => {
     shadowOpacity: 0.1,
     shadowRadius: 1.5,
     elevation: 3
-  };
+  }
 
-  return cardTheme;
-};
+}

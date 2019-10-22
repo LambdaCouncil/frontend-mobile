@@ -1,9 +1,13 @@
 // @flow
 
-export default () => {
-  const switchTheme = {
-    marginVertical: -5
-  };
+import variables from '../variables/commonColor'
 
-  return switchTheme;
-};
+export default _ => {
+
+  const { ui, text } = variables.councils
+
+  return {
+    marginVertical: -5
+  }
+
+}

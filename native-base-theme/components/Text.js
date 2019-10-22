@@ -1,18 +1,18 @@
 // @flow
 
-import variable from './../variables/platform';
+import variable from '../variables/commonColor'
 
-export default (variables /* : * */ = variable) => {
+export default _ => {
 
-  const { ui, text } = variables.councils
+  const { ui, text } = variable.councils
 
-  const textTheme = {
-    fontSize: variables.DefaultFontSize,
-    fontFamily: variables.fontFamily,
-    color: variables.textColor,
+  return {
+    fontSize: variable.DefaultFontSize,
+    fontFamily: variable.fontFamily,
+    color: variable.textColor,
     '.note': {
       color: '#a7a7a7',
-      fontSize: variables.noteFontSize
+      fontSize: variable.noteFontSize
     },
     '.loginButton': {
       backgroundColor: ui.eggshell,
@@ -32,7 +32,6 @@ export default (variables /* : * */ = variable) => {
       color: text.white,
       fontSize: 35
     },
-  };
+  }
 
-  return textTheme;
-};
+}

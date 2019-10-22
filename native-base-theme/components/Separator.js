@@ -1,9 +1,12 @@
 // @flow
 
-import variable from './../variables/platform';
+import variables from '../variables/commonColor'
 
-export default (variables /* : * */ = variable) => {
-  const theme = {
+export default _ => {
+
+  const { ui, text } = variables.councils
+
+  return {
     '.group': {
       height: 50,
       paddingVertical: variables.listItemPadding - 8,
@@ -43,7 +46,6 @@ export default (variables /* : * */ = variable) => {
     flex: 1,
     justifyContent: 'center',
     paddingLeft: variables.listItemPadding + 5
-  };
+  }
 
-  return theme;
-};
+}

@@ -1,9 +1,12 @@
 // @flow
 
-import variable from './../variables/platform';
+import variables from '../variables/commonColor'
 
-export default (variables /* : * */ = variable) => {
-  const inputTheme = {
+export default _ => {
+
+  const { ui, text } = variables.councils
+
+  return {
     '.multiline': {
       height: null
     },
@@ -13,7 +16,6 @@ export default (variables /* : * */ = variable) => {
     paddingRight: 5,
     flex: 1,
     fontSize: variables.inputFontSize
-  };
+  }
 
-  return inputTheme;
-};
+}

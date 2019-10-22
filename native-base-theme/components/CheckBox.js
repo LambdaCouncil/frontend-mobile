@@ -1,9 +1,12 @@
 // @flow
 
-import variable from './../variables/platform';
+import variables from '../variables/commonColor'
 
-export default (variables /* : * */ = variable) => {
-  const checkBoxTheme = {
+export default _ => {
+
+  const { ui, text } = variables.councils
+
+  return {
     '.checked': {
       'NativeBase.Icon': {
         color: variables.checkboxTickColor
@@ -32,7 +35,6 @@ export default (variables /* : * */ = variable) => {
     paddingLeft: variables.CheckboxPaddingLeft - 1,
     paddingBottom: variables.CheckboxPaddingBottom,
     left: 10
-  };
+  }
 
-  return checkBoxTheme;
-};
+}

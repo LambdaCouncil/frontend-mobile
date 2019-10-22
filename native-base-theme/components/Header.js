@@ -1,15 +1,16 @@
 // @flow
 
-import { PixelRatio, StatusBar } from 'react-native';
+import { PixelRatio, StatusBar } from 'react-native'
 
-import variable from './../variables/platform';
-import { PLATFORM } from './../variables/commonColor';
+import variables, { PLATFORM } from './../variables/commonColor'
 
-export default (variables /* : * */ = variable) => {
-  const platformStyle = variables.platformStyle;
-  const platform = variables.platform;
+export default _ => {
 
-  const headerTheme = {
+  const { platformStyle, platform } = variables
+
+  const { ui, text } = variables.councils
+
+  return {
     '.span': {
       height: 128,
       'NativeBase.Left': {
@@ -215,7 +216,7 @@ export default (variables /* : * */ = variable) => {
             color: variables.toolbarBtnColor,
             fontSize:
               platform === PLATFORM.IOS &&
-              variables.platformStyle !== PLATFORM.MATERIAL
+                variables.platformStyle !== PLATFORM.MATERIAL
                 ? variables.iconHeaderSize + 1
                 : variables.iconHeaderSize,
             marginTop: 0,
@@ -227,7 +228,7 @@ export default (variables /* : * */ = variable) => {
             color: variables.toolbarBtnColor,
             fontSize:
               platform === PLATFORM.IOS &&
-              variables.platformStyle !== PLATFORM.MATERIAL
+                variables.platformStyle !== PLATFORM.MATERIAL
                 ? variables.iconHeaderSize + 1
                 : variables.iconHeaderSize - 2,
             marginTop: 0,
@@ -357,7 +358,7 @@ export default (variables /* : * */ = variable) => {
             top: platform === PLATFORM.IOS ? 1 : -1.5,
             paddingRight:
               platform === PLATFORM.IOS &&
-              variables.platformStyle !== PLATFORM.MATERIAL
+                variables.platformStyle !== PLATFORM.MATERIAL
                 ? 0
                 : undefined
           },
@@ -401,7 +402,7 @@ export default (variables /* : * */ = variable) => {
     borderBottomColor: variables.toolbarDefaultBorder,
     height:
       variables.platform === PLATFORM.IOS &&
-      variables.platformStyle === PLATFORM.MATERIAL
+        variables.platformStyle === PLATFORM.MATERIAL
         ? variables.toolbarHeight + 10
         : variables.toolbarHeight,
     elevation: 3,
@@ -413,7 +414,6 @@ export default (variables /* : * */ = variable) => {
     top: 0,
     left: 0,
     right: 0
-  };
+  }
 
-  return headerTheme;
-};
+}

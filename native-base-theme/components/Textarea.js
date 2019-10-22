@@ -1,25 +1,27 @@
 // @flow
 
-import variable from './../variables/platform';
+import variable from '../variables/commonColor'
 
-export default (variables /* : * */ = variable) => {
-  const textAreaTheme = {
+export default _ => {
+
+  const { ui, text } = variable.councils
+
+  return {
     '.underline': {
-      borderBottomWidth: variables.borderWidth,
+      borderBottomWidth: variable.borderWidth,
       marginTop: 5,
-      borderColor: variables.inputBorderColor
+      borderColor: variable.inputBorderColor
     },
     '.bordered': {
       borderWidth: 1,
       marginTop: 5,
-      borderColor: variables.inputBorderColor
+      borderColor: variable.inputBorderColor
     },
-    color: variables.textColor,
+    color: variable.textColor,
     paddingLeft: 10,
     paddingRight: 5,
     fontSize: 15,
     textAlignVertical: 'top'
-  };
+  }
 
-  return textAreaTheme;
-};
+}

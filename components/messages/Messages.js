@@ -1,15 +1,21 @@
 // Dependencies
 import React, { useState, useEffect } from 'react'
-import { Container, Content, Header, List, ListItem } from 'native-base'
+
+import { View, Content, Footer, Header, List, ListItem, Container, Text, Col } from 'native-base'
+import { Link, withRouter } from 'react-router-native'
+import { StyleSheet } from 'react-native'
 
 // Components
-import MessagesHeader from "./MessagesHeader"
-import MessageForm from "./MessageForm"
-import firebase from '../../firebase'
+import MessagesHeader from "./MessageHeader"
+import MessageForm from "./MessagesForm"
 import Message from "./Message"
+import variables from '../../native-base-theme/variables/commonColor'
+import firebase from '../../firebase'
+import Icon from '../Icon'
 
 
-const Messages = ({ currentChannel, currentUser }) => {
+
+const Messages = (props, { currentChannel, currentUser }) => {
 
   const messagesRef = firebase.database().ref('messages');
   const [channel, setChannel] = useState(currentChannel);
@@ -88,26 +94,39 @@ const Messages = ({ currentChannel, currentUser }) => {
   const displayChannelName = channel => channel ? `#${channel.name}` : '';
 
   return (
-    <Container>
+
+    <Container contentContainerStyle={style.screen}>
+
+      <Link onPress={() => props.history.goBack()} style={styles.link}>
+        <Icon
+          name='arrow-back'
+          color={variables.councils.text.greal}
+          style={styles.backButton}
+        />
+      </Link>
+
 
       <Header>
-        <MessagesHeader
+        <Text>Header</Text>
+        {/* <MessagesHeader
           channelName={displayChannelName(channel)}
           numOfUsers={numUniqueUsers}
           handleSearchChange={handleSearchChange}
-        />
+        /> */}
       </Header>
 
-      <Content>
 
-        {/* 
+
+      {/* 
           List is similar in appearance to the Discussions section in the Style Guide. 
           Alternatively, we could use Card for each message.
           see: (Zeplin: 06 Discussions - 1)
         */}
+      <Content>
+        <View>
 
-        <List className='messages'>
-          {/*{displayMessages(messages)}*/}
+          {/* <List className='messages'>
+          {displayMessages(messages)}
           {messages.map(message => (
             <ListItem>
               <Message message={message}
@@ -115,21 +134,52 @@ const Messages = ({ currentChannel, currentUser }) => {
                 key={message.timeStamp} />
             </ListItem>
           ))}
-        </List>
+        </List> */}
 
-        {/* 
+        </View>
+      </Content>
+      {/* 
           MessageForm doesn't exist in the app, instead there is a + button 
           on the right side of the header which opens an ActionSheet
           see: (Zeplin: 06 Discussions - 1, 06 Discussions - 2) 
         */}
 
+
+      <View>
         <MessageForm
           messagesRef={messagesRef} currentChannel={currentChannel} currentUser={currentUser}
         />
-      </Content>
 
+      </View>
     </Container>
   )
 };
 
+
 export default Messages;
+
+const styles = {
+  link: {
+    position: 'absolute',
+    top: 25,
+    left: 5,
+    width: '100%',
+    height: 50
+  },
+  backButton: {
+    fontSize: 50
+  },
+}
+
+const style = StyleSheet.create({
+  screen: {
+    flex: 1,
+    height: '100%',
+  },
+  footer: {
+    flexDirection: 'row'
+  }
+})
+
+export default withRouter(Messages)
+

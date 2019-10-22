@@ -1,9 +1,13 @@
 // @flow
 
-export default () => {
-  const spinnerTheme = {
-    height: 80
-  };
+import variables from '../variables/commonColor'
 
-  return spinnerTheme;
-};
+export default _ => {
+
+  const { ui, text } = variables.councils
+
+  return {
+    height: 80
+  }
+
+}

@@ -51,12 +51,12 @@ function Login(props) {
 
             <Text>Log into your Councils account.</Text>
 
-            <Item floatingLabel style={styles.inputItem}>
+            <Item floatingLabel>
                 <Label>Email</Label>
                 <Input onChangeText={handleChangeEmail} />
             </Item>
 
-            <Item floatingLabel style={styles.inputItem}>
+            <Item floatingLabel>
                 <Label>Password</Label>
                 <Input
                     onChangeText={handleChangePassword}
@@ -88,9 +88,6 @@ const styles = StyleSheet.create({
     backButton: {
         fontSize: 50
     },
-    inputItem: {
-        marginVertical: 10
-    }
 })
 
 export default Login

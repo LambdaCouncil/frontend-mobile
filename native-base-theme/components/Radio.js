@@ -1,12 +1,14 @@
 // @flow
 
-import { Platform } from 'react-native';
+import { Platform } from 'react-native'
 
-import variable from './../variables/platform';
-import { PLATFORM } from './../variables/commonColor';
+import variables, { PLATFORM } from '../variables/commonColor'
 
-export default (variables /* : * */ = variable) => {
-  const radioTheme = {
+export default _ => {
+
+  const { ui, text } = variables.councils
+
+  return {
     '.selected': {
       'NativeBase.IconNB': {
         color:
@@ -25,7 +27,6 @@ export default (variables /* : * */ = variable) => {
       fontSize:
         Platform.OS === PLATFORM.IOS ? undefined : variables.radioBtnSize
     }
-  };
+  }
 
-  return radioTheme;
-};
+}

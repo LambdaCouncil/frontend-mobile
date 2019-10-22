@@ -1,7 +1,11 @@
 // @flow
 
-export default () => {
-  const pickerTheme = {};
+import variables from '../variables/commonColor'
 
-  return pickerTheme;
-};
+export default _ => {
+
+  const { ui, text } = variables.councils
+
+  return {}
+
+}
