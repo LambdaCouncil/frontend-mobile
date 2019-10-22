@@ -1,56 +1,63 @@
 import React, { useState } from 'react'
 import firebase from "../firebase"
 import { KeyboardAvoidingView, StyleSheet } from 'react-native'
-import { Input, Text } from 'react-native-elements'
-import { Link } from 'react-router-native'
+import { Input, Text, Label, Item, H1, H3 } from 'native-base'
+import { Link, withRouter } from 'react-router-native'
+import { connect } from 'react-redux'
 
+import variables from '../native-base-theme/variables/commonColor'
 import Icon from './Icon'
+import { signUpDisplayName } from '../actions'
 
 function Register(props) {
 
     const [userName, setUserName] = useState(' ')
     const [email, setEmail] = useState(' ')
     const [password, setPassword] = useState(' ')
-    const [ldsOrg, setLdsOrg] = useState(' ')
-    const [focus, setFocus] = useState([false, false, false])
+    const [passwordConfirm, setPasswordConfirm] = useState(' ')
 
     const userRef = firebase.database().ref('users'),
+
+        handleChangeUserName = text => setUserName(text),
 
         handleChangeEmail = text => setEmail(text),
 
         handleChangePassword = text => setPassword(text),
 
-        handleChangeLdsOrg = text => setLdsOrg(text),
+        handleChangePasswordConfirm = text => setPasswordConfirm(text),
 
-        handleSubmit = _ => firebase
-            .auth()
-            .createUserWithEmailAndPassword(email, password)
-            .then(createdUser => {
-                console.log('createdUser', createdUser)
-                createdUser.user.updateProfile({ displayName: userName })
-                    .then(_ => {
-                        userRef.child(createdUser.user.uid).set({
-                            name: createdUser.displayName
-                        })
+        handleSubmit = _ => {
+
+            if (password === passwordConfirm) {
+
+                props.signUpDisplayName(userName)
+
+                firebase
+                    .auth()
+                    .createUserWithEmailAndPassword(email, password)
+                    .then(createdUser => {
+                        createdUser.user
+                            .updateProfile({ displayName: userName })
                             .then(_ => {
-                                setUserName(' ')
-                                setEmail(' ')
-                                setPassword(' ')
-                                setLdsOrg(' ')
+                                userRef
+                                    .child(createdUser.user.uid)
+                                    .set({ name: createdUser.user.displayName })
+                                    .then(_ => {
+                                        setUserName(' ')
+                                        setEmail(' ')
+                                        setPassword(' ')
+                                        setPasswordConfirm(' ')
+                                        props.history.push('/completeprofile')
+                                    })
                             })
                     })
-            })
-            .catch(err => console.error(err)),
+                    .catch(err => {
+                        props.history.push('/register')
+                        console.error(err)
+                    })
 
-        isFieldValid = type => {
-            switch (type) {
-                case 'email':
-                    return email.length > 1 ? '' : 'Email is required.'
-                case 'password':
-                    return password.length > 1 ? '' : 'Password is required.'
-                default:
-                    return ldsOrg.length > 1 ? '' : 'LDS Username is required.'
-            }
+            } else alert("Passwords don't match.")
+
         }
 
     return (
@@ -63,63 +70,43 @@ function Register(props) {
             <Link to='/' style={styles.link}>
                 <Icon
                     name='arrow-back'
-                    color='green'
+                    color={variables.councils.text.greal}
                     style={styles.backButton}
                 />
             </Link>
 
-            <Text h2 h2Style={styles.headerText}>Sign Up</Text>
+            <H1>Sign Up</H1>
 
-            <Text h4>Create Councils account.</Text>
+            <Text>Create Councils account.</Text>
 
-            <Input
-                label="Email"
-                labelStyle={{
-                    translateY: focus[0] ? 0 : 35,
-                    color: focus[0] ? 'black' : 'gray',
-                }}
-                style={styles.input}
-                onChangeText={handleChangeEmail}
-                containerStyle={{ marginVertical: 15 }}
-                inputStyle={{ marginVertical: 10 }}
-                onFocus={() => setFocus([true, false, false])}
-                onBlur={() => setFocus([false, false, false])}
-                errorMessage={isFieldValid('email')}
-            />
 
-            <Input
-                label="Password"
-                labelStyle={{
-                    translateY: focus[1] ? 0 : 35,
-                    color: focus[1] ? 'black' : 'gray',
-                }}
-                style={styles.input}
-                onChangeText={handleChangePassword}
-                secureTextEntry={true}
-                containerStyle={{ marginVertical: 15 }}
-                inputStyle={{ marginVertical: 10 }}
-                onFocus={() => setFocus([false, true, false])}
-                onBlur={() => setFocus([false, false, false])}
-                errorMessage={isFieldValid('password')}
-            />
+            <Item floatingLabel style={styles.inputItem}>
+                <Label>Username</Label>
+                <Input onChangeText={handleChangeUserName} />
+            </Item>
 
-            <Input
-                label="LDS.org Username"
-                labelStyle={{
-                    translateY: focus[2] ? 0 : 35,
-                    color: focus[2] ? 'black' : 'gray',
-                }}
-                style={styles.input}
-                onChangeText={handleChangeLdsOrg}
-                value={ldsOrg}
-                containerStyle={{ marginVertical: 15 }}
-                inputStyle={{ marginVertical: 10 }}
-                onFocus={() => setFocus([false, false, true])}
-                onBlur={() => setFocus([false, false, false])}
-                errorMessage={isFieldValid()}
-            />
+            <Item floatingLabel style={styles.inputItem}>
+                <Label>Email</Label>
+                <Input onChangeText={handleChangeEmail} />
+            </Item>
 
-            <Text h3 h3Style={{ color: 'green' }} onPress={handleSubmit}>Sign Up</Text>
+            <Item floatingLabel style={styles.inputItem}>
+                <Label>Password</Label>
+                <Input
+                    onChangeText={handleChangePassword}
+                    secureTextEntry={true}
+                />
+            </Item>
+
+            <Item floatingLabel style={styles.inputItem}>
+                <Label>Confirm Password</Label>
+                <Input
+                    secureTextEntry={true}
+                    onChangeText={handleChangePasswordConfirm}
+                />
+            </Item>
+
+            <H3 onPress={handleSubmit} submit>Sign Up</H3>
 
         </KeyboardAvoidingView>
 
@@ -143,16 +130,9 @@ const styles = StyleSheet.create({
     backButton: {
         fontSize: 50
     },
-    headerText: {
-        padding: 10
-    },
-    input: {
-        width: '50%',
-        borderColor: 'black',
-        borderWidth: 1,
-        marginBottom: 10,
-        padding: 10
+    inputItem: {
+        marginVertical: 10
     }
 })
 
-export default Register
+export default connect(state => ({ ...state }), { signUpDisplayName })(withRouter(Register))

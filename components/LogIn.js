@@ -1,16 +1,15 @@
 import React, { useState } from 'react'
 import { KeyboardAvoidingView, StyleSheet } from 'react-native'
-import { Input, Text } from 'react-native-elements'
+import { Input, Text, Label, Item, H1, H3 } from 'native-base'
 import { Link } from 'react-router-native'
 
+import variables from '../native-base-theme/variables/commonColor'
 import firebase from "../firebase"
 import Icon from './Icon'
 
 function Login(props) {
-
     const [email, setEmail] = useState(' ')
     const [password, setPassword] = useState(' ')
-    const [focus, setFocus] = useState([false, false])
 
     const handleChangeEmail = text => setEmail(text),
 
@@ -30,12 +29,7 @@ function Login(props) {
             }
         },
 
-        isFormValid = _ => email.length > 1 && password.length > 1,
-
-        isFieldValid = field => {
-            if (field) return email.length ? '' : 'Email is required to sign in.'
-            else return password.length ? '' : 'Password is required to sign in.'
-        }
+        isFormValid = _ => email.length > 1 && password.length > 1
 
     return (
 
@@ -47,49 +41,29 @@ function Login(props) {
             <Link to='/' style={styles.link}>
                 <Icon
                     name='arrow-back'
-                    color='green'
+                    color={variables.councils.text.greal}
                     style={styles.backButton}
                 />
             </Link>
 
-            <Text h2 h2Style={styles.headerText}>Log In</Text>
+            <H1>Log In</H1>
 
-            <Text h4>Log into your Councils account.</Text>
+            <Text>Log into your Councils account.</Text>
 
-            <Input
-                name="email"
-                style={styles.input}
-                label='Email'
-                labelStyle={{
-                    translateY: focus[0] ? 0 : 35,
-                    color: focus[0] ? 'black' : 'gray',
-                }}
-                onChangeText={handleChangeEmail}
-                containerStyle={{ marginVertical: 15 }}
-                inputStyle={{ marginVertical: 10 }}
-                onFocus={() => setFocus([true, false])}
-                onBlur={() => setFocus([false, false])}
-                errorMessage={isFieldValid(true)}
-            />
+            <Item floatingLabel>
+                <Label>Email</Label>
+                <Input onChangeText={handleChangeEmail} />
+            </Item>
 
-            <Input
-                name="password"
-                style={styles.input}
-                label="Password"
-                labelStyle={{
-                    translateY: focus[1] ? 0 : 35,
-                    color: focus[1] ? 'black' : 'gray',
-                }}
-                onChangeText={handleChangePassword}
-                secureTextEntry={true}
-                containerStyle={{ marginVertical: 15 }}
-                inputStyle={{ marginVertical: 10 }}
-                onFocus={() => setFocus([false, true])}
-                onBlur={() => setFocus([false, false])}
-                errorMessage={isFieldValid()}
-            />
+            <Item floatingLabel>
+                <Label>Password</Label>
+                <Input
+                    onChangeText={handleChangePassword}
+                    secureTextEntry={true}
+                />
+            </Item>
 
-            <Text h4 h4Style={{ color: 'green' }} onPress={handleSubmit}>Log In</Text>
+            <H3 onPress={handleSubmit} submit>Log In</H3>
 
         </KeyboardAvoidingView>
 
@@ -112,16 +86,6 @@ const styles = StyleSheet.create({
     },
     backButton: {
         fontSize: 50
-    },
-    headerText: {
-        padding: 10
-    },
-    input: {
-        width: '50%',
-        borderColor: 'black',
-        borderWidth: 1,
-        marginBottom: 10,
-        padding: 10
     },
 })
 
