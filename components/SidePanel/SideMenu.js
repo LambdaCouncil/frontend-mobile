@@ -13,12 +13,12 @@ const SideMenu = props => {
         </Link>
       </Button>
       <Button light>
-        <Link to="/about">
+        <Link to="/discussions">
           <Text>Discussions</Text>
         </Link>
       </Button>
       <Button light>
-        <Link to="/login">
+        <Link to="/home">
           <Text>Assignments</Text>
         </Link>
       </Button>

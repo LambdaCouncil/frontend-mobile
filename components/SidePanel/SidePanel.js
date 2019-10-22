@@ -27,9 +27,13 @@ const SidePanel = props => {
         </Body>
       </Header>
       {showPanel ? (
-        <View>
-          <UserPanel />
-          <SideMenu />
+        <View style={styles.content}>
+          <View>
+            <UserPanel />
+          </View>
+          <View>
+            <SideMenu />
+          </View>
         </View>
       ) : (
         <Text>When panel is closed, display current page</Text>
@@ -46,6 +50,11 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#FFFFFF",
     // paddingTop: 25
+  },
+  content: {
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%'
   }
 });
 

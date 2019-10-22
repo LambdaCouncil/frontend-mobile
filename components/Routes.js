@@ -16,6 +16,7 @@ import Settings from "./settings/Settings";
 import PushNotifications from "./settings/PushNotifications";
 import SubmitFeedback from "./settings/SubmitFeedback";
 import About from "./settings/About";
+import Channels from './SidePanel/Channels'
 
 const Routes = props => {
 
@@ -33,71 +34,49 @@ const Routes = props => {
       })
   }, [])
 
-  return (props.isLoading ? (
-      <View style={styles.spinnerContainer}>
-        <ActivityIndicator size="large" color="lime"/>
-      </View>
-    ) : (
-      <Switch>
+  return props.isLoading ? (
+    <View style={styles.spinnerContainer}>
+      <ActivityIndicator size="large" color="lime" />
+    </View>
+  ) : (
+    <Switch>
+      <Route exact path="/" render={props => <Root />} />
 
-        <Route
-          exact path='/'
-          render={props => <Root/>}
-        />
+      <Route exact path="/login" render={props => <Login {...props} />} />
 
-        <Route
-          exact path="/login"
-          render={props => <Login {...props} />}
-        />
+      <Route path="/register" render={props => <Register {...props} />} />
 
-        <Route
-          path="/register"
-          render={props => <Register {...props} />}
-        />
+      <Route
+        path="/completeprofile"
+        render={props => <CompleteProfile {...props} />}
+      />
 
-        <Route
-          path='/completeprofile'
-          render={props => <CompleteProfile {...props} />}
-        />
+      <Route path="/editprofile" render={props => <EditProfile {...props} />} />
 
-        <Route
-          path='/editprofile'
-          render={props => <EditProfile {...props} />}
-        />
+      <Route
+        path="/changepassword"
+        render={props => <ChangePassword {...props} />}
+      />
 
-        <Route
-          path='/changepassword'
-          render={props => <ChangePassword {...props} />}
-        />
+      <Route path="/settings" render={props => <Settings {...props} />} />
 
-        <Route
-          path='/settings'
-          render={props => <Settings {...props} />}
-        />
+      <Route
+        path="/notifications"
+        render={props => <PushNotifications {...props} />}
+      />
 
-        <Route
-          path='/notifications'
-          render={props => <PushNotifications {...props} />}
-        />
+      <Route path="/feedback" render={props => <SubmitFeedback {...props} />} />
 
-        <Route
-          path='/feedback'
-          render={props => <SubmitFeedback {...props} />}
-        />
+      <Route path="/about" render={props => <About {...props} />} />
 
-        <Route
-          path='/about'
-          render={props => <About {...props} />}
-        />
+      <Route path="/discussions" render={props => <Channels {...props} />} />
 
-        <ProtectedRoute
-          component={props => <ProtectedRoutes/>}
-          currentUser={props.currentUser}
-        />
-
-      </Switch>
-    )
-  )
+      <ProtectedRoute
+        component={props => <ProtectedRoutes />}
+        currentUser={props.currentUser}
+      />
+    </Switch>
+  );
 }
 
 const ProtectedRoute = ({component: Component, currentUser}) => (
