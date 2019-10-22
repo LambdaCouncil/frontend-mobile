@@ -17,6 +17,7 @@ import PushNotifications from "./settings/PushNotifications";
 import SubmitFeedback from "./settings/SubmitFeedback";
 import About from "./settings/About";
 import RateCouncils from "./settings/RateCouncils";
+import Home from './Home'
 
 const Routes = props => {
 
@@ -44,6 +45,11 @@ const Routes = props => {
         <Route
           exact path='/'
           render={props => <Root/>}
+        />
+
+        <Route
+          exact path='/home'
+          render={props => <Home/>}
         />
 
         <Route
