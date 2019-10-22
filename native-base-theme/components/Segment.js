@@ -1,12 +1,14 @@
 // @flow
 
-import variable from './../variables/platform';
-import { PLATFORM } from './../variables/commonColor';
+import variables, { PLATFORM } from './../variables/commonColor'
 
-export default (variables /* : * */ = variable) => {
-  const platform = variables.platform;
+export default _ => {
 
-  const segmentTheme = {
+  const { ui, text } = variables.councils
+
+  const platform = variables.platform
+
+  return {
     height: 45,
     borderColor: variables.segmentBorderColorMain,
     flexDirection: 'row',
@@ -51,7 +53,6 @@ export default (variables /* : * */ = variable) => {
         color: variables.segmentTextColor
       }
     }
-  };
+  }
 
-  return segmentTheme;
-};
+}

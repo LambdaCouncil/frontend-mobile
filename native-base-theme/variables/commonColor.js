@@ -6,7 +6,7 @@ import { Platform, Dimensions, PixelRatio } from 'react-native'
 const councils = {
 
   text: {
-    greal: '',
+    greal: '#288365',
     seafoam: '#CEEBE2',
     nearBlack: '#35373A',
     slateGrey: '#A9AAAC',

@@ -1,14 +1,16 @@
 // @flow
 
-import { Platform } from 'react-native';
+import { Platform } from 'react-native'
 
-import variable from './../variables/platform';
-import { PLATFORM } from './../variables/commonColor';
+import variables, { PLATFORM } from './../variables/commonColor'
 
-export default (variables /* : * */ = variable) => {
-  const platformStyle = variables.platformStyle;
+export default _ => {
 
-  const tabContainerTheme = {
+  const { ui, text } = variables.councils
+
+  const platformStyle = variables.platformStyle
+
+  return {
     elevation: 3,
     height: 50,
     flexDirection: 'row',
@@ -20,7 +22,6 @@ export default (variables /* : * */ = variable) => {
     justifyContent: 'space-around',
     borderBottomWidth: Platform.OS === PLATFORM.IOS ? variables.borderWidth : 0,
     borderColor: variables.topTabBarBorderColor
-  };
+  }
 
-  return tabContainerTheme;
-};
+}

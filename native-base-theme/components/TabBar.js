@@ -1,9 +1,12 @@
 // @flow
 
-import variable from './../variables/platform';
+import variables from '../variables/commonColor'
 
-export default (variables /* : * */ = variable) => {
-  const tabBarTheme = {
+export default _ => {
+
+  const { ui, text } = variables.councils
+
+  return {
     '.tabIcon': {
       height: undefined
     },
@@ -51,7 +54,6 @@ export default (variables /* : * */ = variable) => {
     borderRightWidth: 0,
     borderBottomColor: '#ccc',
     backgroundColor: variables.tabBgColor
-  };
+  }
 
-  return tabBarTheme;
-};
+}

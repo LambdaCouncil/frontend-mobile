@@ -1,7 +1,12 @@
 // @flow
 
-export default () => {
-  const thumbnailTheme = {
+import variable from '../variables/commonColor'
+
+export default _ => {
+
+  const { ui, text } = variable.councils
+
+  return {
     '.square': {
       borderRadius: 0,
       '.small': {
@@ -34,7 +39,6 @@ export default () => {
     width: 56,
     height: 56,
     borderRadius: 28
-  };
+  }
 
-  return thumbnailTheme;
-};
+}

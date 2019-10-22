@@ -17,7 +17,7 @@ function Settings(props) {
       behavior='padding'
     >
 
-      <Link onPress={() => props.history.goBack()} style={styles.link}>
+      <Link to='/home' style={styles.link}>
         <Icon
           name='arrow-back'
           color='green'

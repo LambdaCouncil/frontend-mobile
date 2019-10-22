@@ -1,7 +1,12 @@
 // @flow
 
-export default () => {
-  const swipeRowTheme = {
+import variables from '../variables/commonColor'
+
+export default _ => {
+
+  const { ui, text } = variables.councils
+
+  return {
     'NativeBase.ListItem': {
       '.list': {
         backgroundColor: '#FFF'
@@ -40,7 +45,6 @@ export default () => {
       alignSelf: 'stretch',
       borderRadius: 0
     }
-  };
+  }
 
-  return swipeRowTheme;
-};
+}

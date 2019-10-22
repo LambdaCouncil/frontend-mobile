@@ -1,6 +1,5 @@
 // Dependencies
 import React, { useState, useEffect } from 'react'
-import { StyleSheet } from 'react-native'
 import {
   View,
   Content,
@@ -12,14 +11,18 @@ import {
   Text,
   Col
 } from 'native-base'
+import { Link, withRouter } from 'react-router-native'
+import { StyleSheet } from 'react-native'
 
 // Components
 import MessagesHeader from './MessageHeader'
 import MessageForm from './MessagesForm'
 import Message from './Message'
+import variables from '../../native-base-theme/variables/commonColor'
 import firebase from '../../firebase'
+import Icon from '../Icon'
 
-const Messages = ({ currentChannel, currentUser }) => {
+const Messages = (props, { currentChannel, currentUser }) => {
   const messagesRef = firebase.database().ref('messages')
   const [channel, setChannel] = useState(currentChannel)
   const [user, setUser] = useState(currentUser)
@@ -94,6 +97,14 @@ const Messages = ({ currentChannel, currentUser }) => {
 
   return (
     <Container contentContainerStyle={style.screen}>
+      <Link onPress={() => props.history.goBack()} style={styles.link}>
+        <Icon
+          name='arrow-back'
+          color={variables.councils.text.greal}
+          style={styles.backButton}
+        />
+      </Link>
+
       <Header>
         <Text>Header</Text>
         {/* <MessagesHeader
@@ -140,6 +151,19 @@ const Messages = ({ currentChannel, currentUser }) => {
   )
 }
 
+const styles = {
+  link: {
+    position: 'absolute',
+    top: 25,
+    left: 5,
+    width: '100%',
+    height: 50
+  },
+  backButton: {
+    fontSize: 50
+  }
+}
+
 const style = StyleSheet.create({
   screen: {
     flex: 1,
@@ -150,4 +174,4 @@ const style = StyleSheet.create({
   }
 })
 
-export default Messages
+export default withRouter(Messages)
